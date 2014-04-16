@@ -1,0 +1,140 @@
+/*
+ * Vars and imports
+ */
+@import url("http://fonts.googleapis.com/css?family=Lato");
+
+
+html, body {
+  height: 100%;
+}
+body {
+  height: auto;
+  font-family: 'Lato';
+  /*font-family: 'Open Sans', sans-serif;*/
+  color: #3B3C36; /* black olive */
+  background-color: #F5F5DC;
+}
+.container {
+  min-height: 100%;
+  padding-bottom: 150px;
+}
+.navbar {
+	text-shadow: none;
+	background-color: #2f2f2f;
+	padding: 4px 10%;
+	padding-bottom: 5px;
+	box-shadow: 0 0 2px black;
+}
+/* override bootstrap */
+.navbar a {
+	color: rgba(255, 255, 255, 0.9) !important;
+}
+.navbar a:hover {
+	color: white !important;
+}
+#footer {
+  position: relative;
+  font-size: 1.25em;
+  border-top: 1px dotted #808080;
+  background-color: white;
+  margin-top: -100px;
+  height: 100px;
+  clear: both;
+  padding: 20px 10%;
+  padding-bottom: 60px;
+}
+/* disable hyperlink underlining */
+a:hover {
+	text-decoration: none;
+}
+
+
+
+
+.very_big_space_top {
+	margin-top: 40px;
+}
+.justify {
+	text-align: justify;
+}
+
+
+/* 	to make <a> look like button in navbar	
+	for alignment */
+.special_button {
+	border-radius: 4px;
+}
+
+.white_glow {
+	text-shadow: 0 0 20px white; /*#f5f5f5;*/
+}
+.clickable {
+  cursor: pointer;
+}
+.grey {
+  color: #808080;
+}
+.white {
+  color: #fff;
+}
+.black {
+  color: #000;
+}
+.inline {
+  display: inline;
+}
+.inline_block {
+  display: inline-block;
+}
+.block {
+  display: block;
+}
+.my_hide {
+  display: none;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.font1 {
+  font-size: 1em;
+}
+.font1-25 {
+  font-size: 1.25em;
+}
+.font1-5 {
+  font-size: 1.5em;
+}
+.font1-75 {
+  font-size: 1.75em;
+}
+.font2 {
+  font-size: 2em;
+}
+.top {
+  vertical-align: top;
+}
+.bottom {
+  vertical-align: bottom;
+}
+.small_space_top {
+  margin-top: 5px;
+}
+.medium_space_top {
+  margin-top: 15px;
+}
+.big_space_top {
+  margin-top: 30px;
+}
+.full_width {
+  width: 100%;
+}
+.half_width {
+  width: 50%;
+}
+.left_right_margin {
+  margin-left: 10px;
+  margin-right: 10px;
+}

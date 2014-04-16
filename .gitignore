@@ -1,0 +1,6 @@
+venv
+*.pyc
+dump.rdb
+*.csv
+*.xls
+*.xlsx
