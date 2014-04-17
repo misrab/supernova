@@ -51,7 +51,11 @@ if (process.env.REDISTOGO_URL) {
 
 
 // configuration =================
-var app      = express();
+var app = express();
+
+app.set('views', __dirname + '/public');
+app.set('view engine', 'html');
+
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
 	app.use(express.logger('dev')); 						// log every request to the console
@@ -78,6 +82,44 @@ app.use(passport.session());
 require('./routes')(app);
 
 // listen (start app with node server.js) ======================================
-var port = process.env.PORT || 5000;
-app.listen(port);
-console.log("App listening on port 5000");
+var clearDB = null;
+if (process.env.NODE_ENV=='development') {
+	// next(err)
+	clearDB = function(next) {
+		next(null);
+		
+		// drop
+		/*
+		db_mongo.Neuron.remove({}, function(err) {
+			console.log('Neurons removed') 
+			// drop sequelize
+			db_pg.sequelize.drop().complete(next);
+		});
+		*/
+	};
+}
+else if (process.env.NODE_ENV=='staging') {
+	clearDB = function(next) { next(null); };
+} else {
+	//!!! PRODUCTION, CAREFUL !!!
+	clearDB = function(next) { next(null); };
+}
+
+clearDB(function(err) {
+	db_pg.sequelize.sync().complete(function(err) {
+		if (err) { throw err }
+		else {
+			console.log ('### Succeeded connected to: ' + db_pg.url + ' ###');
+			console.log("### process.env.PORT: " + process.env.PORT);
+			var port = process.env.PORT || 5000;
+			app.listen(port, function() {
+				console.log('### Environment is: ' + process.env.NODE_ENV);
+				console.log('### Listening on ' + port);
+			});
+		}
+	})
+});
+
+//var port = process.env.PORT || 5000;
+//app.listen(port);
+//console.log("App listening on port 5000");

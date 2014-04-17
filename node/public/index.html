@@ -14,18 +14,16 @@
 	<link rel='stylesheet' href='/styles/shared/generic.css' />
 </head>
 
-<body ng-app="app" ng-controller="AppController">
+<body ng-app="app">
 	<!-- header -->
 	<div ng-include="'/angular/views/shared/header.html'"></div>
 	
 	<!-- MAIN CONTENT AND INJECTED VIEWS -->
-	<div id="content">
-		<div ng-view></div>
-		<!-- ng-include="'/angular/views/shared/landing.html'" -->
-	</div>
+	<!-- <div ng-include="'/angular/views/shared/signup.html'"></div>-->
+	<div id="content" ng-view></div>
 	
 	<!-- footer -->
-	<div ng-include="'/angular/views/shared/footer.html'"></div>
+	<div id="footer" ng-include="'/angular/views/shared/footer.html'"></div>
 	
 	
 	<!-- Javascripts -->
@@ -34,15 +32,26 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" ></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" ></script>
-	<!-- Angular -->
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-	<!-- ngRoute for routing -->
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
+	
 	
 	
 	<!-- Angular App -->
+	
+	<!-- Angular -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<!-- External -->
+	<script type="text/javascript" src="/angular/external/angular-route.min.js"></script>
+	<!--<script type="text/javascript" src="/angular/external/angular-resource.min.js"></script>-->
+	<script type="text/javascript" src="/angular/external/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="/angular/external/http-auth-interceptor.js"></script>
+	<!-- App -->
 	<script type="text/javascript" src="/angular/app.js"></script>
 	<!-- Controllers -->
-	<!-- <script type="text/javascript" src="/angular/controllers/MainController.js"></script> -->
+	<script type="text/javascript" src="/angular/controllers/AppController.js"></script>
+	<!-- Factories -->
+	<!-- <script type="text/javascript" src="/angular/factories/SessionFactory.js"></script> -->
+	<!-- Services -->
+	<script type="text/javascript" src="/angular/services/UserService.js"></script>
+
 </body>
 </html>

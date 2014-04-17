@@ -7,15 +7,17 @@
 html, body {
   height: 100%;
 }
+
 body {
-  height: auto;
   font-family: 'Lato';
-  /*font-family: 'Open Sans', sans-serif;*/
+  /*height: auto; font-family: 'Open Sans', sans-serif;*/
   color: #3B3C36; /* black olive */
   background-color: #F5F5DC;
 }
+#content, .container {
+	min-height: 100%;
+}
 .container {
-  min-height: 100%;
   padding-bottom: 150px;
 }
 .navbar {
