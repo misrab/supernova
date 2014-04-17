@@ -50,6 +50,7 @@ app.run(function ($rootScope, $location) {
 	  }
 	});*/
 	
+	/*
 	$rootScope.$watch('currentUser', function(currentUser) {
 	  // if no currentUser and on a page that requires authorization then try to update it
 	  // will trigger 401s if user does not have a valid session
@@ -63,5 +64,5 @@ app.run(function ($rootScope, $location) {
 	$rootScope.$on('event:auth-loginRequired', function() {
 	  $location.path('/login');
 	  return false;
-	});
+	});*/
 });

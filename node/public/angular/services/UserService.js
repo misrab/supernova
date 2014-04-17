@@ -1,6 +1,21 @@
 var app = angular.module('app');
 
-app.service('UserService', function($http, $rootScope, $cookieStore) {
+app.service('UserService', function($location, $http, $rootScope, $cookieStore) {
+
+
+	this.logout = function() {
+		$http.delete('/session')
+			.success(function(data) {
+				$rootScope.currentUser = null;
+				$cookieStore.remove('user');
+				
+				$location.url('/');
+			})
+			.error(function() {
+				console.log('Error logging out')
+			});
+	};
+
 	// either creating a /session or a /user
 	this.postUserInfo = function(email, password, route) {
 	
@@ -19,6 +34,9 @@ app.service('UserService', function($http, $rootScope, $cookieStore) {
 					$rootScope.currentUser = data.user;
 					// store to cookie
 					$cookieStore.put('user', data.user);
+					
+					// route to workspace
+					$location.url('/workspace');
 				} else {
 					var err = $('.alert-danger');
 					err.html(data.message);

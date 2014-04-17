@@ -25,7 +25,7 @@ passport.use(new LocalStrategy(
 
 // serialize user on login
 passport.serializeUser(function(user, done) {
-  //console.log('serializing user\n');
+  console.log('serializing user\n');
   done(null, user.id);
 });
 // deserialize user on logout
