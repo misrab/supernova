@@ -33,8 +33,8 @@ module.exports = function(app) {
 		user_controller.login(req, res, function(err, result) {
 			if (err) return res.send(400, JSON.stringify(err));
 			
-			console.log('### RESULT: ' + JSON.stringify(result));
-			console.log('### REQUSER: ' + JSON.stringify(req.user));
+			//console.log('### RESULT: ' + JSON.stringify(result));
+			//console.log('### REQUSER: ' + JSON.stringify(req.user));
 			
 			res.send(200, JSON.stringify(result));
 		});

@@ -9,12 +9,6 @@ module.exports = function(app) {
 	
 	// ANGULAR APP AS DEFAULT
 	app.get('*', function(req, res) {
-		res.redirect('/');
+		res.render('angular/index.html');
 	});
-	
-	//app.get('/*', function(req, res) {
-		//res.sendfile('/public/angular/index.html');
-		//res.send('moed');
-		//res.sendfile('/angular/index.html');
-	//});
 }

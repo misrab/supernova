@@ -22,6 +22,9 @@
 		<li ng-if="!currentUser">
 			<a class="special_button" style="background-color: #428bca;" href="/login">LOG IN</a>
 		</li>
+		<li ng-if="currentUser">
+			<a onClick="javascript: void(0);" style="color: white;">Logged in as {{ currentUser.email }}</a>
+		</li>
 		<li ng-if="currentUser" ng-controller="RegistrationController">
 			<a ng-click="logout()" class="special_button" style="background-color: #428bca;" href="#">LOG OUT</a>
 		</li>

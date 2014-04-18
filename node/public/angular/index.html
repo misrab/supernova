@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!doctype html>
+
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Supernova Analytics</title>
+	<link rel="shortcut icon" href="/img/favico.png" />
+	
+	<link rel='stylesheet' href='//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css' />
+	<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' />
+	
+	<link rel='stylesheet' href='/styles/shared/generic.css' />
+</head>
+
+<body ng-app="app">
+	<!-- header -->
+	<div ng-include="'/angular/views/shared/header.html'"></div>
+	
+	<!-- MAIN CONTENT AND INJECTED VIEWS -->
+	<!-- <div ng-include="'/angular/views/shared/signup.html'"></div>-->
+	<div id="content" ng-view></div>
+	
+	<!-- footer -->
+	<div id="footer" ng-include="'/angular/views/shared/footer.html'"></div>
+	
+	
+	<!-- Javascripts -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" ></script>
+	<!-- Bootstrap -->
+	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" ></script>
+	
+	
+	
+	<!-- Angular App -->
+	
+	<!-- Angular & File Upload module-->
+	<!-- shim is needed to support upload progress/abort for HTML5 and non-HTML5 FormData browsers.-->
+	<!-- use html5-shim.js instead if you just support HTML5 browsers and you need progress event-->
+	<!-- Note: shim.js MUST BE PLACED BEFORE angular.js and angular-file-upload.js AFTER angular.js-->
+	<script src="/angular/external/angular-file-upload-shim.min.js"></script> 
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="/angular/external/angular-file-upload.min.js"></script> 
+	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>-->
+	
+	<!-- External (non-file-upload) -->
+	<script type="text/javascript" src="/angular/external/angular-route.min.js"></script>
+	<!--<script type="text/javascript" src="/angular/external/angular-resource.min.js"></script>-->
+	<script type="text/javascript" src="/angular/external/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="/angular/external/http-auth-interceptor.js"></script>
+	<!-- App -->
+	<script type="text/javascript" src="/angular/app.js"></script>
+	<!-- Controllers -->
+	<script type="text/javascript" src="/angular/controllers/AppController.js"></script>
+	<script type="text/javascript" src="/angular/controllers/RegistrationController.js"></script>
+	<script type="text/javascript" src="/angular/controllers/WorkspaceController.js"></script>
+	<!-- Factories -->
+	<!-- <script type="text/javascript" src="/angular/factories/SessionFactory.js"></script> -->
+	<!-- Services -->
+	<script type="text/javascript" src="/angular/services/UserService.js"></script>
+	<script type="text/javascript" src="/angular/services/UploadService.js"></script>
+</body>
+</html>

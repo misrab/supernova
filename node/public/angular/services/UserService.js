@@ -1,8 +1,15 @@
 var app = angular.module('app');
 
 app.service('UserService', function($location, $http, $rootScope, $cookieStore) {
-
-
+	this.authenticate = function() {
+		$rootScope.currentUser = $cookieStore.get('user') || $rootScope.currentUser || null;
+		
+		console.log('Current user is: ' + $rootScope.currentUser);
+		
+    	if (!$rootScope.currentUser && ['/', '/signup'].indexOf($location.path())==-1) $location.url('/login');
+    	else if ($rootScope.currentUser && $location.path()!='/workspace') $location.url('/workspace');
+	};
+	
 	this.logout = function() {
 		$http.delete('/session')
 			.success(function(data) {
@@ -28,8 +35,7 @@ app.service('UserService', function($location, $http, $rootScope, $cookieStore) 
 				if (!data) return;
 				
 				if (data.success) {
-					console.log('Success post user info:' + data.success + ', ' + JSON.stringify(data.user));
-					
+					//console.log('Success post user info:' + data.success + ', ' + JSON.stringify(data.user));
 					
 					$rootScope.currentUser = data.user;
 					// store to cookie

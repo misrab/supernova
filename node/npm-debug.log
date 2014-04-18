@@ -1,0 +1,1180 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'zerorpc' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 warn package.json supernova@0.0.1 No description
+5 warn package.json supernova@0.0.1 No repository field.
+6 warn package.json supernova@0.0.1 No README data
+7 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
+8 warn package.json url@0.7.9 url is also the name of a node core module.
+9 verbose readDependencies using package.json deps
+10 verbose cache add [ 'zerorpc', null ]
+11 verbose cache add name=undefined spec="zerorpc" args=["zerorpc",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'zerorpc',
+12 verbose parsed url   path: 'zerorpc',
+12 verbose parsed url   href: 'zerorpc' }
+13 silly lockFile 97cd84c6-zerorpc zerorpc
+14 verbose lock zerorpc /Users/Misrab/.npm/97cd84c6-zerorpc.lock
+15 silly lockFile 97cd84c6-zerorpc zerorpc
+16 silly lockFile 97cd84c6-zerorpc zerorpc
+17 verbose addNamed [ 'zerorpc', '' ]
+18 verbose addNamed [ null, '*' ]
+19 silly lockFile 866fe8e6-zerorpc zerorpc@
+20 verbose lock zerorpc@ /Users/Misrab/.npm/866fe8e6-zerorpc.lock
+21 silly addNameRange { name: 'zerorpc', range: '*', hasData: false }
+22 verbose url raw zerorpc
+23 verbose url resolving [ 'https://registry.npmjs.org/', './zerorpc' ]
+24 verbose url resolved https://registry.npmjs.org/zerorpc
+25 info trying registry request attempt 1 at 17:12:34
+26 verbose etag "8IIX99KUX6ZVRJ2MVH4258ZL3"
+27 http GET https://registry.npmjs.org/zerorpc
+28 http 304 https://registry.npmjs.org/zerorpc
+29 silly registry.get cb [ 304,
+29 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:36 GMT',
+29 silly registry.get     server: 'Apache',
+29 silly registry.get     via: '1.1 varnish',
+29 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:36 GMT',
+29 silly registry.get     'cache-control': 'max-age=1',
+29 silly registry.get     etag: '"8IIX99KUX6ZVRJ2MVH4258ZL3"',
+29 silly registry.get     'x-served-by': 'cache-sv63-SJC3',
+29 silly registry.get     'x-cache': 'MISS',
+29 silly registry.get     'x-cache-hits': '0',
+29 silly registry.get     'x-timer': 'S1397812356.316010952,VS0,VE147',
+29 silly registry.get     vary: 'Accept',
+29 silly registry.get     'content-length': '0',
+29 silly registry.get     'keep-alive': 'timeout=10, max=50',
+29 silly registry.get     connection: 'Keep-Alive' } ]
+30 verbose etag zerorpc from cache
+31 silly addNameRange number 2 { name: 'zerorpc', range: '*', hasData: true }
+32 silly addNameRange versions [ 'zerorpc',
+32 silly addNameRange   [ '0.1.0',
+32 silly addNameRange     '0.2.0',
+32 silly addNameRange     '0.3.0',
+32 silly addNameRange     '0.4.0',
+32 silly addNameRange     '0.5.0',
+32 silly addNameRange     '0.6.0',
+32 silly addNameRange     '0.6.1',
+32 silly addNameRange     '0.7.0',
+32 silly addNameRange     '0.7.1',
+32 silly addNameRange     '0.7.2',
+32 silly addNameRange     '0.7.3',
+32 silly addNameRange     '0.7.4',
+32 silly addNameRange     '0.8.0',
+32 silly addNameRange     '0.8.1',
+32 silly addNameRange     '0.8.2',
+32 silly addNameRange     '0.8.3',
+32 silly addNameRange     '0.8.4',
+32 silly addNameRange     '0.8.5',
+32 silly addNameRange     '0.8.6',
+32 silly addNameRange     '0.8.7',
+32 silly addNameRange     '0.8.8',
+32 silly addNameRange     '0.9.0',
+32 silly addNameRange     '0.9.1',
+32 silly addNameRange     '0.9.2',
+32 silly addNameRange     '0.9.3' ] ]
+33 verbose addNamed [ 'zerorpc', '0.9.3' ]
+34 verbose addNamed [ '0.9.3', '0.9.3' ]
+35 silly lockFile 5245d2b3-zerorpc-0-9-3 zerorpc@0.9.3
+36 verbose lock zerorpc@0.9.3 /Users/Misrab/.npm/5245d2b3-zerorpc-0-9-3.lock
+37 silly lockFile 5245d2b3-zerorpc-0-9-3 zerorpc@0.9.3
+38 silly lockFile 5245d2b3-zerorpc-0-9-3 zerorpc@0.9.3
+39 silly lockFile 866fe8e6-zerorpc zerorpc@
+40 silly lockFile 866fe8e6-zerorpc zerorpc@
+41 silly resolved [ { name: 'zerorpc',
+41 silly resolved     version: '0.9.3',
+41 silly resolved     main: './index.js',
+41 silly resolved     author: { name: 'dotCloud', email: 'opensource@dotcloud.com' },
+41 silly resolved     description: 'A port of ZeroRPC to node.js',
+41 silly resolved     contributors: [ [Object], [Object] ],
+41 silly resolved     repository: { type: 'git', url: 'https://github.com/dotcloud/zerorpc-node' },
+41 silly resolved     keywords: [ 'zerorpc', 'rpc', 'distributed', 'communication' ],
+41 silly resolved     dependencies:
+41 silly resolved      { underscore: '1.3.3',
+41 silly resolved        msgpack: '0.1.8',
+41 silly resolved        'node-uuid': '1.3.3',
+41 silly resolved        zmq: '2.x' },
+41 silly resolved     devDependencies: { nodeunit: '0.7.4' },
+41 silly resolved     license: 'MIT',
+41 silly resolved     readme: 'zerorpc-node\n============\n\nZeroRPC is a communication layer for distributed systems. zerorpc-node is a port of the original [ZeroRPC](https://github.com/dotcloud/zerorpc-python) for node.js. We have full client and server support for version 3 of the protocol, and clients/servers written in the Python version can communicate transparently with those written in node.js. This project is alpha.\n\nTo install the package:\n\n    npm install zerorpc\n\nIf you get the error `Package libzmq was not found`, take a look at [the fix for zeromq.node](https://github.com/JustinTulloss/zeromq.node/issues/55). If you get the error `Unable to load shared library <<path to zeromq.node>>/binding.node`, [make sure you run ldconfig](https://github.com/JustinTulloss/zeromq.node/issues/85). If that still doesn\'t work, check out [this ticket](https://github.com/JustinTulloss/zeromq.node/issues/92).\n\nServers\n-------\n\nTo create a new server:\n\n    var zerorpc = require("zerorpc");\n    var server = new zerorpc.Server(context);\n\nThe constructor takes in a context object with the functions to expose over RPC. Only functions that do not have a leading underscore will be exposed. Each exposed method must take in a callback as the last argument. This callback is called as `callback(error, response, more)` when there is a new update, where error is an error object or string, response is the new update, and more is a boolean specifying whether new updates will be available later. `error`, `response`, and `more` default to falsy values, so e.g. simply calling `callback()` closes an open stream, since `more` is false by default.\n\nEvents:\n\n* `error` - When an error occurs.\n\nMethods:\n\n* `bind(endpoint)` - Binds the server to the specified ZeroMQ endpoint.\n* `connect(endpoint)` - Connects the server to the specified ZeroMQ endpoint.\n* `close()` - Closes the ZeroMQ socket.\n\nFull example:\n\n    var zerorpc = require("zerorpc");\n\n    var server = new zerorpc.Server({\n        addMan: function(sentence, reply) {\n            reply(null, sentence + ", man!");\n        },\n\n        add42: function(n, reply) {\n            reply(null, n + 42);\n        },\n\n        iter: function(from, to, step, reply) {\n            for(i=from; i<to; i+=step) {\n                reply(null, i, true);\n            }\n\n            reply();\n        }\n    });\n\n    server.bind("tcp://0.0.0.0:4242");\n\n    server.on("error", function(error) {\n        console.error("RPC server error:", error);\n    });\n\nClients\n-------\n\nTo create a new client:\n\n    var zerorpc = require("zerorpc");\n    var client = new zerorpc.Client(options);\n\nThe constructor optionally takes in an options object. Allowable options:\n\n* `timeout` (number) - Sets the number of seconds to wait for a response before considering the call timed out. Defaults to 30.\n\nEvents:\n\n* `error` - When an error occurs.\n\nMethods:\n\n* `bind(endpoint)` - Binds the client to the specified ZeroMQ endpoint.\n* `connect(endpoint)` - Connects the client to the specified ZeroMQ endpoint.\n* `close()` - Closes the ZeroMQ socket.\n* `invoke(method, arguments..., callback)` - Invokes a remote method.\n  * `method` is the method name.\n  * `callback` is a method to call when there is an update. This callback is called as `callback(error, response, more)`, where error is an error object, response is the new update, and more is a boolean specifying whether new updates will be available later (i.e. whether the response is streaming).\n\nFull example:\n\n    var zerorpc = require("zerorpc");\n\n    var client = new zerorpc.Client();\n    client.connect("tcp://127.0.0.1:4242");\n\n    client.on("error", function(error) {\n        console.error("RPC client error:", error);\n    });\n\n    client.invoke("iter", 10, 20, 2, function(error, res, more) {\n        if(error) {\n            console.error(error);\n        } else {\n            console.log("UPDATE:", res);\n        }\n\n        if(!more) {\n            console.log("Done.");\n        }\n    });',
+41 silly resolved     readmeFilename: 'README.md',
+41 silly resolved     bugs: { url: 'https://github.com/dotcloud/zerorpc-node/issues' },
+41 silly resolved     homepage: 'https://github.com/dotcloud/zerorpc-node',
+41 silly resolved     _id: 'zerorpc@0.9.3',
+41 silly resolved     _from: 'zerorpc@' } ]
+42 info install zerorpc@0.9.3 into /Users/Misrab/Desktop/supernova/node
+43 info installOne zerorpc@0.9.3
+44 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc unbuild
+45 verbose tar unpack /Users/Misrab/.npm/zerorpc/0.9.3/package.tgz
+46 silly lockFile f3baeb91-ernova-node-node-modules-zerorpc tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+47 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc /Users/Misrab/.npm/f3baeb91-ernova-node-node-modules-zerorpc.lock
+48 silly lockFile b032da56-ab-npm-zerorpc-0-9-3-package-tgz tar:///Users/Misrab/.npm/zerorpc/0.9.3/package.tgz
+49 verbose lock tar:///Users/Misrab/.npm/zerorpc/0.9.3/package.tgz /Users/Misrab/.npm/b032da56-ab-npm-zerorpc-0-9-3-package-tgz.lock
+50 silly gunzTarPerm modes [ '755', '644' ]
+51 silly gunzTarPerm extractEntry package.json
+52 silly gunzTarPerm extractEntry .npmignore
+53 silly gunzTarPerm extractEntry README.md
+54 silly gunzTarPerm extractEntry LICENSE
+55 silly gunzTarPerm extractEntry index.js
+56 silly gunzTarPerm extractEntry lib/buffer.js
+57 silly gunzTarPerm extractEntry lib/channel.js
+58 silly gunzTarPerm extractEntry lib/client.js
+59 silly gunzTarPerm extractEntry lib/events.js
+60 silly gunzTarPerm extractEntry lib/middleware.js
+61 silly gunzTarPerm extractEntry lib/server.js
+62 silly gunzTarPerm extractEntry lib/socket.js
+63 silly gunzTarPerm extractEntry lib/util.js
+64 silly gunzTarPerm extractEntry test/buffers.js
+65 silly gunzTarPerm extractEntry test/errors.js
+66 silly gunzTarPerm extractEntry test/heartbeats.js
+67 silly gunzTarPerm extractEntry test/invocation.js
+68 silly gunzTarPerm extractEntry test/repro-10.js
+69 silly gunzTarPerm extractEntry test/streams.js
+70 silly gunzTarPerm extractEntry test/timeouts.js
+71 silly lockFile f3baeb91-ernova-node-node-modules-zerorpc tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+72 silly lockFile f3baeb91-ernova-node-node-modules-zerorpc tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+73 silly lockFile b032da56-ab-npm-zerorpc-0-9-3-package-tgz tar:///Users/Misrab/.npm/zerorpc/0.9.3/package.tgz
+74 silly lockFile b032da56-ab-npm-zerorpc-0-9-3-package-tgz tar:///Users/Misrab/.npm/zerorpc/0.9.3/package.tgz
+75 info preinstall zerorpc@0.9.3
+76 verbose readDependencies using package.json deps
+77 verbose readDependencies using package.json deps
+78 verbose cache add [ 'node-uuid@1.3.3', null ]
+79 verbose cache add name=undefined spec="node-uuid@1.3.3" args=["node-uuid@1.3.3",null]
+80 verbose parsed url { protocol: null,
+80 verbose parsed url   slashes: null,
+80 verbose parsed url   auth: null,
+80 verbose parsed url   host: null,
+80 verbose parsed url   port: null,
+80 verbose parsed url   hostname: null,
+80 verbose parsed url   hash: null,
+80 verbose parsed url   search: null,
+80 verbose parsed url   query: null,
+80 verbose parsed url   pathname: 'node-uuid@1.3.3',
+80 verbose parsed url   path: 'node-uuid@1.3.3',
+80 verbose parsed url   href: 'node-uuid@1.3.3' }
+81 verbose cache add name="node-uuid" spec="1.3.3" args=["node-uuid","1.3.3"]
+82 verbose parsed url { protocol: null,
+82 verbose parsed url   slashes: null,
+82 verbose parsed url   auth: null,
+82 verbose parsed url   host: null,
+82 verbose parsed url   port: null,
+82 verbose parsed url   hostname: null,
+82 verbose parsed url   hash: null,
+82 verbose parsed url   search: null,
+82 verbose parsed url   query: null,
+82 verbose parsed url   pathname: '1.3.3',
+82 verbose parsed url   path: '1.3.3',
+82 verbose parsed url   href: '1.3.3' }
+83 verbose addNamed [ 'node-uuid', '1.3.3' ]
+84 verbose addNamed [ '1.3.3', '1.3.3' ]
+85 silly lockFile 90b69d15-node-uuid-1-3-3 node-uuid@1.3.3
+86 verbose lock node-uuid@1.3.3 /Users/Misrab/.npm/90b69d15-node-uuid-1-3-3.lock
+87 verbose cache add [ 'underscore@1.3.3', null ]
+88 verbose cache add name=undefined spec="underscore@1.3.3" args=["underscore@1.3.3",null]
+89 verbose parsed url { protocol: null,
+89 verbose parsed url   slashes: null,
+89 verbose parsed url   auth: null,
+89 verbose parsed url   host: null,
+89 verbose parsed url   port: null,
+89 verbose parsed url   hostname: null,
+89 verbose parsed url   hash: null,
+89 verbose parsed url   search: null,
+89 verbose parsed url   query: null,
+89 verbose parsed url   pathname: 'underscore@1.3.3',
+89 verbose parsed url   path: 'underscore@1.3.3',
+89 verbose parsed url   href: 'underscore@1.3.3' }
+90 verbose cache add name="underscore" spec="1.3.3" args=["underscore","1.3.3"]
+91 verbose parsed url { protocol: null,
+91 verbose parsed url   slashes: null,
+91 verbose parsed url   auth: null,
+91 verbose parsed url   host: null,
+91 verbose parsed url   port: null,
+91 verbose parsed url   hostname: null,
+91 verbose parsed url   hash: null,
+91 verbose parsed url   search: null,
+91 verbose parsed url   query: null,
+91 verbose parsed url   pathname: '1.3.3',
+91 verbose parsed url   path: '1.3.3',
+91 verbose parsed url   href: '1.3.3' }
+92 verbose addNamed [ 'underscore', '1.3.3' ]
+93 verbose addNamed [ '1.3.3', '1.3.3' ]
+94 silly lockFile 99e765c4-underscore-1-3-3 underscore@1.3.3
+95 verbose lock underscore@1.3.3 /Users/Misrab/.npm/99e765c4-underscore-1-3-3.lock
+96 verbose cache add [ 'msgpack@0.1.8', null ]
+97 verbose cache add name=undefined spec="msgpack@0.1.8" args=["msgpack@0.1.8",null]
+98 verbose parsed url { protocol: null,
+98 verbose parsed url   slashes: null,
+98 verbose parsed url   auth: null,
+98 verbose parsed url   host: null,
+98 verbose parsed url   port: null,
+98 verbose parsed url   hostname: null,
+98 verbose parsed url   hash: null,
+98 verbose parsed url   search: null,
+98 verbose parsed url   query: null,
+98 verbose parsed url   pathname: 'msgpack@0.1.8',
+98 verbose parsed url   path: 'msgpack@0.1.8',
+98 verbose parsed url   href: 'msgpack@0.1.8' }
+99 verbose cache add name="msgpack" spec="0.1.8" args=["msgpack","0.1.8"]
+100 verbose parsed url { protocol: null,
+100 verbose parsed url   slashes: null,
+100 verbose parsed url   auth: null,
+100 verbose parsed url   host: null,
+100 verbose parsed url   port: null,
+100 verbose parsed url   hostname: null,
+100 verbose parsed url   hash: null,
+100 verbose parsed url   search: null,
+100 verbose parsed url   query: null,
+100 verbose parsed url   pathname: '0.1.8',
+100 verbose parsed url   path: '0.1.8',
+100 verbose parsed url   href: '0.1.8' }
+101 verbose addNamed [ 'msgpack', '0.1.8' ]
+102 verbose addNamed [ '0.1.8', '0.1.8' ]
+103 silly lockFile 2bfcf42c-msgpack-0-1-8 msgpack@0.1.8
+104 verbose lock msgpack@0.1.8 /Users/Misrab/.npm/2bfcf42c-msgpack-0-1-8.lock
+105 verbose cache add [ 'zmq@2.x', null ]
+106 verbose cache add name=undefined spec="zmq@2.x" args=["zmq@2.x",null]
+107 verbose parsed url { protocol: null,
+107 verbose parsed url   slashes: null,
+107 verbose parsed url   auth: null,
+107 verbose parsed url   host: null,
+107 verbose parsed url   port: null,
+107 verbose parsed url   hostname: null,
+107 verbose parsed url   hash: null,
+107 verbose parsed url   search: null,
+107 verbose parsed url   query: null,
+107 verbose parsed url   pathname: 'zmq@2.x',
+107 verbose parsed url   path: 'zmq@2.x',
+107 verbose parsed url   href: 'zmq@2.x' }
+108 verbose cache add name="zmq" spec="2.x" args=["zmq","2.x"]
+109 verbose parsed url { protocol: null,
+109 verbose parsed url   slashes: null,
+109 verbose parsed url   auth: null,
+109 verbose parsed url   host: null,
+109 verbose parsed url   port: null,
+109 verbose parsed url   hostname: null,
+109 verbose parsed url   hash: null,
+109 verbose parsed url   search: null,
+109 verbose parsed url   query: null,
+109 verbose parsed url   pathname: '2.x',
+109 verbose parsed url   path: '2.x',
+109 verbose parsed url   href: '2.x' }
+110 verbose addNamed [ 'zmq', '2.x' ]
+111 verbose addNamed [ null, '>=2.0.0-0 <3.0.0-0' ]
+112 silly lockFile 1919049f-zmq-2-x zmq@2.x
+113 verbose lock zmq@2.x /Users/Misrab/.npm/1919049f-zmq-2-x.lock
+114 silly addNameRange { name: 'zmq', range: '>=2.0.0-0 <3.0.0-0', hasData: false }
+115 verbose url raw node-uuid/1.3.3
+116 verbose url resolving [ 'https://registry.npmjs.org/', './node-uuid/1.3.3' ]
+117 verbose url resolved https://registry.npmjs.org/node-uuid/1.3.3
+118 info trying registry request attempt 1 at 17:12:36
+119 verbose etag "1ETZW4H654FB7PJ0CJ02T5B5E"
+120 http GET https://registry.npmjs.org/node-uuid/1.3.3
+121 verbose url raw underscore/1.3.3
+122 verbose url resolving [ 'https://registry.npmjs.org/', './underscore/1.3.3' ]
+123 verbose url resolved https://registry.npmjs.org/underscore/1.3.3
+124 info trying registry request attempt 1 at 17:12:36
+125 verbose etag "5VXF4X7BFY73CIQ5CLXYA9YYM"
+126 http GET https://registry.npmjs.org/underscore/1.3.3
+127 verbose url raw zmq
+128 verbose url resolving [ 'https://registry.npmjs.org/', './zmq' ]
+129 verbose url resolved https://registry.npmjs.org/zmq
+130 info trying registry request attempt 1 at 17:12:36
+131 verbose etag "8DOHZ9TETEO57HSATTKOHH6LQ"
+132 http GET https://registry.npmjs.org/zmq
+133 verbose url raw msgpack/0.1.8
+134 verbose url resolving [ 'https://registry.npmjs.org/', './msgpack/0.1.8' ]
+135 verbose url resolved https://registry.npmjs.org/msgpack/0.1.8
+136 info trying registry request attempt 1 at 17:12:36
+137 verbose etag "D0L6JWYTZH5EKFKSK8Z6ZM4I1"
+138 http GET https://registry.npmjs.org/msgpack/0.1.8
+139 http 304 https://registry.npmjs.org/underscore/1.3.3
+140 silly registry.get cb [ 304,
+140 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:37 GMT',
+140 silly registry.get     server: 'Apache',
+140 silly registry.get     via: '1.1 varnish',
+140 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:37 GMT',
+140 silly registry.get     'cache-control': 'max-age=1',
+140 silly registry.get     etag: '"5VXF4X7BFY73CIQ5CLXYA9YYM"',
+140 silly registry.get     'x-served-by': 'cache-sv60-SJC3',
+140 silly registry.get     'x-cache': 'MISS',
+140 silly registry.get     'x-cache-hits': '0',
+140 silly registry.get     'x-timer': 'S1397812357.350017309,VS0,VE80',
+140 silly registry.get     vary: 'Accept',
+140 silly registry.get     'content-length': '0',
+140 silly registry.get     'keep-alive': 'timeout=10, max=50',
+140 silly registry.get     connection: 'Keep-Alive' } ]
+141 verbose etag underscore/1.3.3 from cache
+142 silly lockFile 99e765c4-underscore-1-3-3 underscore@1.3.3
+143 silly lockFile 99e765c4-underscore-1-3-3 underscore@1.3.3
+144 http 304 https://registry.npmjs.org/zmq
+145 silly registry.get cb [ 304,
+145 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:37 GMT',
+145 silly registry.get     server: 'Apache',
+145 silly registry.get     via: '1.1 varnish',
+145 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:37 GMT',
+145 silly registry.get     'cache-control': 'max-age=1',
+145 silly registry.get     etag: '"8DOHZ9TETEO57HSATTKOHH6LQ"',
+145 silly registry.get     'x-served-by': 'cache-sv63-SJC3',
+145 silly registry.get     'x-cache': 'MISS',
+145 silly registry.get     'x-cache-hits': '0',
+145 silly registry.get     'x-timer': 'S1397812357.294171810,VS0,VE162',
+145 silly registry.get     vary: 'Accept',
+145 silly registry.get     'content-length': '0',
+145 silly registry.get     'keep-alive': 'timeout=10, max=50',
+145 silly registry.get     connection: 'Keep-Alive' } ]
+146 verbose etag zmq from cache
+147 silly addNameRange number 2 { name: 'zmq', range: '>=2.0.0-0 <3.0.0-0', hasData: true }
+148 silly addNameRange versions [ 'zmq',
+148 silly addNameRange   [ '1.0.0',
+148 silly addNameRange     '1.0.1',
+148 silly addNameRange     '1.0.2',
+148 silly addNameRange     '1.0.3',
+148 silly addNameRange     '1.0.4',
+148 silly addNameRange     '2.0.0',
+148 silly addNameRange     '2.0.1',
+148 silly addNameRange     '2.0.2',
+148 silly addNameRange     '2.0.3',
+148 silly addNameRange     '2.1.0',
+148 silly addNameRange     '2.2.0',
+148 silly addNameRange     '2.3.0',
+148 silly addNameRange     '2.4.0',
+148 silly addNameRange     '2.5.0',
+148 silly addNameRange     '2.5.1',
+148 silly addNameRange     '2.6.0' ] ]
+149 verbose addNamed [ 'zmq', '2.6.0' ]
+150 verbose addNamed [ '2.6.0', '2.6.0' ]
+151 silly lockFile fb182068-zmq-2-6-0 zmq@2.6.0
+152 verbose lock zmq@2.6.0 /Users/Misrab/.npm/fb182068-zmq-2-6-0.lock
+153 silly lockFile fb182068-zmq-2-6-0 zmq@2.6.0
+154 silly lockFile fb182068-zmq-2-6-0 zmq@2.6.0
+155 silly lockFile 1919049f-zmq-2-x zmq@2.x
+156 silly lockFile 1919049f-zmq-2-x zmq@2.x
+157 http 304 https://registry.npmjs.org/node-uuid/1.3.3
+158 silly registry.get cb [ 304,
+158 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:37 GMT',
+158 silly registry.get     server: 'Apache',
+158 silly registry.get     via: '1.1 varnish',
+158 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:37 GMT',
+158 silly registry.get     'cache-control': 'max-age=1',
+158 silly registry.get     etag: '"1ETZW4H654FB7PJ0CJ02T5B5E"',
+158 silly registry.get     'x-served-by': 'cache-sv94-SJC3',
+158 silly registry.get     'x-cache': 'HIT',
+158 silly registry.get     'x-cache-hits': '1',
+158 silly registry.get     'x-timer': 'S1397812357.359825611,VS0,VE159',
+158 silly registry.get     vary: 'Accept',
+158 silly registry.get     'content-length': '0',
+158 silly registry.get     'keep-alive': 'timeout=10, max=50',
+158 silly registry.get     connection: 'Keep-Alive' } ]
+159 verbose etag node-uuid/1.3.3 from cache
+160 silly lockFile 90b69d15-node-uuid-1-3-3 node-uuid@1.3.3
+161 silly lockFile 90b69d15-node-uuid-1-3-3 node-uuid@1.3.3
+162 http 304 https://registry.npmjs.org/msgpack/0.1.8
+163 silly registry.get cb [ 304,
+163 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:37 GMT',
+163 silly registry.get     server: 'Apache',
+163 silly registry.get     via: '1.1 varnish',
+163 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:37 GMT',
+163 silly registry.get     'cache-control': 'max-age=1',
+163 silly registry.get     etag: '"D0L6JWYTZH5EKFKSK8Z6ZM4I1"',
+163 silly registry.get     'x-served-by': 'cache-sv63-SJC3',
+163 silly registry.get     'x-cache': 'MISS',
+163 silly registry.get     'x-cache-hits': '0',
+163 silly registry.get     'x-timer': 'S1397812357.392200232,VS0,VE156',
+163 silly registry.get     vary: 'Accept',
+163 silly registry.get     'content-length': '0',
+163 silly registry.get     'keep-alive': 'timeout=10, max=50',
+163 silly registry.get     connection: 'Keep-Alive' } ]
+164 verbose etag msgpack/0.1.8 from cache
+165 silly lockFile 2bfcf42c-msgpack-0-1-8 msgpack@0.1.8
+166 silly lockFile 2bfcf42c-msgpack-0-1-8 msgpack@0.1.8
+167 silly resolved [ { name: 'underscore',
+167 silly resolved     description: 'JavaScript\'s functional programming helper library.',
+167 silly resolved     homepage: 'http://documentcloud.github.com/underscore/',
+167 silly resolved     keywords: [ 'util', 'functional', 'server', 'client', 'browser' ],
+167 silly resolved     author: { name: 'Jeremy Ashkenas', email: 'jeremy@documentcloud.org' },
+167 silly resolved     repository:
+167 silly resolved      { type: 'git',
+167 silly resolved        url: 'git://github.com/documentcloud/underscore.git' },
+167 silly resolved     main: 'underscore.js',
+167 silly resolved     version: '1.3.3',
+167 silly resolved     readme: '                       __                                                         \n                      /\\ \\                                                         __           \n     __  __    ___    \\_\\ \\     __   _ __   ____    ___    ___   _ __    __       /\\_\\    ____  \n    /\\ \\/\\ \\ /\' _ `\\  /\'_  \\  /\'__`\\/\\  __\\/ ,__\\  / ___\\ / __`\\/\\  __\\/\'__`\\     \\/\\ \\  /\',__\\ \n    \\ \\ \\_\\ \\/\\ \\/\\ \\/\\ \\ \\ \\/\\  __/\\ \\ \\//\\__, `\\/\\ \\__//\\ \\ \\ \\ \\ \\//\\  __/  __  \\ \\ \\/\\__, `\\\n     \\ \\____/\\ \\_\\ \\_\\ \\___,_\\ \\____\\\\ \\_\\\\/\\____/\\ \\____\\ \\____/\\ \\_\\\\ \\____\\/\\_\\ _\\ \\ \\/\\____/\n      \\/___/  \\/_/\\/_/\\/__,_ /\\/____/ \\/_/ \\/___/  \\/____/\\/___/  \\/_/ \\/____/\\/_//\\ \\_\\ \\/___/ \n                                                                                  \\ \\____/      \n                                                                                   \\/___/\n                                                                               \nUnderscore.js is a utility-belt library for JavaScript that provides \nsupport for the usual functional suspects (each, map, reduce, filter...) \nwithout extending any core JavaScript objects.\n\nFor Docs, License, Tests, and pre-packed downloads, see:\nhttp://documentcloud.github.com/underscore/\n\nMany thanks to our contributors:\nhttps://github.com/documentcloud/underscore/contributors\n',
+167 silly resolved     readmeFilename: 'README.md',
+167 silly resolved     bugs: { url: 'https://github.com/documentcloud/underscore/issues' },
+167 silly resolved     _id: 'underscore@1.3.3',
+167 silly resolved     _from: 'underscore@1.3.3' },
+167 silly resolved   { name: 'zmq',
+167 silly resolved     version: '2.6.0',
+167 silly resolved     description: 'Bindings for node.js to zeromq',
+167 silly resolved     main: 'index',
+167 silly resolved     repository:
+167 silly resolved      { type: 'git',
+167 silly resolved        url: 'http://github.com/JustinTulloss/zeromq.node.git' },
+167 silly resolved     dependencies: { 'set-immediate': '*', nan: '~0.8.0', bindings: '~1.1.1' },
+167 silly resolved     devDependencies: { should: '2.1.x', batch: '*', jade: '*', dox: '*', semver: '*' },
+167 silly resolved     engines: { node: '>=0.7.9' },
+167 silly resolved     scripts: { test: 'make test', install: 'node-gyp rebuild' },
+167 silly resolved     keywords:
+167 silly resolved      [ 'zeromq',
+167 silly resolved        'zmq',
+167 silly resolved        '0mq',
+167 silly resolved        'ømq',
+167 silly resolved        'libzmq',
+167 silly resolved        'native',
+167 silly resolved        'binding',
+167 silly resolved        'addon' ],
+167 silly resolved     author:
+167 silly resolved      { name: 'Justin Tulloss',
+167 silly resolved        email: 'justin.tulloss@gmail.com',
+167 silly resolved        url: 'http://justin.harmonize.fm' },
+167 silly resolved     contributors:
+167 silly resolved      [ [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object],
+167 silly resolved        [Object] ],
+167 silly resolved     gypfile: true,
+167 silly resolved     readme: '[![Build Status](https://travis-ci.org/JustinTulloss/zeromq.node.png)](https://travis-ci.org/JustinTulloss/zeromq.node)\n\n# node-zeromq\n\n  [ØMQ](http://www.zeromq.org/) bindings for node.js.\n\n## Installation\n\n[Install zmq package](http://www.zeromq.org/intro:get-the-software) first.\n\n    $ npm install zmq\n\n## Example\n\nproducer.js:\n\n```js\nvar zmq = require(\'zmq\')\n  , sock = zmq.socket(\'push\');\n\nsock.bindSync(\'tcp://127.0.0.1:3000\');\nconsole.log(\'Producer bound to port 3000\');\n\nsetInterval(function(){\n  console.log(\'sending work\');\n  sock.send(\'some work\');\n}, 500);\n```\n\nworker.js:\n\n```js\n\nvar zmq = require(\'zmq\')\n  , sock = zmq.socket(\'pull\');\n\nsock.connect(\'tcp://127.0.0.1:3000\');\nconsole.log(\'Worker connected to port 3000\');\n\nsock.on(\'message\', function(msg){\n  console.log(\'work: %s\', msg.toString());\n});\n```\n\n## Running tests\n\n  Install dev deps:\n\n     $ npm install\n\n  Build:\n\n     $ make\n\n  Test:\n\n     $ make test\n\n## Running benchmarks\n\nBenchmarks are available in the `perf` directory, and have been implemented\naccording to the zmq documentation:\n[How to run performance tests](http://www.zeromq.org/results:perf-howto)\n\nIn the following examples, the arguments are respectively:\n- the host to connect to/bind on\n- message size (in bytes)\n- message count\n\nYou can run a latency benchmark by running these two commands in two separate\nshells:\n\n```sh\nnode ./local_lat.js tcp://127.0.0.1:5555 1 100000\n```\n\n```sh\nnode ./remote_lat.js tcp://127.0.0.1:5555 1 100000\n```\n\nAnd you can run throughput tests by running these two commands in two\nseparate shells:\n\n```sh\nnode ./local_thr.js tcp://127.0.0.1:5555 1 100000\n```\n\n```sh\nnode ./remote_thr.js tcp://127.0.0.1:5555 1 100000\n```\n\n',
+167 silly resolved     readmeFilename: 'README.md',
+167 silly resolved     bugs: { url: 'https://github.com/JustinTulloss/zeromq.node/issues' },
+167 silly resolved     homepage: 'https://github.com/JustinTulloss/zeromq.node',
+167 silly resolved     _id: 'zmq@2.6.0',
+167 silly resolved     _from: 'zmq@2.x' },
+167 silly resolved   { name: 'node-uuid',
+167 silly resolved     description: 'Rigorous implementation of RFC4122 (v1 and v4) UUIDs.',
+167 silly resolved     url: 'http://github.com/broofa/node-uuid',
+167 silly resolved     keywords: [ 'uuid', 'guid', 'rfc4122' ],
+167 silly resolved     author: { name: 'Robert Kieffer', email: 'robert@broofa.com' },
+167 silly resolved     contributors: [ [Object] ],
+167 silly resolved     lib: '.',
+167 silly resolved     main: './uuid.js',
+167 silly resolved     repository: { type: 'git', url: 'https://github.com/broofa/node-uuid.git' },
+167 silly resolved     version: '1.3.3',
+167 silly resolved     readme: '# node-uuid\n\nSimple, fast generation of [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) UUIDS.\n\nFeatures:\n\n* Generate RFC4122 version 1 or version 4 UUIDs\n* Runs in node.js and all browsers.\n* Cryptographically strong random # generation on supporting platforms\n* 1.1K minified and gzip\'ed  (Want something smaller?  Check this [crazy shit](https://gist.github.com/982883) out! )\n* [Annotated source code](http://broofa.github.com/node-uuid/docs/uuid.html)\n\n## Getting Started\n\nInstall it in your browser:\n\n```html\n<script src="uuid.js"></script>\n```\n\nOr in node.js:\n\n```\nnpm install node-uuid\n```\n\n```javascript\nvar uuid = require(\'node-uuid\');\n```\n\nThen create some ids ...\n\n```javascript\n// Generate a v1 (time-based) id\nuuid.v1(); // -> \'6c84fb90-12c4-11e1-840d-7b25c5ee775a\'\n\n// Generate a v4 (random) id\nuuid.v4(); // -> \'110ec58a-a0f2-4ac4-8393-c866d813b8d1\'\n```\n\n## API\n\n### uuid.v1([`options` [, `buffer` [, `offset`]]])\n\nGenerate and return a RFC4122 v1 (timestamp-based) UUID.\n\n* `options` - (Object) Optional uuid state to apply. Properties may include:\n\n  * `node` - (Array) Node id as Array of 6 bytes (per 4.1.6). Default: Randomnly generated ID.  See note 1.\n  * `clockseq` - (Number between 0 - 0x3fff) RFC clock sequence.  Default: An internally maintained clockseq is used.\n  * `msecs` - (Number | Date) Time in milliseconds since unix Epoch.  Default: The current time is used.\n  * `nsecs` - (Number between 0-9999) additional time, in 100-nanosecond units. Ignored if `msecs` is unspecified. Default: internal uuid counter is used, as per 4.2.1.2.\n\n* `buffer` - (Array | Buffer) Array or buffer where UUID bytes are to be written.\n* `offset` - (Number) Starting index in `buffer` at which to begin writing.\n\nReturns `buffer`, if specified, otherwise the string form of the UUID\n\nNotes:\n\n1. The randomly generated node id is only guaranteed to stay constant for the lifetime of the current JS runtime. (Future versions of this module may use persistent storage mechanisms to extend this guarantee.)\n\nExample: Generate string UUID with fully-specified options\n\n```javascript\nuuid.v1({\n  node: [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],\n  clockseq: 0x1234,\n  msecs: new Date(\'2011-11-01\').getTime(),\n  nsecs: 5678\n});   // -> "710b962e-041c-11e1-9234-0123456789ab"\n```\n\nExample: In-place generation of two binary IDs\n\n```javascript\n// Generate two ids in an array\nvar arr = new Array(32); // -> []\nuuid.v1(null, arr, 0);   // -> [02 a2 ce 90 14 32 11 e1 85 58 0b 48 8e 4f c1 15]\nuuid.v1(null, arr, 16);  // -> [02 a2 ce 90 14 32 11 e1 85 58 0b 48 8e 4f c1 15 02 a3 1c b0 14 32 11 e1 85 58 0b 48 8e 4f c1 15]\n\n// Optionally use uuid.unparse() to get stringify the ids\nuuid.unparse(buffer);    // -> \'02a2ce90-1432-11e1-8558-0b488e4fc115\'\nuuid.unparse(buffer, 16) // -> \'02a31cb0-1432-11e1-8558-0b488e4fc115\'\n```\n\n### uuid.v4([`options` [, `buffer` [, `offset`]]])\n\nGenerate and return a RFC4122 v4 UUID.\n\n* `options` - (Object) Optional uuid state to apply. Properties may include:\n\n  * `random` - (Number[16]) Array of 16 numbers (0-255) to use in place of randomly generated values\n  * `rng` - (Function) Random # generator to use.  Set to one of the built-in generators - `uuid.mathRNG` (all platforms), `uuid.nodeRNG` (node.js only), `uuid.whatwgRNG` (WebKit only) - or a custom function that returns an array[16] of byte values.\n\n* `buffer` - (Array | Buffer) Array or buffer where UUID bytes are to be written.\n* `offset` - (Number) Starting index in `buffer` at which to begin writing.\n\nReturns `buffer`, if specified, otherwise the string form of the UUID\n\nExample: Generate string UUID with fully-specified options\n\n```javascript\nuuid.v4({\n  random: [\n    0x10, 0x91, 0x56, 0xbe, 0xc4, 0xfb, 0xc1, 0xea,\n    0x71, 0xb4, 0xef, 0xe1, 0x67, 0x1c, 0x58, 0x36\n  ]\n});\n// -> "109156be-c4fb-41ea-b1b4-efe1671c5836"\n```\n\nExample: Generate two IDs in a single buffer\n\n```javascript\nvar buffer = new Array(32); // (or \'new Buffer\' in node.js)\nuuid.v4(null, buffer, 0);\nuuid.v4(null, buffer, 16);\n```\n\n### uuid.parse(id[, buffer[, offset]])\n### uuid.unparse(buffer[, offset])\n\nParse and unparse UUIDs\n\n  * `id` - (String) UUID(-like) string\n  * `buffer` - (Array | Buffer) Array or buffer where UUID bytes are to be written. Default: A new Array or Buffer is used\n  * `offset` - (Number) Starting index in `buffer` at which to begin writing. Default: 0\n\nExample parsing and unparsing a UUID string\n\n```javascript\nvar bytes = uuid.parse(\'797ff043-11eb-11e1-80d6-510998755d10\'); // -> <Buffer 79 7f f0 43 11 eb 11 e1 80 d6 51 09 98 75 5d 10>\nvar string = uuid.unparse(bytes); // -> \'797ff043-11eb-11e1-80d6-510998755d10\'\n```\n\n### uuid.noConflict()\n\n(Browsers only) Set `uuid` property back to it\'s previous value.\n\nReturns the node-uuid object.\n\nExample:\n\n```javascript\nvar myUuid = uuid.noConflict();\nmyUuid.v1(); // -> \'6c84fb90-12c4-11e1-840d-7b25c5ee775a\'\n```\n\n## Deprecated APIs\n\nSupport for the following v1.2 APIs is available in v1.3, but is deprecated and will be removed in the next major version.\n\n### uuid([format [, buffer [, offset]]])\n\nuuid() has become uuid.v4(), and the `format` argument is now implicit in the `buffer` argument. (i.e. if you specify a buffer, the format is assumed to be binary).\n\n### uuid.BufferClass\n\nThe class of container created when generating binary uuid data if no buffer argument is specified.  This is expected to go away, with no replacement API.\n\n## Testing\n\nIn node.js\n\n```\n> cd test\n> node uuid.js\n```\n\nIn Browser\n\n```\nopen test/test.html\n```\n\n### Benchmarking\n\nRequires node.js\n\n```\nnpm install uuid uuid-js\nnode test/benchmark.js\n```\n\nFor a more complete discussion of node-uuid performance, please see the `benchmark/README.md` file, and the [benchmark wiki](https://github.com/broofa/node-uuid/wiki/Benchmark)\n\nFor browser performance [checkout the JSPerf tests](http://jsperf.com/node-uuid-performance).\n\n## Release notes\n\nv1.3.2:\n* Improve tests and handling of v1() options (Issue #24)\n* Expose RNG option to allow for perf testing with different generators\n\nv1.3:\n* Support for version 1 ids, thanks to [@ctavan](https://github.com/ctavan)!\n* Support for node.js crypto API\n* De-emphasizing performance in favor of a) cryptographic quality PRNGs where available and b) more manageable code\n',
+167 silly resolved     readmeFilename: 'README.md',
+167 silly resolved     bugs: { url: 'https://github.com/broofa/node-uuid/issues' },
+167 silly resolved     homepage: 'https://github.com/broofa/node-uuid',
+167 silly resolved     _id: 'node-uuid@1.3.3',
+167 silly resolved     _from: 'node-uuid@1.3.3' },
+167 silly resolved   { name: 'msgpack',
+167 silly resolved     description: 'A space-efficient object serialization library for node.js',
+167 silly resolved     version: '0.1.8',
+167 silly resolved     homepage: 'https://github.com/pgriess/node-msgpack',
+167 silly resolved     author: { name: 'Peter Griess', email: 'pg@std.in' },
+167 silly resolved     contributors: [ [Object], [Object] ],
+167 silly resolved     repository:
+167 silly resolved      { type: 'git',
+167 silly resolved        url: 'https://github.com/pgriess/node-msgpack.git' },
+167 silly resolved     main: './lib/msgpack',
+167 silly resolved     directories: { lib: 'lib' },
+167 silly resolved     engines: { node: '>=0.8.x' },
+167 silly resolved     bin:
+167 silly resolved      { json2msgpack: './bin/json2msgpack',
+167 silly resolved        msgpack2json: './bin/msgpack2json' },
+167 silly resolved     scripts: { install: 'node-gyp rebuild' },
+167 silly resolved     gypfile: true,
+167 silly resolved     readme: '`node-msgpack` is an addon for [NodeJS](http://nodejs.org) that provides an\nAPI for serializing and de-serializing JavaScript objects using the\n[MessagePack](http://msgpack.sourceforge.net) library. The performance of this\naddon compared to the native `JSON` object is quite good, and the space\nrequired for serialized data is far less than JSON.\n\n### Performance\n\n`node-msgpack` outperforms the built-in `JSON.stringify()` and `JSON.parse()`\nmethods handily. The following tests were performed with 500,000 instances of\nthe JavaScript object `{\'abcdef\' : 1, \'qqq\' : 13, \'19\' : [1, 2, 3, 4]}`:\n\n   * `JSON.stringify()` 7.17 seconds\n   * `JSON.parse(JSON.stringify())` 22.18 seconds\n   * `msgpack.pack()` 5.80 seconds\n   * `msgpack.unpack(msgpack.pack())` 8.62 seconds\n\nNote that `node-msgpack` produces and consumes Buffer objects, and a such does\nnot incur encoding/decoding overhead when performing I/O with native strings.\n\n### Usage\n\nThis module provides two methods: `pack()`, which consumes a JavaScript object\nand produces a node Buffer object; and `unpack()`, which consumes a node Buffer\nobject and produces a JavaScript object. Packing of all native JavaScript types\n(undefined, boolean, numbers, strings, arrays and objects) is supported, as\nis the node Buffer type.\n\nThe below code snippet packs and then unpacks a JavaScript object, verifying\nthe resulting object at the end using `assert.deepEqual()`.\n\n    var assert = require(\'assert\');\n    var msgpack = require(\'msgpack\');\n\n    var o = {"a" : 1, "b" : 2, "c" : [1, 2, 3]};\n    var b = msgpack.pack(o);\n    var oo = msgpack.unpack(b);\n\n    assert.deepEqual(oo, o);\n\nAs a convenience, a higher level streaming API is provided in the\n`msgpack.Stream` class, which can be constructed around a `net.Stream`\ninstance. This object emits `msg` events when an object has been received.\n\n    var msgpack = require(\'msgpack\');\n\n    // ... get a net.Stream instance, s, from somewhere\n    \n    var ms = new msgpack.Stream(s);\n    ms.addListener(\'msg\', function(m) {\n        sys.debug(\'received message: \' + sys.inspect(m));\n    });\n\n### Type Mapping\n\nThe JavaScript type system does not map cleanly on to the MsgPack type system,\nthough it\'s pretty close.\n\nWhen packing, JavaScript values are mapped to MsgPack types as follows\n\n   * `undefined` and `null` values map to `MSGPACK_OBJECT_NIL`\n   * `boolean` values map to `MSGPACK_OBJECT_BOOLEAN`\n   * `number` values map differently depending on their value\n      * Floating point values map to `MSGPACK_OBJECT_DOUBLE`\n      * Positive values map to `MSGPACK_OBJECT_POSITIVE_INTEGER`\n      * Negative values map to `MSGPACK_OBJECT_NEGATIVE_INTEGER`\n   * `string` values map to `MSGPACK_OBJECT_RAW`; all strings are serialized\n     with UTF-8 encoding\n   * Array values (as defined by `Array.isArray()`) map to\n     `MSGPACK_OBJECT_ARRAY`; each element in the array is packed individually\n     the rules in this list\n   * NodeJS Buffer values map to `MSGPACK_OBJECT_RAW`\n   * Everything else maps to `MSGPACK_OBJECT_MAP`, where we iterate over the object\'s\n     properties and pack them and their values as per the mappings in this list\n\nWhen unpacking, MsgPack types are mapped to JavaScript values as follows\n\n   * `MSGPACK_OBJECT_NIL` values map to the `null` value\n   * `MSGPACK_OBJECT_BOOLEAN` values map to `boolean` values\n   * `MSGPACK_OBJECT_POSITIVE_INTEGER`, `MSGPACK_OBJECT_NEGATIVE_INTEGER` and\n     `MSGPACK_OBJECT_DOUBLE` values map to `number` values\n   * `MSGPACK_OBJECT_ARRAY` values map to arrays; each object in the array is\n      packed individually using the rules in this list\n   * `MSGPACK_OBJECT_RAW` values are mapped to `string` values; these values are\n     unpacked using either UTF-8 or ASCII encoding, depending on the contents\n     of the raw buffer\n   * `MSGPACK_OBJECT_MAP` values are mapped to JavaScript objects; keys and values\n     are unpacked individually using the rules in this list\n\nStrings are particularly problematic here, as it\'s difficult to get hints down\ninto the packing and unpacking codepaths about how to interpret a particular\nstring or `MSGPACK_OBJECT_RAW`. If you have strict requirements about the\nencoding of your strings, it\'s recommended that you populate a Buffer object\nyourself (e.g. using `Buffer.write()`) and pack that buffer rather than the\nstring. This will ensure that you can control what gets packed.\n\nWhen unpacking, things are trickier as there is no way to know the encoding\nused when a string was packed. There is an [an open\nticket](http://github.com/msgpack/msgpack/issues/issue/13) for the MsgPack\nformat to address this.\n\n### Command Line Utilities\n\nAs a convenience and for debugging, `bin/json2msgpack` and `bin/msgpack2json`\nare provided to convert JSON data to and from MessagePack data, reading from\nstdin and writing to stdout.\n\n    % echo \'[1, 2, 3]\' | ./bin/json2msgpack | xxd -\n    0000000: 9301 0203                                ....\n    % echo \'[1, 2, 3]\' | ./bin/json2msgpack | ./bin/msgpack2json \n    [1,2,3]\n\n### Building and installation\n\nThere are two ways to install msgpack.\n\n## npm\n\n\t\tnpm install msgpack\n\nThis should build and install msgpack for you. Then just `require(\'msgpack\')`.\n\n## Manually\n\nUse `make` to build the add-on, then manually copy `build/default/mpBindings.node` \nand `lib/msgpack.js` it to wherever your node.js installation will look for it (or\nadd the build directory to your `$NODE_PATH`).\n\n    % ls\n    LICENSE  Makefile  README.md  deps/  src/  tags  test.js\n    % make\n\nThe MessagePack library on which this depends is packaged with `node-msgpack`\nand will be built as part of this process.\n\n**Note:** MessagePack may fail to build if you do not have a modern version of\ngcc in your `$PATH`. On Mac OS X Snow Leopard (10.5.x), you may have to use\n`gcc-4.2`, which should come with your box but is not used by default.\n\n    % make CC=gcc-4.2 CXX=gcc-4.2\n',
+167 silly resolved     readmeFilename: 'README.md',
+167 silly resolved     bugs: { url: 'https://github.com/pgriess/node-msgpack/issues' },
+167 silly resolved     _id: 'msgpack@0.1.8',
+167 silly resolved     _from: 'msgpack@0.1.8' } ]
+168 info install underscore@1.3.3 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+169 info install zmq@2.6.0 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+170 info install node-uuid@1.3.3 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+171 info install msgpack@0.1.8 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+172 info installOne underscore@1.3.3
+173 info installOne zmq@2.6.0
+174 info installOne node-uuid@1.3.3
+175 info installOne msgpack@0.1.8
+176 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore unbuild
+177 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq unbuild
+178 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid unbuild
+179 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack unbuild
+180 verbose tar unpack /Users/Misrab/.npm/underscore/1.3.3/package.tgz
+181 silly lockFile a9d801d7--zerorpc-node-modules-underscore tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore
+182 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore /Users/Misrab/.npm/a9d801d7--zerorpc-node-modules-underscore.lock
+183 silly lockFile 22301c16-npm-underscore-1-3-3-package-tgz tar:///Users/Misrab/.npm/underscore/1.3.3/package.tgz
+184 verbose lock tar:///Users/Misrab/.npm/underscore/1.3.3/package.tgz /Users/Misrab/.npm/22301c16-npm-underscore-1-3-3-package-tgz.lock
+185 verbose tar unpack /Users/Misrab/.npm/zmq/2.6.0/package.tgz
+186 silly lockFile f2f96a39-modules-zerorpc-node-modules-zmq tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+187 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq /Users/Misrab/.npm/f2f96a39-modules-zerorpc-node-modules-zmq.lock
+188 silly lockFile 25f44ea6-Misrab-npm-zmq-2-6-0-package-tgz tar:///Users/Misrab/.npm/zmq/2.6.0/package.tgz
+189 verbose lock tar:///Users/Misrab/.npm/zmq/2.6.0/package.tgz /Users/Misrab/.npm/25f44ea6-Misrab-npm-zmq-2-6-0-package-tgz.lock
+190 verbose tar unpack /Users/Misrab/.npm/node-uuid/1.3.3/package.tgz
+191 silly lockFile 9078f88c-s-zerorpc-node-modules-node-uuid tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid
+192 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid /Users/Misrab/.npm/9078f88c-s-zerorpc-node-modules-node-uuid.lock
+193 silly lockFile 1c72b37f--npm-node-uuid-1-3-3-package-tgz tar:///Users/Misrab/.npm/node-uuid/1.3.3/package.tgz
+194 verbose lock tar:///Users/Misrab/.npm/node-uuid/1.3.3/package.tgz /Users/Misrab/.npm/1c72b37f--npm-node-uuid-1-3-3-package-tgz.lock
+195 verbose tar unpack /Users/Misrab/.npm/msgpack/0.1.8/package.tgz
+196 silly lockFile 3c8ffed5-les-zerorpc-node-modules-msgpack tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack
+197 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack /Users/Misrab/.npm/3c8ffed5-les-zerorpc-node-modules-msgpack.lock
+198 silly lockFile ef62ce99-ab-npm-msgpack-0-1-8-package-tgz tar:///Users/Misrab/.npm/msgpack/0.1.8/package.tgz
+199 verbose lock tar:///Users/Misrab/.npm/msgpack/0.1.8/package.tgz /Users/Misrab/.npm/ef62ce99-ab-npm-msgpack-0-1-8-package-tgz.lock
+200 silly gunzTarPerm modes [ '755', '644' ]
+201 silly gunzTarPerm modes [ '755', '644' ]
+202 silly gunzTarPerm modes [ '755', '644' ]
+203 silly gunzTarPerm modes [ '755', '644' ]
+204 silly gunzTarPerm extractEntry package.json
+205 silly gunzTarPerm extractEntry package.json
+206 silly gunzTarPerm extractEntry package.json
+207 silly gunzTarPerm extractEntry package.json
+208 silly gunzTarPerm extractEntry .npmignore
+209 silly gunzTarPerm extractEntry README.md
+210 silly gunzTarPerm extractEntry .npmignore
+211 silly gunzTarPerm extractEntry README.md
+212 silly gunzTarPerm extractEntry .npmignore
+213 silly gunzTarPerm extractEntry README.md
+214 silly gunzTarPerm extractEntry .npmignore
+215 silly gunzTarPerm extractEntry README.md
+216 silly gunzTarPerm extractEntry LICENSE
+217 silly gunzTarPerm extractEntry underscore-min.js
+218 silly gunzTarPerm extractEntry uuid.js
+219 silly gunzTarPerm extractEntry LICENSE.md
+220 silly gunzTarPerm extractEntry benchmark/README.md
+221 silly gunzTarPerm extractEntry benchmark/benchmark.js
+222 silly gunzTarPerm extractEntry benchmark/bench.gnu
+223 silly gunzTarPerm extractEntry benchmark/bench.sh
+224 silly gunzTarPerm extractEntry benchmark/benchmark-native.c
+225 silly gunzTarPerm extractEntry test/compare_v1.js
+226 silly gunzTarPerm extractEntry test/test.js
+227 silly gunzTarPerm extractEntry test/test.html
+228 silly gunzTarPerm extractEntry LICENSE
+229 silly gunzTarPerm extractEntry bench.js
+230 silly gunzTarPerm extractEntry LICENSE
+231 silly gunzTarPerm extractEntry index.js
+232 silly gunzTarPerm extractEntry index.js
+233 silly gunzTarPerm extractEntry test/test-stream-disjoint.js
+234 silly gunzTarPerm extractEntry test/test-stream.js
+235 silly gunzTarPerm extractEntry History.md
+236 silly gunzTarPerm extractEntry binding.cc
+237 silly gunzTarPerm extractEntry underscore.js
+238 silly gunzTarPerm extractEntry CNAME
+239 silly gunzTarPerm extractEntry binding.gyp
+240 silly gunzTarPerm extractEntry raw/underscore.psd
+241 silly gunzTarPerm extractEntry favicon.ico
+242 silly gunzTarPerm extractEntry test/test-unpack-extra.js
+243 silly gunzTarPerm extractEntry test/test.js
+244 silly gunzTarPerm extractEntry .travis.yml
+245 silly gunzTarPerm extractEntry examples/dealer_router.js
+246 silly gunzTarPerm extractEntry deps/msgpack/LICENSE
+247 silly gunzTarPerm extractEntry deps/msgpack/msgpack.hpp
+248 silly gunzTarPerm extractEntry examples/pub_sub.js
+249 silly gunzTarPerm extractEntry examples/push_pull.js
+250 silly gunzTarPerm extractEntry deps/msgpack/AUTHORS
+251 silly gunzTarPerm extractEntry deps/msgpack/gcc_atomic.cpp
+252 silly gunzTarPerm extractEntry examples/rep_req.js
+253 silly gunzTarPerm extractEntry examples/req_rep.js
+254 silly gunzTarPerm extractEntry index.html
+255 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.h
+256 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.h
+257 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.h
+258 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack.hpp
+259 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_define.h
+260 silly gunzTarPerm extractEntry deps/msgpack/msgpack/pack_template.h
+261 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.h
+262 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sbuffer.hpp
+263 silly gunzTarPerm extractEntry examples/router_dealer.js
+264 silly gunzTarPerm extractEntry examples/rpc.js
+265 silly gunzTarPerm extractEntry deps/msgpack/msgpack/sysdep.h
+266 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/nil.hpp
+267 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/bool.hpp
+268 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/deque.hpp
+269 silly gunzTarPerm extractEntry examples/devices/forwarder.js
+270 silly gunzTarPerm extractEntry examples/devices/queue.js
+271 silly gunzTarPerm extractEntry examples/devices/streamer.js
+272 silly gunzTarPerm extractEntry examples/workers/producer.js
+273 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/fixint.hpp
+274 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/float.hpp
+275 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/int.hpp
+276 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/list.hpp
+277 silly gunzTarPerm extractEntry examples/workers/worker.js
+278 silly gunzTarPerm extractEntry windows/include/zmq.h
+279 silly lockFile 9078f88c-s-zerorpc-node-modules-node-uuid tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid
+280 silly lockFile 9078f88c-s-zerorpc-node-modules-node-uuid tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid
+281 silly gunzTarPerm extractEntry windows/include/zmq_utils.h
+282 silly gunzTarPerm extractEntry windows/lib/x64/libzmq-v100-mt-3_2_2.dll
+283 silly lockFile 1c72b37f--npm-node-uuid-1-3-3-package-tgz tar:///Users/Misrab/.npm/node-uuid/1.3.3/package.tgz
+284 silly lockFile 1c72b37f--npm-node-uuid-1-3-3-package-tgz tar:///Users/Misrab/.npm/node-uuid/1.3.3/package.tgz
+285 info preinstall node-uuid@1.3.3
+286 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/map.hpp
+287 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/define.hpp
+288 verbose readDependencies using package.json deps
+289 verbose readDependencies using package.json deps
+290 silly resolved []
+291 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid
+292 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/node-uuid
+293 verbose linkStuff [ false,
+293 verbose linkStuff   false,
+293 verbose linkStuff   false,
+293 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules' ]
+294 info linkStuff node-uuid@1.3.3
+295 verbose linkBins node-uuid@1.3.3
+296 verbose linkMans node-uuid@1.3.3
+297 verbose rebuildBundles node-uuid@1.3.3
+298 info install node-uuid@1.3.3
+299 info postinstall node-uuid@1.3.3
+300 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/pair.hpp
+301 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/raw.hpp
+302 silly gunzTarPerm extractEntry windows/lib/x64/libzmq-v100-mt-3_2_2.lib
+303 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/set.hpp
+304 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/string.hpp
+305 silly gunzTarPerm extractEntry windows/lib/x86/libzmq-v100-mt-3_2_2.dll
+306 silly gunzTarPerm extractEntry windows/lib/x86/libzmq-v100-mt-3_2_2.lib
+307 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_map.hpp
+308 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tr1/unordered_set.hpp
+309 silly gunzTarPerm extractEntry lib/index.js
+310 silly gunzTarPerm extractEntry Makefile
+311 silly gunzTarPerm extractEntry perf/local_lat.js
+312 silly gunzTarPerm extractEntry perf/local_thr.js
+313 silly gunzTarPerm extractEntry perf/remote_lat.js
+314 silly gunzTarPerm extractEntry perf/remote_thr.js
+315 silly gunzTarPerm extractEntry test/run.js
+316 silly gunzTarPerm extractEntry test/test.socket.js
+317 silly gunzTarPerm extractEntry test/test.socket.messages.js
+318 silly gunzTarPerm extractEntry test/test.socket.monitor.js
+319 silly gunzTarPerm extractEntry test/test.socket.multipart.message.js
+320 silly gunzTarPerm extractEntry test/test.socket.events.js
+321 silly gunzTarPerm extractEntry test/test.socket.pub-sub.filter.js
+322 silly gunzTarPerm extractEntry test/test.socket.pub-sub.js
+323 silly gunzTarPerm extractEntry test/test.socket.push-pull.js
+324 silly gunzTarPerm extractEntry test/test.socket.req-rep.js
+325 silly gunzTarPerm extractEntry test/test.socket.req-rep.multiple.js
+326 silly gunzTarPerm extractEntry test/test.gc.js
+327 silly gunzTarPerm extractEntry test/test.socket.router.unroutable.js
+328 silly gunzTarPerm extractEntry test/test.exports.js
+329 silly gunzTarPerm extractEntry test/test.socket.unbind.js
+330 silly gunzTarPerm extractEntry test/test.socket.multipart.sndmore.js
+331 silly gunzTarPerm extractEntry docs/highlight.js
+332 silly gunzTarPerm extractEntry docs/menu.js
+333 silly gunzTarPerm extractEntry docs/index.html
+334 silly gunzTarPerm extractEntry docs/index.json
+335 silly gunzTarPerm extractEntry docs/style.css
+336 silly gunzTarPerm extractEntry docs/template.jade
+337 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/tuple.hpp
+338 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type/vector.hpp
+339 silly gunzTarPerm extractEntry deps/msgpack/msgpack/type.hpp
+340 silly gunzTarPerm extractEntry deps/msgpack/msgpack/object.hpp
+341 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack.hpp
+342 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_define.h
+343 silly gunzTarPerm extractEntry deps/msgpack/msgpack/unpack_template.h
+344 silly gunzTarPerm extractEntry deps/msgpack/msgpack/version.h
+345 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.h
+346 silly gunzTarPerm extractEntry deps/msgpack/msgpack/vrefbuffer.hpp
+347 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.h
+348 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zbuffer.hpp
+349 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.h
+350 silly gunzTarPerm extractEntry deps/msgpack/msgpack/zone.hpp
+351 silly gunzTarPerm extractEntry deps/msgpack/msgpack.gyp
+352 silly gunzTarPerm extractEntry deps/msgpack/msgpack.h
+353 silly gunzTarPerm extractEntry deps/msgpack/COPYING
+354 silly gunzTarPerm extractEntry deps/msgpack/object.cpp
+355 silly gunzTarPerm extractEntry deps/msgpack/objectc.c
+356 silly gunzTarPerm extractEntry deps/msgpack/unpack.c
+357 silly gunzTarPerm extractEntry deps/msgpack/version.c
+358 silly gunzTarPerm extractEntry deps/msgpack/vrefbuffer.c
+359 silly gunzTarPerm extractEntry deps/msgpack/zone.c
+360 silly gunzTarPerm extractEntry lib/msgpack.js
+361 silly gunzTarPerm extractEntry bin/json2msgpack
+362 silly gunzTarPerm extractEntry bin/msgpack2json
+363 silly gunzTarPerm extractEntry src/msgpack.cc
+364 silly gunzTarPerm extractEntry binding.gyp
+365 silly lockFile a9d801d7--zerorpc-node-modules-underscore tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore
+366 silly lockFile a9d801d7--zerorpc-node-modules-underscore tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore
+367 silly lockFile 22301c16-npm-underscore-1-3-3-package-tgz tar:///Users/Misrab/.npm/underscore/1.3.3/package.tgz
+368 silly lockFile 22301c16-npm-underscore-1-3-3-package-tgz tar:///Users/Misrab/.npm/underscore/1.3.3/package.tgz
+369 info preinstall underscore@1.3.3
+370 verbose readDependencies using package.json deps
+371 verbose readDependencies using package.json deps
+372 silly resolved []
+373 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore
+374 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/underscore
+375 verbose linkStuff [ false,
+375 verbose linkStuff   false,
+375 verbose linkStuff   false,
+375 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules' ]
+376 info linkStuff underscore@1.3.3
+377 verbose linkBins underscore@1.3.3
+378 verbose linkMans underscore@1.3.3
+379 verbose rebuildBundles underscore@1.3.3
+380 info install underscore@1.3.3
+381 info postinstall underscore@1.3.3
+382 silly lockFile f2f96a39-modules-zerorpc-node-modules-zmq tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+383 silly lockFile f2f96a39-modules-zerorpc-node-modules-zmq tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+384 silly lockFile 25f44ea6-Misrab-npm-zmq-2-6-0-package-tgz tar:///Users/Misrab/.npm/zmq/2.6.0/package.tgz
+385 silly lockFile 25f44ea6-Misrab-npm-zmq-2-6-0-package-tgz tar:///Users/Misrab/.npm/zmq/2.6.0/package.tgz
+386 info preinstall zmq@2.6.0
+387 verbose readDependencies using package.json deps
+388 verbose readDependencies using package.json deps
+389 verbose cache add [ 'set-immediate@*', null ]
+390 verbose cache add name=undefined spec="set-immediate@*" args=["set-immediate@*",null]
+391 verbose parsed url { protocol: null,
+391 verbose parsed url   slashes: null,
+391 verbose parsed url   auth: null,
+391 verbose parsed url   host: null,
+391 verbose parsed url   port: null,
+391 verbose parsed url   hostname: null,
+391 verbose parsed url   hash: null,
+391 verbose parsed url   search: null,
+391 verbose parsed url   query: null,
+391 verbose parsed url   pathname: 'set-immediate@*',
+391 verbose parsed url   path: 'set-immediate@*',
+391 verbose parsed url   href: 'set-immediate@*' }
+392 verbose cache add name="set-immediate" spec="*" args=["set-immediate","*"]
+393 verbose parsed url { protocol: null,
+393 verbose parsed url   slashes: null,
+393 verbose parsed url   auth: null,
+393 verbose parsed url   host: null,
+393 verbose parsed url   port: null,
+393 verbose parsed url   hostname: null,
+393 verbose parsed url   hash: null,
+393 verbose parsed url   search: null,
+393 verbose parsed url   query: null,
+393 verbose parsed url   pathname: '*',
+393 verbose parsed url   path: '*',
+393 verbose parsed url   href: '*' }
+394 verbose addNamed [ 'set-immediate', '*' ]
+395 verbose addNamed [ null, '*' ]
+396 silly lockFile a359937b-set-immediate set-immediate@*
+397 verbose lock set-immediate@* /Users/Misrab/.npm/a359937b-set-immediate.lock
+398 verbose cache add [ 'nan@~0.8.0', null ]
+399 verbose cache add name=undefined spec="nan@~0.8.0" args=["nan@~0.8.0",null]
+400 verbose parsed url { protocol: null,
+400 verbose parsed url   slashes: null,
+400 verbose parsed url   auth: null,
+400 verbose parsed url   host: null,
+400 verbose parsed url   port: null,
+400 verbose parsed url   hostname: null,
+400 verbose parsed url   hash: null,
+400 verbose parsed url   search: null,
+400 verbose parsed url   query: null,
+400 verbose parsed url   pathname: 'nan@~0.8.0',
+400 verbose parsed url   path: 'nan@~0.8.0',
+400 verbose parsed url   href: 'nan@~0.8.0' }
+401 verbose cache add name="nan" spec="~0.8.0" args=["nan","~0.8.0"]
+402 verbose parsed url { protocol: null,
+402 verbose parsed url   slashes: null,
+402 verbose parsed url   auth: null,
+402 verbose parsed url   host: null,
+402 verbose parsed url   port: null,
+402 verbose parsed url   hostname: null,
+402 verbose parsed url   hash: null,
+402 verbose parsed url   search: null,
+402 verbose parsed url   query: null,
+402 verbose parsed url   pathname: '~0.8.0',
+402 verbose parsed url   path: '~0.8.0',
+402 verbose parsed url   href: '~0.8.0' }
+403 verbose addNamed [ 'nan', '~0.8.0' ]
+404 verbose addNamed [ null, '>=0.8.0-0 <0.9.0-0' ]
+405 silly lockFile d5ae64ea-nan-0-8-0 nan@~0.8.0
+406 verbose lock nan@~0.8.0 /Users/Misrab/.npm/d5ae64ea-nan-0-8-0.lock
+407 verbose cache add [ 'bindings@~1.1.1', null ]
+408 verbose cache add name=undefined spec="bindings@~1.1.1" args=["bindings@~1.1.1",null]
+409 verbose parsed url { protocol: null,
+409 verbose parsed url   slashes: null,
+409 verbose parsed url   auth: null,
+409 verbose parsed url   host: null,
+409 verbose parsed url   port: null,
+409 verbose parsed url   hostname: null,
+409 verbose parsed url   hash: null,
+409 verbose parsed url   search: null,
+409 verbose parsed url   query: null,
+409 verbose parsed url   pathname: 'bindings@~1.1.1',
+409 verbose parsed url   path: 'bindings@~1.1.1',
+409 verbose parsed url   href: 'bindings@~1.1.1' }
+410 verbose cache add name="bindings" spec="~1.1.1" args=["bindings","~1.1.1"]
+411 verbose parsed url { protocol: null,
+411 verbose parsed url   slashes: null,
+411 verbose parsed url   auth: null,
+411 verbose parsed url   host: null,
+411 verbose parsed url   port: null,
+411 verbose parsed url   hostname: null,
+411 verbose parsed url   hash: null,
+411 verbose parsed url   search: null,
+411 verbose parsed url   query: null,
+411 verbose parsed url   pathname: '~1.1.1',
+411 verbose parsed url   path: '~1.1.1',
+411 verbose parsed url   href: '~1.1.1' }
+412 verbose addNamed [ 'bindings', '~1.1.1' ]
+413 verbose addNamed [ null, '>=1.1.1-0 <1.2.0-0' ]
+414 silly lockFile cc1512d6-bindings-1-1-1 bindings@~1.1.1
+415 verbose lock bindings@~1.1.1 /Users/Misrab/.npm/cc1512d6-bindings-1-1-1.lock
+416 silly addNameRange { name: 'set-immediate', range: '*', hasData: false }
+417 silly addNameRange { name: 'nan', range: '>=0.8.0-0 <0.9.0-0', hasData: false }
+418 silly addNameRange { name: 'bindings', range: '>=1.1.1-0 <1.2.0-0', hasData: false }
+419 verbose url raw set-immediate
+420 verbose url resolving [ 'https://registry.npmjs.org/', './set-immediate' ]
+421 verbose url resolved https://registry.npmjs.org/set-immediate
+422 info trying registry request attempt 1 at 17:12:37
+423 verbose etag "5AXSCK32ZRY3AEHVY3A5TXIAT"
+424 http GET https://registry.npmjs.org/set-immediate
+425 verbose url raw bindings
+426 verbose url resolving [ 'https://registry.npmjs.org/', './bindings' ]
+427 verbose url resolved https://registry.npmjs.org/bindings
+428 info trying registry request attempt 1 at 17:12:37
+429 verbose etag "46F6QA6GQH8US6OJEYEPIMOT6"
+430 http GET https://registry.npmjs.org/bindings
+431 verbose url raw nan
+432 verbose url resolving [ 'https://registry.npmjs.org/', './nan' ]
+433 verbose url resolved https://registry.npmjs.org/nan
+434 info trying registry request attempt 1 at 17:12:37
+435 verbose etag "6LINUV3CT91YKWSBCEUQS4GL3"
+436 http GET https://registry.npmjs.org/nan
+437 silly lockFile 3c8ffed5-les-zerorpc-node-modules-msgpack tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack
+438 silly lockFile 3c8ffed5-les-zerorpc-node-modules-msgpack tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack
+439 silly lockFile ef62ce99-ab-npm-msgpack-0-1-8-package-tgz tar:///Users/Misrab/.npm/msgpack/0.1.8/package.tgz
+440 silly lockFile ef62ce99-ab-npm-msgpack-0-1-8-package-tgz tar:///Users/Misrab/.npm/msgpack/0.1.8/package.tgz
+441 info preinstall msgpack@0.1.8
+442 verbose readDependencies using package.json deps
+443 verbose readDependencies using package.json deps
+444 silly resolved []
+445 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack
+446 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/msgpack
+447 verbose linkStuff [ false,
+447 verbose linkStuff   false,
+447 verbose linkStuff   false,
+447 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules' ]
+448 info linkStuff msgpack@0.1.8
+449 verbose linkBins msgpack@0.1.8
+450 verbose link bins [ { json2msgpack: './bin/json2msgpack',
+450 verbose link bins     msgpack2json: './bin/msgpack2json' },
+450 verbose link bins   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/.bin',
+450 verbose link bins   false ]
+451 verbose linkMans msgpack@0.1.8
+452 verbose rebuildBundles msgpack@0.1.8
+453 info install msgpack@0.1.8
+454 verbose unsafe-perm in lifecycle true
+455 http 304 https://registry.npmjs.org/bindings
+456 silly registry.get cb [ 304,
+456 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:38 GMT',
+456 silly registry.get     server: 'Apache',
+456 silly registry.get     via: '1.1 varnish',
+456 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:38 GMT',
+456 silly registry.get     'cache-control': 'max-age=1',
+456 silly registry.get     etag: '"46F6QA6GQH8US6OJEYEPIMOT6"',
+456 silly registry.get     'x-served-by': 'cache-sv63-SJC3',
+456 silly registry.get     'x-cache': 'HIT',
+456 silly registry.get     'x-cache-hits': '1',
+456 silly registry.get     'x-timer': 'S1397812358.719260454,VS0,VE74',
+456 silly registry.get     vary: 'Accept',
+456 silly registry.get     'content-length': '0',
+456 silly registry.get     'keep-alive': 'timeout=10, max=50',
+456 silly registry.get     connection: 'Keep-Alive' } ]
+457 verbose etag bindings from cache
+458 silly addNameRange number 2 { name: 'bindings', range: '>=1.1.1-0 <1.2.0-0', hasData: true }
+459 silly addNameRange versions [ 'bindings',
+459 silly addNameRange   [ '0.0.1',
+459 silly addNameRange     '0.1.0',
+459 silly addNameRange     '0.1.1',
+459 silly addNameRange     '0.2.0',
+459 silly addNameRange     '0.2.1',
+459 silly addNameRange     '0.2.2',
+459 silly addNameRange     '0.2.3',
+459 silly addNameRange     '0.2.4',
+459 silly addNameRange     '0.3.0',
+459 silly addNameRange     '0.4.0',
+459 silly addNameRange     '1.0.0',
+459 silly addNameRange     '1.1.0',
+459 silly addNameRange     '1.1.1',
+459 silly addNameRange     '1.2.0' ] ]
+460 verbose addNamed [ 'bindings', '1.1.1' ]
+461 verbose addNamed [ '1.1.1', '1.1.1' ]
+462 silly lockFile 52dd60a7-bindings-1-1-1 bindings@1.1.1
+463 verbose lock bindings@1.1.1 /Users/Misrab/.npm/52dd60a7-bindings-1-1-1.lock
+464 silly lockFile 52dd60a7-bindings-1-1-1 bindings@1.1.1
+465 silly lockFile 52dd60a7-bindings-1-1-1 bindings@1.1.1
+466 silly lockFile cc1512d6-bindings-1-1-1 bindings@~1.1.1
+467 silly lockFile cc1512d6-bindings-1-1-1 bindings@~1.1.1
+468 http 304 https://registry.npmjs.org/nan
+469 silly registry.get cb [ 304,
+469 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:38 GMT',
+469 silly registry.get     server: 'Apache',
+469 silly registry.get     via: '1.1 varnish',
+469 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:38 GMT',
+469 silly registry.get     'cache-control': 'max-age=1',
+469 silly registry.get     etag: '"6LINUV3CT91YKWSBCEUQS4GL3"',
+469 silly registry.get     'x-served-by': 'cache-sv95-SJC3',
+469 silly registry.get     'x-cache': 'HIT',
+469 silly registry.get     'x-cache-hits': '1',
+469 silly registry.get     'x-timer': 'S1397812358.695805550,VS0,VE160',
+469 silly registry.get     vary: 'Accept',
+469 silly registry.get     'content-length': '0',
+469 silly registry.get     'keep-alive': 'timeout=10, max=50',
+469 silly registry.get     connection: 'Keep-Alive' } ]
+470 verbose etag nan from cache
+471 silly addNameRange number 2 { name: 'nan', range: '>=0.8.0-0 <0.9.0-0', hasData: true }
+472 silly addNameRange versions [ 'nan',
+472 silly addNameRange   [ '0.3.0-wip',
+472 silly addNameRange     '0.3.0-wip2',
+472 silly addNameRange     '0.3.0',
+472 silly addNameRange     '0.3.1',
+472 silly addNameRange     '0.3.2',
+472 silly addNameRange     '0.4.0',
+472 silly addNameRange     '0.4.1',
+472 silly addNameRange     '0.4.2',
+472 silly addNameRange     '0.4.3',
+472 silly addNameRange     '0.4.4',
+472 silly addNameRange     '0.5.0',
+472 silly addNameRange     '0.5.1',
+472 silly addNameRange     '0.5.2',
+472 silly addNameRange     '0.6.0',
+472 silly addNameRange     '0.7.0',
+472 silly addNameRange     '0.7.1',
+472 silly addNameRange     '0.8.0' ] ]
+473 verbose addNamed [ 'nan', '0.8.0' ]
+474 verbose addNamed [ '0.8.0', '0.8.0' ]
+475 silly lockFile 46761758-nan-0-8-0 nan@0.8.0
+476 verbose lock nan@0.8.0 /Users/Misrab/.npm/46761758-nan-0-8-0.lock
+477 silly lockFile 46761758-nan-0-8-0 nan@0.8.0
+478 silly lockFile 46761758-nan-0-8-0 nan@0.8.0
+479 silly lockFile d5ae64ea-nan-0-8-0 nan@~0.8.0
+480 silly lockFile d5ae64ea-nan-0-8-0 nan@~0.8.0
+481 http 304 https://registry.npmjs.org/set-immediate
+482 silly registry.get cb [ 304,
+482 silly registry.get   { date: 'Fri, 18 Apr 2014 09:12:38 GMT',
+482 silly registry.get     server: 'Apache',
+482 silly registry.get     via: '1.1 varnish',
+482 silly registry.get     'last-modified': 'Fri, 18 Apr 2014 09:12:38 GMT',
+482 silly registry.get     'cache-control': 'max-age=1',
+482 silly registry.get     etag: '"5AXSCK32ZRY3AEHVY3A5TXIAT"',
+482 silly registry.get     'x-served-by': 'cache-sv95-SJC3',
+482 silly registry.get     'x-cache': 'MISS',
+482 silly registry.get     'x-cache-hits': '0',
+482 silly registry.get     'x-timer': 'S1397812358.724697590,VS0,VE171',
+482 silly registry.get     vary: 'Accept',
+482 silly registry.get     'content-length': '0',
+482 silly registry.get     'keep-alive': 'timeout=10, max=50',
+482 silly registry.get     connection: 'Keep-Alive' } ]
+483 verbose etag set-immediate from cache
+484 silly addNameRange number 2 { name: 'set-immediate', range: '*', hasData: true }
+485 silly addNameRange versions [ 'set-immediate', [ '0.1.0', '0.1.1' ] ]
+486 verbose addNamed [ 'set-immediate', '0.1.1' ]
+487 verbose addNamed [ '0.1.1', '0.1.1' ]
+488 silly lockFile 8a3f44b0-set-immediate-0-1-1 set-immediate@0.1.1
+489 verbose lock set-immediate@0.1.1 /Users/Misrab/.npm/8a3f44b0-set-immediate-0-1-1.lock
+490 silly lockFile 8a3f44b0-set-immediate-0-1-1 set-immediate@0.1.1
+491 silly lockFile 8a3f44b0-set-immediate-0-1-1 set-immediate@0.1.1
+492 silly lockFile a359937b-set-immediate set-immediate@*
+493 silly lockFile a359937b-set-immediate set-immediate@*
+494 silly resolved [ { name: 'bindings',
+494 silly resolved     description: 'Helper module for loading your native module\'s .node file',
+494 silly resolved     keywords: [ 'native', 'addon', 'bindings', 'gyp', 'waf', 'c', 'c++' ],
+494 silly resolved     version: '1.1.1',
+494 silly resolved     author:
+494 silly resolved      { name: 'Nathan Rajlich',
+494 silly resolved        email: 'nathan@tootallnate.net',
+494 silly resolved        url: 'http://tootallnate.net' },
+494 silly resolved     repository:
+494 silly resolved      { type: 'git',
+494 silly resolved        url: 'git://github.com/TooTallNate/node-bindings.git' },
+494 silly resolved     main: './bindings.js',
+494 silly resolved     readme: 'node-bindings\n=============\n### Helper module for loading your native module\'s .node file\n\nThis is a helper module for authors of Node.js native addon modules.\nIt is basically the "swiss army knife" of `require()`ing your native module\'s\n`.node` file.\n\nThroughout the course of Node\'s native addon history, addons have ended up being\ncompiled in a variety of different places, depending on which build tool and which\nversion of node was used. To make matters worse, now the _gyp_ build tool can\nproduce either a _Release_ or _Debug_ build, each being built into different\nlocations.\n\nThis module checks _all_ the possible locations that a native addon would be built\nat, and returns the first one that loads successfully.\n\n\nInstallation\n------------\n\nInstall with `npm`:\n\n``` bash\n$ npm install bindings\n```\n\nOr add it to the `"dependencies"` section of your _package.json_ file.\n\n\nExample\n-------\n\n`require()`ing the proper bindings file for the current node version, platform\nand architecture is as simple as:\n\n``` js\nvar bindings = require(\'bindings\')(\'binding.node\')\n\n// Use your bindings defined in your C files\nbindings.your_c_function()\n```\n\n\nNice Error Output\n-----------------\n\nWhen the `.node` file could not be loaded, `node-bindings` throws an Error with\na nice error message telling you exactly what was tried. You can also check the\n`err.tries` Array property.\n\n```\nError: Could not load the bindings file. Tried:\n → /Users/nrajlich/ref/build/binding.node\n → /Users/nrajlich/ref/build/Debug/binding.node\n → /Users/nrajlich/ref/build/Release/binding.node\n → /Users/nrajlich/ref/out/Debug/binding.node\n → /Users/nrajlich/ref/Debug/binding.node\n → /Users/nrajlich/ref/out/Release/binding.node\n → /Users/nrajlich/ref/Release/binding.node\n → /Users/nrajlich/ref/build/default/binding.node\n → /Users/nrajlich/ref/compiled/0.8.2/darwin/x64/binding.node\n    at bindings (/Users/nrajlich/ref/node_modules/bindings/bindings.js:84:13)\n    at Object.<anonymous> (/Users/nrajlich/ref/lib/ref.js:5:47)\n    at Module._compile (module.js:449:26)\n    at Object.Module._extensions..js (module.js:467:10)\n    at Module.load (module.js:356:32)\n    at Function.Module._load (module.js:312:12)\n    ...\n```\n\n\nLicense\n-------\n\n(The MIT License)\n\nCopyright (c) 2012 Nathan Rajlich &lt;nathan@tootallnate.net&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+494 silly resolved     readmeFilename: 'README.md',
+494 silly resolved     bugs: { url: 'https://github.com/TooTallNate/node-bindings/issues' },
+494 silly resolved     homepage: 'https://github.com/TooTallNate/node-bindings',
+494 silly resolved     _id: 'bindings@1.1.1',
+494 silly resolved     _from: 'bindings@~1.1.1' },
+494 silly resolved   { name: 'nan',
+494 silly resolved     version: '0.8.0',
+494 silly resolved     description: 'Native Abstractions for Node.js: C++ header for Node 0.8->0.12 compatibility',
+494 silly resolved     main: 'include_dirs.js',
+494 silly resolved     repository: { type: 'git', url: 'git://github.com/rvagg/nan.git' },
+494 silly resolved     contributors: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+494 silly resolved     license: 'MIT',
+494 silly resolved     readme: 'Native Abstractions for Node.js\n===============================\n\n**A header file filled with macro and utility goodness for making add-on development for Node.js easier across versions 0.8, 0.10 and 0.11, and eventually 0.12.**\n\n***Current version: 0.8.0*** *(See [nan.h](https://github.com/rvagg/nan/blob/master/nan.h) for complete ChangeLog)*\n\n[![NPM](https://nodei.co/npm/nan.png?downloads=true)](https://nodei.co/npm/nan/) [![NPM](https://nodei.co/npm-dl/nan.png?months=6)](https://nodei.co/npm/nan/)\n\nThanks to the crazy changes in V8 (and some in Node core), keeping native addons compiling happily across versions, particularly 0.10 to 0.11/0.12, is a minor nightmare. The goal of this project is to store all logic necessary to develop native Node.js addons without having to inspect `NODE_MODULE_VERSION` and get yourself into a macro-tangle.\n\nThis project also contains some helper utilities that make addon development a bit more pleasant.\n\n * **[News & Updates](#news)**\n * **[Usage](#usage)**\n * **[Example](#example)**\n * **[API](#api)**\n\n<a name="news"></a>\n## News & Updates\n\n### Dec-2013: NanCString and NanRawString\n\nTwo new functions have been introduced to replace the functionality that\'s been provided by `NanFromV8String` until now. NanCString has sensible defaults so it\'s super easy to fetch a null-terminated c-style string out of a `v8::String`. `NanFromV8String` is still around and has defaults that allow you to pass a single handle to fetch a `char*` while `NanRawString` requires a little more attention to arguments.\n\n### Nov-2013: Node 0.11.9+ breaking V8 change\n\nThe version of V8 that\'s shipping with Node 0.11.9+ has changed the signature for new `Local`s to: `v8::Local<T>::New(isolate, value)`, i.e. introducing the `isolate` argument and therefore breaking all new `Local` declarations for previous versions. NAN 0.6+ now includes a `NanNewLocal<T>(value)` that can be used in place to work around this incompatibility and maintain compatibility with 0.8->0.11.9+ (minus a few early 0.11 releases).\n\nFor example, if you wanted to return a `null` on a callback you will have to change the argument from `v8::Local<v8::Value>::New(v8::Null())` to `NanNewLocal<v8::Value>(v8::Null())`.\n\n### Nov-2013: Change to binding.gyp `"include_dirs"` for NAN\n\nInclusion of NAN in a project\'s binding.gyp is now greatly simplified. You can now just use `"<!(node -e \\"require(\'nan\')\\")"` in your `"include_dirs"`, see example below (note Windows needs the quoting around `require` to be just right: `"require(\'nan\')"` with appropriate `\\` escaping).\n\n<a name="usage"></a>\n## Usage\n\nSimply add **NAN** as a dependency in the *package.json* of your Node addon:\n\n``` bash\n$ npm install --save nan\n```\n\nPull in the path to **NAN** in your *binding.gyp* so that you can use `#include "nan.h"` in your *.cpp* files:\n\n``` python\n"include_dirs" : [\n    "<!(node -e \\"require(\'nan\')\\")"\n]\n```\n\nThis works like a `-I<path-to-NAN>` when compiling your addon.\n\n<a name="example"></a>\n## Example\n\nSee **[LevelDOWN](https://github.com/rvagg/node-leveldown/pull/48)** for a full example of **NAN** in use.\n\nFor a simpler example, see the **[async pi estimation example](https://github.com/rvagg/nan/tree/master/examples/async_pi_estimate)** in the examples directory for full code and an explanation of what this Monte Carlo Pi estimation example does. Below are just some parts of the full example that illustrate the use of **NAN**.\n\nCompare to the current 0.10 version of this example, found in the [node-addon-examples](https://github.com/rvagg/node-addon-examples/tree/master/9_async_work) repository and also a 0.11 version of the same found [here](https://github.com/kkoopa/node-addon-examples/tree/5c01f58fc993377a567812597e54a83af69686d7/9_async_work).\n\nNote that there is no embedded version sniffing going on here and also the async work is made much simpler, see below for details on the `NanAsyncWorker` class.\n\n```c++\n// addon.cc\n#include <node.h>\n#include "nan.h"\n// ...\n\nusing namespace v8;\n\nvoid InitAll(Handle<Object> exports) {\n  exports->Set(NanSymbol("calculateSync"),\n    FunctionTemplate::New(CalculateSync)->GetFunction());\n\n  exports->Set(NanSymbol("calculateAsync"),\n    FunctionTemplate::New(CalculateAsync)->GetFunction());\n}\n\nNODE_MODULE(addon, InitAll)\n```\n\n```c++\n// sync.h\n#include <node.h>\n#include "nan.h"\n\nNAN_METHOD(CalculateSync);\n```\n\n```c++\n// sync.cc\n#include <node.h>\n#include "nan.h"\n#include "sync.h"\n// ...\n\nusing namespace v8;\n\n// Simple synchronous access to the `Estimate()` function\nNAN_METHOD(CalculateSync) {\n  NanScope();\n\n  // expect a number as the first argument\n  int points = args[0]->Uint32Value();\n  double est = Estimate(points);\n\n  NanReturnValue(Number::New(est));\n}\n```\n\n```c++\n// async.cc\n#include <node.h>\n#include "nan.h"\n#include "async.h"\n\n// ...\n\nusing namespace v8;\n\nclass PiWorker : public NanAsyncWorker {\n public:\n  PiWorker(NanCallback *callback, int points)\n    : NanAsyncWorker(callback), points(points) {}\n  ~PiWorker() {}\n\n  // Executed inside the worker-thread.\n  // It is not safe to access V8, or V8 data structures\n  // here, so everything we need for input and output\n  // should go on `this`.\n  void Execute () {\n    estimate = Estimate(points);\n  }\n\n  // Executed when the async work is complete\n  // this function will be run inside the main event loop\n  // so it is safe to use V8 again\n  void HandleOKCallback () {\n    NanScope();\n\n    Local<Value> argv[] = {\n        Local<Value>::New(Null())\n      , Number::New(estimate)\n    };\n\n    callback->Call(2, argv);\n  };\n\n private:\n  int points;\n  double estimate;\n};\n\n// Asynchronous access to the `Estimate()` function\nNAN_METHOD(CalculateAsync) {\n  NanScope();\n\n  int points = args[0]->Uint32Value();\n  NanCallback *callback = new NanCallback(args[1].As<Function>());\n\n  NanAsyncQueueWorker(new PiWorker(callback, points));\n  NanReturnUndefined();\n}\n```\n\n<a name="api"></a>\n## API\n\n * <a href="#api_nan_method"><b><code>NAN_METHOD</code></b></a>\n * <a href="#api_nan_getter"><b><code>NAN_GETTER</code></b></a>\n * <a href="#api_nan_setter"><b><code>NAN_SETTER</code></b></a>\n * <a href="#api_nan_property_getter"><b><code>NAN_PROPERTY_GETTER</code></b></a>\n * <a href="#api_nan_property_setter"><b><code>NAN_PROPERTY_SETTER</code></b></a>\n * <a href="#api_nan_property_enumerator"><b><code>NAN_PROPERTY_ENUMERATOR</code></b></a>\n * <a href="#api_nan_property_deleter"><b><code>NAN_PROPERTY_DELETER</code></b></a>\n * <a href="#api_nan_property_query"><b><code>NAN_PROPERTY_QUERY</code></b></a>\n * <a href="#api_nan_index_getter"><b><code>NAN_INDEX_GETTER</code></b></a>\n * <a href="#api_nan_index_setter"><b><code>NAN_INDEX_SETTER</code></b></a>\n * <a href="#api_nan_index_enumerator"><b><code>NAN_INDEX_ENUMERATOR</code></b></a>\n * <a href="#api_nan_index_deleter"><b><code>NAN_INDEX_DELETER</code></b></a>\n * <a href="#api_nan_index_query"><b><code>NAN_INDEX_QUERY</code></b></a>\n * <a href="#api_nan_weak_callback"><b><code>NAN_WEAK_CALLBACK</code></b></a>\n * <a href="#api_nan_deprecated"><b><code>NAN_DEPRECATED</code></b></a>\n * <a href="#api_nan_inline"><b><code>NAN_INLINE</code></b></a> \n * <a href="#api_nan_new_local"><b><code>NanNewLocal</code></b></a>\n * <a href="#api_nan_return_value"><b><code>NanReturnValue</code></b></a>\n * <a href="#api_nan_return_undefined"><b><code>NanReturnUndefined</code></b></a>\n * <a href="#api_nan_return_null"><b><code>NanReturnNull</code></b></a>\n * <a href="#api_nan_return_empty_string"><b><code>NanReturnEmptyString</code></b></a>\n * <a href="#api_nan_scope"><b><code>NanScope</code></b></a>\n * <a href="#api_nan_locker"><b><code>NanLocker</code></b></a>\n * <a href="#api_nan_unlocker"><b><code>NanUnlocker</code></b></a>\n * <a href="#api_nan_get_internal_field_pointer"><b><code>NanGetInternalFieldPointer</code></b></a>\n * <a href="#api_nan_set_internal_field_pointer"><b><code>NanSetInternalFieldPointer</code></b></a>\n * <a href="#api_nan_object_wrap_handle"><b><code>NanObjectWrapHandle</code></b></a>\n * <a href="#api_nan_make_weak"><b><code>NanMakeWeak</code></b></a>\n * <a href="#api_nan_symbol"><b><code>NanSymbol</code></b></a>\n * <a href="#api_nan_get_pointer_safe"><b><code>NanGetPointerSafe</code></b></a>\n * <a href="#api_nan_set_pointer_safe"><b><code>NanSetPointerSafe</code></b></a>\n * <a href="#api_nan_raw_string"><b><code>NanRawString</code></b></a>\n * <a href="#api_nan_c_string"><b><code>NanCString</code></b></a>\n * <a href="#api_nan_from_v8_string"><b><code>NanFromV8String</code></b></a>\n * <a href="#api_nan_boolean_option_value"><b><code>NanBooleanOptionValue</code></b></a>\n * <a href="#api_nan_uint32_option_value"><b><code>NanUInt32OptionValue</code></b></a>\n * <a href="#api_nan_error"><b><code>NanError</code></b>, <b><code>NanTypeError</code></b>, <b><code>NanRangeError</code></b></a>\n * <a href="#api_nan_throw_error"><b><code>NanThrowError</code></b>, <b><code>NanThrowTypeError</code></b>, <b><code>NanThrowRangeError</code></b>, <b><code>NanThrowError(Handle<Value>)</code></b>, <b><code>NanThrowError(Handle<Value>, int)</code></b></a>\n * <a href="#api_nan_new_buffer_handle"><b><code>NanNewBufferHandle(char *, size_t, FreeCallback, void *)</code></b>, <b><code>NanNewBufferHandle(char *, uint32_t)</code></b>, <b><code>NanNewBufferHandle(uint32_t)</code></b></a>\n * <a href="#api_nan_buffer_use"><b><code>NanBufferUse(char *, uint32_t)</code></b></a>\n * <a href="#api_nan_new_context_handle"><b><code>NanNewContextHandle</code></b></a>\n * <a href="#api_nan_has_instance"><b><code>NanHasInstance</code></b></a>\n * <a href="#api_nan_persistent_to_local"><b><code>NanPersistentToLocal</code></b></a>\n * <a href="#api_nan_dispose_persistent"><b><code>NanDisposePersistent</code></b></a>\n * <a href="#api_nan_assign_persistent"><b><code>NanAssignPersistent</code></b></a>\n * <a href="#api_nan_init_persistent"><b><code>NanInitPersistent</code></b></a>\n * <a href="#api_nan_callback"><b><code>NanCallback</code></b></a>\n * <a href="#api_nan_async_worker"><b><code>NanAsyncWorker</code></b></a>\n * <a href="#api_nan_async_queue_worker"><b><code>NanAsyncQueueWorker</code></b></a>\n\n<a name="api_nan_method"></a>\n### NAN_METHOD(methodname)\n\nUse `NAN_METHOD` to define your V8 accessible methods:\n\n```c++\n// .h:\nclass Foo : public node::ObjectWrap {\n  ...\n\n  static NAN_METHOD(Bar);\n  static NAN_METHOD(Baz);\n}\n\n\n// .cc:\nNAN_METHOD(Foo::Bar) {\n  ...\n}\n\nNAN_METHOD(Foo::Baz) {\n  ...\n}\n```\n\nThe reason for this macro is because of the method signature change in 0.11:\n\n```c++\n// 0.10 and below:\nHandle<Value> name(const Arguments& args)\n\n// 0.11 and above\nvoid name(const FunctionCallbackInfo<Value>& args)\n```\n\nThe introduction of `FunctionCallbackInfo` brings additional complications:\n\n<a name="api_nan_getter"></a>\n### NAN_GETTER(methodname)\n\nUse `NAN_GETTER` to declare your V8 accessible getters. You get a `Local<String>` `property` and an appropriately typed `args` object that can act like the `args` argument to a `NAN_METHOD` call.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_GETTER`.\n\n<a name="api_nan_setter"></a>\n### NAN_SETTER(methodname)\n\nUse `NAN_SETTER` to declare your V8 accessible setters. Same as `NAN_GETTER` but you also get a `Local<Value>` `value` object to work with.\n\n<a name="api_nan_property_getter"></a>\n### NAN_PROPERTY_GETTER(cbname)\nUse `NAN_PROPERTY_GETTER` to declare your V8 accessible property getters. You get a `Local<String>` `property` and an appropriately typed `args` object that can act similar to the `args` argument to a `NAN_METHOD` call.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_PROPERTY_GETTER`.\n\n<a name="api_nan_property_setter"></a>\n### NAN_PROPERTY_SETTER(cbname)\nUse `NAN_PROPERTY_SETTER` to declare your V8 accessible property setters. Same as `NAN_PROPERTY_GETTER` but you also get a `Local<Value>` `value` object to work with.\n\n<a name="api_nan_property_enumerator"></a>\n### NAN_PROPERTY_ENUMERATOR(cbname)\nUse `NAN_PROPERTY_ENUMERATOR` to declare your V8 accessible property enumerators. You get an appropriately typed `args` object like the `args` argument to a `NAN_PROPERTY_GETTER` call.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_PROPERTY_ENUMERATOR`.\n\n<a name="api_nan_property_deleter"></a>\n### NAN_PROPERTY_DELETER(cbname)\nUse `NAN_PROPERTY_DELETER` to declare your V8 accessible property deleters. Same as `NAN_PROPERTY_GETTER`.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_PROPERTY_DELETER`.\n\n<a name="api_nan_property_query"></a>\n### NAN_PROPERTY_QUERY(cbname)\nUse `NAN_PROPERTY_QUERY` to declare your V8 accessible property queries. Same as `NAN_PROPERTY_GETTER`.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_PROPERTY_QUERY`.\n\n<a name="api_nan_index_getter"></a>\n### NAN_INDEX_GETTER(cbname)\nUse `NAN_INDEX_GETTER` to declare your V8 accessible index getters. You get a `uint32_t` `index` and an appropriately typed `args` object that can act similar to the `args` argument to a `NAN_METHOD` call.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_INDEX_GETTER`.\n\n<a name="api_nan_index_setter"></a>\n### NAN_INDEX_SETTER(cbname)\nUse `NAN_INDEX_SETTER` to declare your V8 accessible index setters. Same as `NAN_INDEX_GETTER` but you also get a `Local<Value>` `value` object to work with.\n\n<a name="api_nan_index_enumerator"></a>\n### NAN_INDEX_ENUMERATOR(cbname)\nUse `NAN_INDEX_ENUMERATOR` to declare your V8 accessible index enumerators. You get an appropriately typed `args` object like the `args` argument to a `NAN_INDEX_GETTER` call.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_INDEX_ENUMERATOR`.\n\n<a name="api_nan_index_deleter"></a>\n### NAN_INDEX_DELETER(cbname)\nUse `NAN_INDEX_DELETER` to declare your V8 accessible index deleters. Same as `NAN_INDEX_GETTER`.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_INDEX_DELETER`.\n\n<a name="api_nan_index_query"></a>\n### NAN_INDEX_QUERY(cbname)\nUse `NAN_INDEX_QUERY` to declare your V8 accessible index queries. Same as `NAN_INDEX_GETTER`.\n\nYou can use `NanReturnNull()`, `NanReturnEmptyString()`, `NanReturnUndefined()` and `NanReturnValue()` in a `NAN_INDEX_QUERY`.\n\n<a name="api_nan_weak_callback"></a>\n### NAN_WEAK_CALLBACK(type, cbname)\n\nUse `NAN_WEAK_CALLBACK` to declare your V8 WeakReference callbacks. There is an object argument accessible through `NAN_WEAK_CALLBACK_OBJECT`. The `type` argument gives the type of the `data` argument, accessible through `NAN_WEAK_CALLBACK_DATA(type)`.\n\n```c++\nstatic NAN_WEAK_CALLBACK(BufferReference*, WeakCheck) {\n  if (NAN_WEAK_CALLBACK_DATA(BufferReference*)->noLongerNeeded_) {\n    delete NAN_WEAK_CALLBACK_DATA(BufferReference*);\n  } else {\n    // Still in use, revive, prevent GC\n    NanMakeWeak(NAN_WEAK_CALLBACK_OBJECT, NAN_WEAK_CALLBACK_DATA(BufferReference*), &WeakCheck);\n  }\n}\n```\n\n<a name="api_nan_deprecated"></a>\n### NAN_DEPRECATED(declarator)\nDeclares a function as deprecated. Identical to `V8_DEPRECATED`.\n\n```c++\nstatic NAN_DEPRECATED(NAN_METHOD(foo)) {\n  ...\n}\n```\n\n<a name="api_nan_inline"></a>\n### NAN_INLINE(declarator)\nInlines a function. Identical to `V8_INLINE`.\n\n```c++\nstatic NAN_INLINE(int foo(int bar)) {\n  ...\n}\n```\n\n<a name="api_nan_new_local"></a>\n### NanNewLocal&lt;T&gt;(Handle&lt;Value&gt;)\n\nUse `NanNewLocal` in place of `v8::Local<T>::New(...)` as this function\nrequires an `isolate` argument in recent versions of V8 but not in older versions.\n\n```c++\nNanNewLocal<v8::Value>(v8::Null())\n```\n\n<a name="api_nan_return_value"></a>\n### NanReturnValue(Handle&lt;Value&gt;)\n\nUse `NanReturnValue` when you want to return a value from your V8 accessible method:\n\n```c++\nNAN_METHOD(Foo::Bar) {\n  ...\n\n  NanReturnValue(String::New("FooBar!"));\n}\n```\n\nNo `return` statement required.\n\n<a name="api_nan_return_undefined"></a>\n### NanReturnUndefined()\n\nUse `NanReturnUndefined` when you don\'t want to return anything from your V8 accessible method:\n\n```c++\nNAN_METHOD(Foo::Baz) {\n  ...\n\n  NanReturnUndefined();\n}\n```\n\n<a name="api_nan_return_null"></a>\n### NanReturnNull()\n\nUse `NanReturnNull` when you want to return `Null` from your V8 accessible method:\n\n```c++\nNAN_METHOD(Foo::Baz) {\n  ...\n\n  NanReturnNull();\n}\n```\n\n<a name="api_nan_return_empty_string"></a>\n### NanReturnEmptyString()\n\nUse `NanReturnEmptyString` when you want to return an empty `String` from your V8 accessible method:\n\n```c++\nNAN_METHOD(Foo::Baz) {\n  ...\n\n  NanReturnEmptyString();\n}\n```\n\n<a name="api_nan_scope"></a>\n### NanScope()\n\nThe introduction of `isolate` references for many V8 calls in Node 0.11 makes `NanScope()` necessary, use it in place of `HandleScope scope`:\n\n```c++\nNAN_METHOD(Foo::Bar) {\n  NanScope();\n\n  NanReturnValue(String::New("FooBar!"));\n}\n```\n\n<a name="api_nan_locker"></a>\n### NanLocker()\n\nThe introduction of `isolate` references for many V8 calls in Node 0.11 makes `NanLocker()` necessary, use it in place of `Locker locker`:\n\n```c++\nNAN_METHOD(Foo::Bar) {\n  NanLocker();\n  ...\n  NanUnlocker();\n}\n```\n\n<a name="api_nan_unlocker"></a>\n### NanUnlocker()\n\nThe introduction of `isolate` references for many V8 calls in Node 0.11 makes `NanUnlocker()` necessary, use it in place of `Unlocker unlocker`:\n\n```c++\nNAN_METHOD(Foo::Bar) {\n  NanLocker();\n  ...\n  NanUnlocker();\n}\n```\n\n<a name="api_nan_get_internal_field_pointer"></a>\n### void * NanGetInternalFieldPointer(Handle&lt;Object&gt;, int)\n\nGets a pointer to the internal field with at `index` from a V8 `Object` handle.\n\n```c++\nLocal<Object> obj;\n...\nNanGetInternalFieldPointer(obj, 0);\n```\n<a name="api_nan_set_internal_field_pointer"></a>\n### void NanSetInternalFieldPointer(Handle&lt;Object&gt;, int, void *)\n\nSets the value of the internal field at `index` on a V8 `Object` handle.\n\n```c++\nstatic Persistent<Function> dataWrapperCtor;\n...\nLocal<Object> wrapper = NanPersistentToLocal(dataWrapperCtor)->NewInstance();\nNanSetInternalFieldPointer(wrapper, 0, this);\n```\n\n<a name="api_nan_object_wrap_handle"></a>\n### Local&lt;Object&gt; NanObjectWrapHandle(Object)\n\nWhen you want to fetch the V8 object handle from a native object you\'ve wrapped with Node\'s `ObjectWrap`, you should use `NanObjectWrapHandle`:\n\n```c++\nNanObjectWrapHandle(iterator)->Get(String::NewSymbol("end"))\n```\n\n<a name="api_nan_make_weak"></a>\n### NanMakeWeak(Persistent&lt;T&gt;, parameter, callback)\n\nMake a persistent reference weak.\n\n<a name="api_nan_symbol"></a>\n### String NanSymbol(char *)\n\nThis isn\'t strictly about compatibility, it\'s just an easier way to create string symbol objects (i.e. `String::NewSymbol(x)`), for getting and setting object properties, or names of objects.\n\n```c++\nbool foo = false;\nif (obj->Has(NanSymbol("foo")))\n  foo = optionsObj->Get(NanSymbol("foo"))->BooleanValue()\n```\n\n<a name="api_nan_get_pointer_safe"></a>\n### Type NanGetPointerSafe(Type *[, Type])\n\nA helper for getting values from optional pointers. If the pointer is `NULL`, the function returns the optional default value, which defaults to `0`.  Otherwise, the function returns the value the pointer points to.\n\n```c++\nchar *plugh(uint32_t *optional) {\n  char res[] = "xyzzy";\n  uint32_t param = NanGetPointerSafe<uint32_t>(optional, 0x1337);\n  switch (param) {\n    ...\n  }\n  NanSetPointerSafe<uint32_t>(optional, 0xDEADBEEF);\n}  \n```\n\n<a name="api_nan_set_pointer_safe"></a>\n### bool NanSetPointerSafe(Type *, Type)\n\nA helper for setting optional argument pointers. If the pointer is `NULL`, the function simply return `false`.  Otherwise, the value is assigned to the variable the pointer points to.\n\n```c++\nconst char *plugh(size_t *outputsize) {\n  char res[] = "xyzzy";\n  if !(NanSetPointerSafe<size_t>(outputsize, strlen(res) + 1)) {\n    ...\n  }\n\n  ...\n}\n```\n\n<a name="api_nan_raw_string"></a>\n### void* NanRawString(Handle&lt;Value&gt;, enum Nan::Encoding, size_t *, void *, size_t, int)\n\nWhen you want to convert a V8 `String` to a `char*` buffer, use `NanRawString`. You have to supply an encoding as well as a pointer to a variable that will be assigned the number of bytes in the returned string. It is also possible to supply a buffer and its length to the function in order not to have a new buffer allocated. The final argument allows setting `String::WriteOptions`.\nJust remember that you\'ll end up with an object that you\'ll need to `delete[]` at some point unless you supply your own buffer:\n\n```c++\nsize_t count;\nvoid* decoded = NanRawString(args[1], Nan::BASE64, &count, NULL, 0, String::HINT_MANY_WRITES_EXPECTED);\nchar param_copy[count];\nmemcpy(param_copy, decoded, count);\ndelete[] decoded;\n```\n\n<a name="api_nan_c_string"></a>\n### char* NanCString(Handle&lt;Value&gt;, size_t *[, char *, size_t, int])\n\nWhen you want to convert a V8 `String` to a null-terminated C `char*` use `NanCString`. The resulting `char*` will be UTF-8-encoded, and you need to supply a pointer to a variable that will be assigned the number of bytes in the returned string. It is also possible to supply a buffer and its length to the function in order not to have a new buffer allocated. The final argument allows optionally setting `String::WriteOptions`, which default to `v8::String::NO_OPTIONS`.\nJust remember that you\'ll end up with an object that you\'ll need to `delete[]` at some point unless you supply your own buffer:\n\n```c++\nsize_t count;\nchar* name = NanCString(args[0], &count);\n```\n\n<a name="api_nan_from_v8_string"></a>\n### char* NanFromV8String(Handle&lt;Value&gt;[, enum Nan::Encoding, size_t *, char *, size_t, int])\n\nA convenience function that uses `NanRawString()` to convert a V8 `String` to a `char*`. Defaults to UTF8 encoding and no null-termination.\n\n```c++\nsize_t count;\nchar* name = NanFromV8String(args[0]);\n```\n\n<a name="api_nan_boolean_option_value"></a>\n### bool NanBooleanOptionValue(Handle&lt;Value&gt;, Handle&lt;String&gt;[, bool])\n\nWhen you have an "options" object that you need to fetch properties from, boolean options can be fetched with this pair. They check first if the object exists (`IsEmpty`), then if the object has the given property (`Has`) then they get and convert/coerce the property to a `bool`.\n\nThe optional last parameter is the *default* value, which is `false` if left off:\n\n```c++\n// `foo` is false unless the user supplies a truthy value for it\nbool foo = NanBooleanOptionValue(optionsObj, NanSymbol("foo"));\n// `bar` is true unless the user supplies a falsy value for it\nbool bar = NanBooleanOptionValueDefTrue(optionsObj, NanSymbol("bar"), true);\n```\n\n<a name="api_nan_uint32_option_value"></a>\n### uint32_t NanUInt32OptionValue(Handle&lt;Value&gt;, Handle&lt;String&gt;, uint32_t)\n\nSimilar to `NanBooleanOptionValue`, use `NanUInt32OptionValue` to fetch an integer option from your options object. Can be any kind of JavaScript `Number` and it will be coerced to an unsigned 32-bit integer.\n\nRequires all 3 arguments as a default is not optional:\n\n```c++\nuint32_t count = NanUInt32OptionValue(optionsObj, NanSymbol("count"), 1024);\n```\n\n<a name="api_nan_error"></a>\n### NanError(message), NanTypeError(message), NanRangeError(message)\n\nFor making `Error`, `TypeError` and `RangeError` objects.\n\n```c++\nLocal<Value> res = NanError("you must supply a callback argument");\n```\n\n<a name="api_nan_throw_error"></a>\n### NanThrowError(message), NanThrowTypeError(message), NanThrowRangeError(message), NanThrowError(Local&lt;Value&gt;), NanThrowError(Local&lt;Value&gt;, int)\n\nFor throwing `Error`, `TypeError` and `RangeError` objects. You should `return` this call:\n\n```c++\nreturn NanThrowError("you must supply a callback argument");\n```\n\nCan also handle any custom object you may want to throw. If used with the error code argument, it will add the supplied error code to the error object as a property called `code`.\n\n<a name="api_nan_new_buffer_handle"></a>\n### Local&lt;Object&gt; NanNewBufferHandle(char *, uint32_t), Local&lt;Object&gt; NanNewBufferHandle(uint32_t)\n\nThe `Buffer` API has changed a little in Node 0.11, this helper provides consistent access to `Buffer` creation:\n\n```c++\nNanNewBufferHandle((char*)value.data(), value.size());\n```\n\nCan also be used to initialize a `Buffer` with just a `size` argument.\n\nCan also be supplied with a `NAN_WEAK_CALLBACK` and a hint for the garbage collector, when dealing with weak references.\n\n<a name="api_nan_buffer_use"></a>\n### Local&lt;Object&gt; NanBufferUse(char*, uint32_t)\n\n`Buffer::New(char*, uint32_t)` prior to 0.11 would make a copy of the data.\nWhile it was possible to get around this, it required a shim by passing a\ncallback. So the new API `Buffer::Use(char*, uint32_t)` was introduced to remove\nneeding to use this shim.\n\n`NanBufferUse` uses the `char*` passed as the backing data, and will free the\nmemory automatically when the weak callback is called. Keep this in mind, as\ncareless use can lead to "double free or corruption" and other cryptic failures.\n\n<a name="api_nan_has_instance"></a>\n### bool NanHasInstance(Persistent&lt;FunctionTemplate&gt;&, Handle&lt;Value&gt;)\n\nCan be used to check the type of an object to determine it is of a particular class you have already defined and have a `Persistent<FunctionTemplate>` handle for.\n\n<a name="api_nan_persistent_to_local"></a>\n### Local&lt;Type&gt; NanPersistentToLocal(Persistent&lt;Type&gt;&)\n\nAside from `FunctionCallbackInfo`, the biggest and most painful change to V8 in Node 0.11 is the many restrictions now placed on `Persistent` handles. They are difficult to assign and difficult to fetch the original value out of.\n\nUse `NanPersistentToLocal` to convert a `Persistent` handle back to a `Local` handle.\n\n```c++\nLocal<Object> handle = NanPersistentToLocal(persistentHandle);\n```\n\n<a href="#api_nan_new_context_handle">\n### Local&lt;Context&gt; NanNewContextHandle([ExtensionConfiguration*, Handle&lt;ObjectTemplate&gt;, Handle&lt;Value&gt;])\nCreates a new `Local<Context>` handle.\n\n```c++\nLocal<FunctionTemplate> ftmpl = FunctionTemplate::New();\nLocal<ObjectTemplate> otmpl = ftmpl->InstanceTemplate();\nLocal<Context> ctx =  NanNewContextHandle(NULL, otmpl);\n```\n\n<a name="api_nan_dispose_persistent"></a>\n### void NanDisposePersistent(Persistent&lt;T&gt; &)\n\nUse `NanDisposePersistent` to dispose a `Persistent` handle.\n\n```c++\nNanDisposePersistent(persistentHandle);\n```\n\n<a name="api_nan_assign_persistent"></a>\n### NanAssignPersistent(type, handle, object)\n\nUse `NanAssignPersistent` to assign a non-`Persistent` handle to a `Persistent` one. You can no longer just declare a `Persistent` handle and assign directly to it later, you have to `Reset` it in Node 0.11, so this makes it easier.\n\nIn general it is now better to place anything you want to protect from V8\'s garbage collector as properties of a generic `Object` and then assign that to a `Persistent`. This works in older versions of Node also if you use `NanAssignPersistent`:\n\n```c++\nPersistent<Object> persistentHandle;\n\n...\n\nLocal<Object> obj = Object::New();\nobj->Set(NanSymbol("key"), keyHandle); // where keyHandle might be a Local<String>\nNanAssignPersistent(Object, persistentHandle, obj)\n```\n\n<a name="api_nan_init_persistent"></a>\n### NanInitPersistent(type, name, object)\n\nUser `NanInitPersistent` to declare and initialize a new `Persistent` with the supplied object. The assignment operator for `Persistent` is no longer public in Node 0.11, so this macro makes it easier to declare and initializing a new `Persistent`. See <a href="#api_nan_assign_persistent"><b><code>NanAssignPersistent</code></b></a> for more information.\n\n```c++\nLocal<Object> obj = Object::New();\nobj->Set(NanSymbol("key"), keyHandle); // where keyHandle might be a Local<String>\nNanInitPersistent(Object, persistentHandle, obj);\n```\n\n<a name="api_nan_callback"></a>\n### NanCallback\n\nBecause of the difficulties imposed by the changes to `Persistent` handles in V8 in Node 0.11, creating `Persistent` versions of your `Handle<Function>` is annoyingly tricky. `NanCallback` makes it easier by taking your handle, making it persistent until the `NanCallback` is deleted and even providing a handy `Call()` method to fetch and execute the callback `Function`.\n\n```c++\nLocal<Function> callbackHandle = args[0].As<Function>();\nNanCallback *callback = new NanCallback(callbackHandle);\n// pass `callback` around and it\'s safe from GC until you:\ndelete callback;\n```\n\nYou can execute the callback like so:\n\n```c++\n// no arguments:\ncallback->Call(0, NULL);\n\n// an error argument:\nHandle<Value> argv[] = {\n  Exception::Error(String::New("fail!"))\n};\ncallback->Call(1, argv);\n\n// a success argument:\nHandle<Value> argv[] = {\n  Null(),\n  String::New("w00t!")\n};\ncallback->Call(2, argv);\n```\n\n`NanCallback` also has a `Local<Function> GetCallback()` method that you can use\nto fetch a local handle to the underlying callback function, as well  as a\n`void SetFunction(Handle<Function>)` for setting the callback on the\n`NanCallback`.  Additionally a generic constructor is available for using\n`NanCallback` without performing heap allocations.\n\n<a name="api_nan_async_worker"></a>\n### NanAsyncWorker\n\n`NanAsyncWorker` is an abstract class that you can subclass to have much of the annoying async queuing and handling taken care of for you. It can even store arbitrary V8 objects for you and have them persist while the async work is in progress.\n\nSee a rough outline of the implementation:\n\n```c++\nclass NanAsyncWorker {\npublic:\n  NanAsyncWorker (NanCallback *callback);\n\n  // Clean up persistent handles and delete the *callback\n  virtual ~NanAsyncWorker ();\n\n  // Check the `char *errmsg` property and call HandleOKCallback()\n  // or HandleErrorCallback depending on whether it has been set or not\n  virtual void WorkComplete ();\n\n  // You must implement this to do some async work. If there is an\n  // error then allocate `errmsg` to to a message and the callback will\n  // be passed that string in an Error object\n  virtual void Execute ();\n\n  // Save a V8 object in a Persistent handle to protect it from GC\n  void SavePersistent(const char *key, Local<Object> &obj);\n\n  // Fetch a stored V8 object (don\'t call from within `Execute()`)\n  Local<Object> GetFromPersistent(const char *key);\n\nprotected:\n  // Set this if there is an error, otherwise it\'s NULL\n  const char *errmsg;\n\n  // Default implementation calls the callback function with no arguments.\n  // Override this to return meaningful data\n  virtual void HandleOKCallback ();\n\n  // Default implementation calls the callback function with an Error object\n  // wrapping the `errmsg` string\n  virtual void HandleErrorCallback ();\n};\n```\n\n<a name="api_nan_async_queue_worker"></a>\n### NanAsyncQueueWorker(NanAsyncWorker *)\n\n`NanAsyncQueueWorker` will run a `NanAsyncWorker` asynchronously via libuv. Both the *execute* and *after_work* steps are taken care of for you&mdash;most of the logic for this is embedded in `NanAsyncWorker`.\n\n### Contributors\n\nNAN is only possible due to the excellent work of the following contributors:\n\n<table><tbody>\n<tr><th align="left">Rod Vagg</th><td><a href="https://github.com/rvagg">GitHub/rvagg</a></td><td><a href="http://twitter.com/rvagg">Twitter/@rvagg</a></td></tr>\n<tr><th align="left">Benjamin Byholm</th><td><a href="https://github.com/kkoopa/">GitHub/kkoopa</a></td></tr>\n<tr><th align="left">Trevor Norris</th><td><a href="https://github.com/trevnorris">GitHub/trevnorris</a></td><td><a href="http://twitter.com/trevnorris">Twitter/@trevnorris</a></td></tr>\n<tr><th align="left">Nathan Rajlich</th><td><a href="https://github.com/TooTallNate">GitHub/TooTallNate</a></td><td><a href="http://twitter.com/TooTallNate">Twitter/@TooTallNate</a></td></tr>\n<tr><th align="left">Brett Lawson</th><td><a href="https://github.com/brett19">GitHub/brett19</a></td><td><a href="http://twitter.com/brett19x">Twitter/@brett19x</a></td></tr>\n<tr><th align="left">Ben Noordhuis</th><td><a href="https://github.com/bnoordhuis">GitHub/bnoordhuis</a></td><td><a href="http://twitter.com/bnoordhuis">Twitter/@bnoordhuis</a></td></tr>\n</tbody></table>\n\nLicence &amp; copyright\n-----------------------\n\nCopyright (c) 2013 NAN contributors (listed above).\n\nNative Abstractions for Node.js is licensed under an MIT +no-false-attribs license. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE file for more details.\n',
+494 silly resolved     readmeFilename: 'README.md',
+494 silly resolved     bugs: { url: 'https://github.com/rvagg/nan/issues' },
+494 silly resolved     homepage: 'https://github.com/rvagg/nan',
+494 silly resolved     _id: 'nan@0.8.0',
+494 silly resolved     _from: 'nan@~0.8.0' },
+494 silly resolved   { name: 'set-immediate',
+494 silly resolved     author: { name: 'Jussi Kalliokoski' },
+494 silly resolved     version: '0.1.1',
+494 silly resolved     description: 'A shim for the setImmediate API',
+494 silly resolved     repository:
+494 silly resolved      { type: 'git',
+494 silly resolved        url: 'http://github.com/jussi-kalliokoski/setImmediate.js' },
+494 silly resolved     engines: { node: '>=0.2.0-0' },
+494 silly resolved     licenses: [ [Object] ],
+494 silly resolved     bugs: { url: 'http://github.com/jussi-kalliokoski/setImmediate.js/issues' },
+494 silly resolved     main: './setImmediate.js',
+494 silly resolved     readme: '# setImmediate\n\nA simple and lightweight shim for the setImmediate [W3C Draft](https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/setImmediate/Overview.html) API, for use in any browsers and NodeJS.\n\n## Example usage\n\nYou can include the script any way you want in a browser, in NodeJS environment, it is suggested that you do so by installing ```set-immediate``` from npm, and then including it using ```require(\'set-immediate\')```, preferably before any other dependencies, so that they can use it too (it is injected on the global object for browser < - > node compatibility).\n\n```javascript\n\nsetImmediate(function (foo, bar) {\n\tconsole.log(foo, bar);\n}, [\'foo\', \'bar\']);\n\nvar id = setImmediate(function () {});\n\nclearImmediate(id);\n\n```\n',
+494 silly resolved     readmeFilename: 'README.md',
+494 silly resolved     homepage: 'https://github.com/jussi-kalliokoski/setImmediate.js',
+494 silly resolved     _id: 'set-immediate@0.1.1',
+494 silly resolved     _from: 'set-immediate@*' } ]
+495 info install bindings@1.1.1 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+496 info install nan@0.8.0 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+497 info install set-immediate@0.1.1 into /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+498 info installOne bindings@1.1.1
+499 info installOne nan@0.8.0
+500 info installOne set-immediate@0.1.1
+501 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings unbuild
+502 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan unbuild
+503 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate unbuild
+504 verbose tar unpack /Users/Misrab/.npm/bindings/1.1.1/package.tgz
+505 silly lockFile 54488c60-odules-zmq-node-modules-bindings tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings
+506 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings /Users/Misrab/.npm/54488c60-odules-zmq-node-modules-bindings.lock
+507 silly lockFile 79a8278a-b-npm-bindings-1-1-1-package-tgz tar:///Users/Misrab/.npm/bindings/1.1.1/package.tgz
+508 verbose lock tar:///Users/Misrab/.npm/bindings/1.1.1/package.tgz /Users/Misrab/.npm/79a8278a-b-npm-bindings-1-1-1-package-tgz.lock
+509 verbose tar unpack /Users/Misrab/.npm/nan/0.8.0/package.tgz
+510 silly lockFile 35cac465-ode-modules-zmq-node-modules-nan tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan
+511 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan /Users/Misrab/.npm/35cac465-ode-modules-zmq-node-modules-nan.lock
+512 silly lockFile 167f6d5b-Misrab-npm-nan-0-8-0-package-tgz tar:///Users/Misrab/.npm/nan/0.8.0/package.tgz
+513 verbose lock tar:///Users/Misrab/.npm/nan/0.8.0/package.tgz /Users/Misrab/.npm/167f6d5b-Misrab-npm-nan-0-8-0-package-tgz.lock
+514 verbose tar unpack /Users/Misrab/.npm/set-immediate/0.1.1/package.tgz
+515 silly lockFile c0ae1f5f-s-zmq-node-modules-set-immediate tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate
+516 verbose lock tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate /Users/Misrab/.npm/c0ae1f5f-s-zmq-node-modules-set-immediate.lock
+517 silly lockFile 1045e626--set-immediate-0-1-1-package-tgz tar:///Users/Misrab/.npm/set-immediate/0.1.1/package.tgz
+518 verbose lock tar:///Users/Misrab/.npm/set-immediate/0.1.1/package.tgz /Users/Misrab/.npm/1045e626--set-immediate-0-1-1-package-tgz.lock
+519 silly gunzTarPerm modes [ '755', '644' ]
+520 silly gunzTarPerm modes [ '755', '644' ]
+521 silly gunzTarPerm modes [ '755', '644' ]
+522 silly gunzTarPerm extractEntry package.json
+523 silly gunzTarPerm extractEntry package.json
+524 silly gunzTarPerm extractEntry package.json
+525 silly gunzTarPerm extractEntry README.md
+526 silly gunzTarPerm extractEntry bindings.js
+527 silly gunzTarPerm extractEntry README.md
+528 silly gunzTarPerm extractEntry LICENSE
+529 silly gunzTarPerm extractEntry include_dirs.js
+530 silly gunzTarPerm extractEntry .dntrc
+531 silly gunzTarPerm extractEntry build/config.gypi
+532 silly gunzTarPerm extractEntry nan.h
+533 silly gunzTarPerm extractEntry README.md
+534 silly gunzTarPerm extractEntry setImmediate.js
+535 silly gunzTarPerm extractEntry tests/test.js
+536 silly gunzTarPerm extractEntry tests/test.html
+537 silly lockFile 54488c60-odules-zmq-node-modules-bindings tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings
+538 silly lockFile 54488c60-odules-zmq-node-modules-bindings tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings
+539 silly lockFile 79a8278a-b-npm-bindings-1-1-1-package-tgz tar:///Users/Misrab/.npm/bindings/1.1.1/package.tgz
+540 silly lockFile 79a8278a-b-npm-bindings-1-1-1-package-tgz tar:///Users/Misrab/.npm/bindings/1.1.1/package.tgz
+541 info preinstall bindings@1.1.1
+542 verbose readDependencies using package.json deps
+543 verbose readDependencies using package.json deps
+544 silly resolved []
+545 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings
+546 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/bindings
+547 verbose linkStuff [ false,
+547 verbose linkStuff   false,
+547 verbose linkStuff   false,
+547 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules' ]
+548 info linkStuff bindings@1.1.1
+549 verbose linkBins bindings@1.1.1
+550 verbose linkMans bindings@1.1.1
+551 verbose rebuildBundles bindings@1.1.1
+552 info install bindings@1.1.1
+553 info postinstall bindings@1.1.1
+554 silly lockFile c0ae1f5f-s-zmq-node-modules-set-immediate tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate
+555 silly lockFile c0ae1f5f-s-zmq-node-modules-set-immediate tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate
+556 silly lockFile 1045e626--set-immediate-0-1-1-package-tgz tar:///Users/Misrab/.npm/set-immediate/0.1.1/package.tgz
+557 silly lockFile 1045e626--set-immediate-0-1-1-package-tgz tar:///Users/Misrab/.npm/set-immediate/0.1.1/package.tgz
+558 info preinstall set-immediate@0.1.1
+559 verbose readDependencies using package.json deps
+560 verbose readDependencies using package.json deps
+561 silly resolved []
+562 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate
+563 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/set-immediate
+564 verbose linkStuff [ false,
+564 verbose linkStuff   false,
+564 verbose linkStuff   false,
+564 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules' ]
+565 info linkStuff set-immediate@0.1.1
+566 verbose linkBins set-immediate@0.1.1
+567 verbose linkMans set-immediate@0.1.1
+568 verbose rebuildBundles set-immediate@0.1.1
+569 info install set-immediate@0.1.1
+570 info postinstall set-immediate@0.1.1
+571 silly lockFile 35cac465-ode-modules-zmq-node-modules-nan tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan
+572 silly lockFile 35cac465-ode-modules-zmq-node-modules-nan tar:///Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan
+573 silly lockFile 167f6d5b-Misrab-npm-nan-0-8-0-package-tgz tar:///Users/Misrab/.npm/nan/0.8.0/package.tgz
+574 silly lockFile 167f6d5b-Misrab-npm-nan-0-8-0-package-tgz tar:///Users/Misrab/.npm/nan/0.8.0/package.tgz
+575 info preinstall nan@0.8.0
+576 verbose readDependencies using package.json deps
+577 verbose readDependencies using package.json deps
+578 silly resolved []
+579 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan
+580 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules/nan
+581 verbose linkStuff [ false,
+581 verbose linkStuff   false,
+581 verbose linkStuff   false,
+581 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq/node_modules' ]
+582 info linkStuff nan@0.8.0
+583 verbose linkBins nan@0.8.0
+584 verbose linkMans nan@0.8.0
+585 verbose rebuildBundles nan@0.8.0
+586 info install nan@0.8.0
+587 info postinstall nan@0.8.0
+588 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+589 info build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq
+590 verbose linkStuff [ false,
+590 verbose linkStuff   false,
+590 verbose linkStuff   false,
+590 verbose linkStuff   '/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules' ]
+591 info linkStuff zmq@2.6.0
+592 verbose linkBins zmq@2.6.0
+593 verbose linkMans zmq@2.6.0
+594 verbose rebuildBundles zmq@2.6.0
+595 verbose rebuildBundles [ 'bindings', 'nan', 'set-immediate' ]
+596 info install zmq@2.6.0
+597 verbose unsafe-perm in lifecycle true
+598 info postinstall msgpack@0.1.8
+599 info zmq@2.6.0 Failed to exec install script
+600 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules/zmq unbuild
+601 info preuninstall zmq@2.6.0
+602 info uninstall zmq@2.6.0
+603 verbose false,/Users/Misrab/Desktop/supernova/node/node_modules,/Users/Misrab/Desktop/supernova/node/node_modules/zerorpc/node_modules unbuild zmq@2.6.0
+604 info postuninstall zmq@2.6.0
+605 verbose about to build /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc
+606 info /Users/Misrab/Desktop/supernova/node/node_modules/zerorpc unbuild
+607 info preuninstall zerorpc@0.9.3
+608 info uninstall zerorpc@0.9.3
+609 verbose true,/Users/Misrab/Desktop/supernova/node/node_modules,/Users/Misrab/Desktop/supernova/node/node_modules unbuild zerorpc@0.9.3
+610 info postuninstall zerorpc@0.9.3
+611 error zmq@2.6.0 install: `node-gyp rebuild`
+611 error Exit status 1
+612 error Failed at the zmq@2.6.0 install script.
+612 error This is most likely a problem with the zmq package,
+612 error not with npm itself.
+612 error Tell the author that this fails on your system:
+612 error     node-gyp rebuild
+612 error You can get their info via:
+612 error     npm owner ls zmq
+612 error There is likely additional logging output above.
+613 error System Darwin 13.1.0
+614 error command "node" "/usr/local/bin/npm" "install" "zerorpc"
+615 error cwd /Users/Misrab/Desktop/supernova/node
+616 error node -v v0.10.26
+617 error npm -v 1.4.3
+618 error code ELIFECYCLE
+619 verbose exit [ 1, true ]

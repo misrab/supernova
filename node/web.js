@@ -4,7 +4,8 @@ var express  = require('express')
 	, passport = require('passport')
 	, url = require('url')
 	, RedisStore = require( "connect-redis" )(express)
-	, db_pg = require('./models').pg;
+	, db_pg = require('./models').pg
+	, redis = require('redis');
 
 
 // redis ===========================
@@ -17,10 +18,10 @@ function createRedisClient() {
 	if (process.env.REDISTOGO_URL) {
 		var redisUrl = url.parse(process.env.REDISTOGO_URL);
 		var redisAuth = redisUrl.auth.split(':');
-		var client = require("redis").createClient(redisUrl.port, redisUrl.hostname);
+		var client = redis.createClient(redisUrl.port, redisUrl.hostname);
 		client.auth(redisAuth[1]);
 	} else {
-		var client = require("redis").createClient(6379, 'localhost');
+		var client = redis.createClient(6379, 'localhost');
 	}
 	return client;
 }
@@ -41,7 +42,6 @@ if (process.env.REDISTOGO_URL) {
                           client: client
                         });
 } else {
-	//var redis = require("redis").createClient(6379, 'localhost');
 	var redisClient = new RedisStore({
                           host: 'localhost',
                           port: 6379,
@@ -50,11 +50,23 @@ if (process.env.REDISTOGO_URL) {
 }
 
 
+// JOBS ======
+client.set("string keffdy", "string val", redis.print);
+
+client.get("string key", function(err, reply) {
+    // reply is null when the key is missing
+    console.log(reply);
+});
+
+
+
+
 // configuration =================
 var app = express();
 
 app.set('views', __dirname + '/public');
-app.set('view engine', 'html');
+//app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
 
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
@@ -75,6 +87,11 @@ app.use(express.session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
+
+
 
 
 // routes ======================================================================
@@ -110,8 +127,8 @@ clearDB(function(err) {
 		if (err) { throw err }
 		else {
 			console.log ('### Succeeded connected to: ' + db_pg.url + ' ###');
-			console.log("### process.env.PORT: " + process.env.PORT);
-			var port = process.env.PORT || 5000;
+			//var port = process.env.PORT || 8080;
+			var port = process.env.NODE_ENV=='development' ? 8080 : process.env.PORT;
 			app.listen(port, function() {
 				console.log('### Environment is: ' + process.env.NODE_ENV);
 				console.log('### Listening on ' + port);

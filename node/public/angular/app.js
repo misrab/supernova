@@ -4,13 +4,19 @@ var app = angular.module('app', [
 	'ngRoute',
 	//'ngResource',
 	'ngCookies',
-	'http-auth-interceptor'
+	//'http-auth-interceptor',
+	'angularFileUpload'
 ]);
 
 
 
-app.controller('HeaderController', function($scope, $location) {
-	$scope.location = $location;
+app.controller('HeaderController', function($scope, $rootScope) {
+	//$scope.User = { email: $rootScope.currentUser.email };
+	init();
+	
+	function init() {
+	}
+	
 });
 
 
@@ -23,15 +29,15 @@ app.config(function($locationProvider, $routeProvider) {
     })
     .when('/signup', {
       templateUrl: '/angular/views/basic/signup.html', 
-      controller: 'AppController'
+      controller: 'RegistrationController'
     })
     .when('/login', {
       templateUrl: '/angular/views/basic/login.html', 
-      controller: 'AppController'
+      controller: 'RegistrationController'
     })
     .when('/workspace', {
       templateUrl: '/angular/views/workspace/index.html', 
-      controller: 'AppController'
+      controller: 'WorkspaceController'
     })
     .otherwise({ redirectTo: '/' });
 });
