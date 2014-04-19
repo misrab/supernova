@@ -2,7 +2,7 @@ var Sequelize = require('sequelize')
 , sequelize = null;
 
 
-var pg_url = '';
+var pg_url;
 if (process.env.NODE_ENV=='production') {
 	pg_url = process.env.HEROKU_POSTGRESQL_AQUA_URL;
 } 

@@ -3,6 +3,10 @@ import redis
 import threading
 
 
+# redis queue names
+PENDING_JOBS = 'supernovaJobsPending'
+COMPLETED_JOBS = 'supernovaJobsCompleted'
+
 
 class Listener(threading.Thread):
     def __init__(self, r, channels):
@@ -11,7 +15,7 @@ class Listener(threading.Thread):
     
     def checkQueue(self):
     	r = self.redis
-    	job = r.brpop('supernovaJobs')
+    	job = r.brpop('supernovaJobsPending')
     	
     
     # separate checkQueue() from timer logic

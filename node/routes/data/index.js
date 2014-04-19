@@ -9,12 +9,13 @@ module.exports = function(app) {
 	});
 	
 	
-	
 	app.post('/api/file', function(req, res) {
-		var files = [];
-		for (key in req.files) { files.push(req.files[key]); }
+		var filepaths = [];
+		for (key in req.files) { filepaths.push(req.files[key].path); }
 		
-		data_controller.writeFilesToMongo(files, function(err, mongoIds) {
+		// TODO: screen file.mime
+		
+		data_controller.writeFilesToMongo(filepaths, function(err, mongoIds) {
 			if (err) return res.json(400, err);
 			
 			res.json(200, { ids: mongoIds });
