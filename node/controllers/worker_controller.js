@@ -1,32 +1,36 @@
-var async = require('async');
+// var async = require('async');
+// ! assumes common client between job scheduler and worker
+var client = require('../models').redis.client;
 
 
-// next(err, jobIds)
-function processFiles(files, next) {
 
-	next();
-}
-
-/*
-// cb(err)
-function writeFileToDisk(file, cb) {
-	fs.rename(file.path, '/tmp/meow');
-	cb();
-}
-
-
-// next(err, result)
-// result should be array of file paths
-function readFilesToDisk(files, next) {	
-	console.log('###startijg');
-	async.each(files, function(file, cb) {
-		writeFileToDisk(file, cb);
-	}, function(err) {
-		next();
+// adds job with given 'functionName' - expect python worker to understand
+// 'dataSource' is id in gridFS
+function addJob(functionName, dataSource) {
+	var job = {
+		functionName:	functionName,
+		dataSource:		dataSource,
+		timestamp:		new Date()
+	};
+	
+	//console.log('##PUSHED: '  + JSON.stringify(job));
+	
+	client.lpush('supernovaJobs', JSON.stringify(job));
+	
+	
+	//client.lpush('supernovaJobs', 'zooooo');
+	//client.rpush('zoo');
+	/*
+	client.rpop('supernovaJobs', function(err, reply) {
+		console.log(reply);
 	});
-}*/
+	client.rpop('supernovaJobs', function(err, reply) {
+		console.log(reply);
+	});*/
+}
+
+
 
 module.exports = {
-	processFiles:		processFiles
-	//readFilesToDisk:	readFilesToDisk
+	addJob:		addJob
 }

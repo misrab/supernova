@@ -3,61 +3,47 @@
 var express  = require('express')
 	, passport = require('passport')
 	, url = require('url')
-	, RedisStore = require( "connect-redis" )(express)
 	, db_pg = require('./models').pg
-	, redis = require('redis');
+	, RedisStore = require( "connect-redis" )(express)
+	, db_redis = require('./models').redis;
+	//, redis = require('redis');
 
 
-// redis ===========================
+// redis for session store ===========================
 
-/*
- *	Environment
- */
-
-function createRedisClient() {
-	if (process.env.REDISTOGO_URL) {
-		var redisUrl = url.parse(process.env.REDISTOGO_URL);
-		var redisAuth = redisUrl.auth.split(':');
-		var client = redis.createClient(redisUrl.port, redisUrl.hostname);
-		client.auth(redisAuth[1]);
-	} else {
-		var client = redis.createClient(6379, 'localhost');
-	}
-	return client;
-}
-
-
-var client = createRedisClient();
 if (process.env.REDISTOGO_URL) {
-	// TODO: redistogo connection
-	// redis store
 	var redisUrl = url.parse(process.env.REDISTOGO_URL);
 	var redisAuth = redisUrl.auth.split(':');
-	
 	var redisClient = new RedisStore({
                           host: redisUrl.hostname,
                           port: redisUrl.port,
                           db: redisAuth[0],
                           pass: redisAuth[1],
-                          client: client
+                          client: db_redis.client
                         });
 } else {
 	var redisClient = new RedisStore({
                           host: 'localhost',
                           port: 6379,
-                          client: client
+                          client: db_redis.client
                         });
 }
 
 
+
+
+
 // JOBS ======
+var worker = require('./controllers/worker_controller.js');
+worker.addJob('meowJob', 'meowSource');
+/*
 client.set("string keffdy", "string val", redis.print);
 
 client.get("string key", function(err, reply) {
     // reply is null when the key is missing
     console.log(reply);
 });
-
+*/
 
 
 
