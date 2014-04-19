@@ -6,22 +6,15 @@ app.controller('WorkspaceController', function($http, $scope, UserService, Uploa
 	init();
 	
 	function init() {
+		// ! authenticate user
 		UserService.authenticate();
 		
+		// listen to file select
 		$scope.onFileSelect = function($files) {
 			UploadService.onFileSelect($files, $scope);
 		};
 		
-		$scope.data = [1,2,3,4];
-	};
-	
-	
-	$scope.test = function() {
-		$http.get('http://localhost:5000')
-			.success(function(data) {
-				alert(data);
-				console.log(data);
-			});
+		//$scope.data = [1,2,3,4];
 	};
 
 });

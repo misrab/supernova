@@ -60,7 +60,8 @@ app.service('UploadService', function() {
 			contentType: 	false,
 
 			success:		function(data) {
-								alert(data);
+								var str = JSON.stringify(data);
+								console.log(str);
 							},
 			error: 			function(jqXHR, textStatus, errorThrown) {
 								error.html('Something went wrong');
@@ -74,50 +75,4 @@ app.service('UploadService', function() {
 		});
 	
 	};
-
-	
-	// controller must pass its scope
-	/*
-	this.onFileSelect = function($files, $scope) {
-   		
-   		var progress = $('.progress');
-   		var progressBar = $('.progress-bar');
-   		var error = $('.alert-danger');
-   		
-   		progress.show();
-   		//progressBar.width('50%');
-   		//alert(JSON.stringify($files));
-   		
-   		//var numFiles = $files.length;
-   		
-   		
-		//$files: an array of files selected, each file has name, size, and type.
-		for (var i = 0; i < $files.length; i++) {
-		  var file = $files[i];
-		  $scope.upload = $upload.upload({
-			url: '/api/file',
-			// method: POST or PUT,
-			// headers: {'header-key': 'header-value'},
-			// withCredentials: true,
-			data: {myObj: $scope.myModelObj},
-			
-			file: file, 
-		  }).progress(function(evt) {
-		  	var percent = parseInt(100.0 * evt.loaded / evt.total )
-		  	progressBar.width(percent+'%');
-			//console.log('percent: ' + percent);
-		  }).success(function(data, status, headers, config) {
-			// file is uploaded successfully
-			setTimeout(function() {
-				progress.hide();
-				progressBar.width(0);
-			}, 1500);
-			
-			//console.log('Data is: ' + data);
-		  });
-		  //.error(...)
-		  //.then(success, error, progress); 
-		  //.xhr(function(xhr){xhr.upload.addEventListener(...)})// access and attach any event listener to XMLHttpRequest.
-		}
-	};*/
 });

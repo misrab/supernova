@@ -34,16 +34,8 @@ if (process.env.REDISTOGO_URL) {
 
 
 // JOBS ======
-var worker = require('./controllers/worker_controller.js');
-worker.addJob('meowJob', 'meowSource');
-/*
-client.set("string keffdy", "string val", redis.print);
-
-client.get("string key", function(err, reply) {
-    // reply is null when the key is missing
-    console.log(reply);
-});
-*/
+//var worker = require('./controllers/worker_controller.js');
+//worker.addJob('meowJob', 'meowSource');
 
 
 

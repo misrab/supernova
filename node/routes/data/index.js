@@ -1,4 +1,5 @@
 var worker_controller = require('../../controllers/worker_controller.js');
+var data_controller = require('../../controllers/data_controller.js');
 
 
 module.exports = function(app) {
@@ -13,13 +14,11 @@ module.exports = function(app) {
 		var files = [];
 		for (key in req.files) { files.push(req.files[key]); }
 		
-		worker_controller.processFiles(files, function(err, jobIds) {
-			res.send(200);
+		data_controller.writeFilesToMongo(files, function(err, mongoIds) {
+			if (err) return res.json(400, err);
+			
+			res.json(200, { ids: mongoIds });
 		});
-		
-		/*
-		upload_controller.readFilesToDisk(files, function(err, result) {
-			res.send(200);
-		});*/
+
 	});
 }

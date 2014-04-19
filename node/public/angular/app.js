@@ -8,6 +8,21 @@ var app = angular.module('app', [
 	'angularFileUpload'
 ]);
 
+// directive for ng-enter on enter button press
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+    	element.bind("keydown keypress", function (event) {
+        //element.bind("keydown keypress", function (event) {
+            if(event.which === 13) { 
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
 
 
 app.controller('HeaderController', function($scope, $rootScope) {

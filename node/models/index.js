@@ -1,7 +1,7 @@
 var pg = require('./pg');
 var redis = require('./redisClient'); // avoiding calling it 'redis' like the module
-//var mongodb = require('./mongodb');
+var mongo = require('./mongo');
 
 exports.pg = pg;
 exports.redis = redis;
-//exports.mongodb = mongodb;
+exports.mongo = mongo;

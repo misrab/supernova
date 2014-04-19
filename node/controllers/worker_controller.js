@@ -12,25 +12,13 @@ function addJob(functionName, dataSource) {
 		dataSource:		dataSource,
 		timestamp:		new Date()
 	};
-	
 	//console.log('##PUSHED: '  + JSON.stringify(job));
 	
 	client.lpush('supernovaJobs', JSON.stringify(job));
-	
-	
-	//client.lpush('supernovaJobs', 'zooooo');
-	//client.rpush('zoo');
-	/*
-	client.rpop('supernovaJobs', function(err, reply) {
-		console.log(reply);
-	});
-	client.rpop('supernovaJobs', function(err, reply) {
-		console.log(reply);
-	});*/
-}
+};
 
 
 
 module.exports = {
 	addJob:		addJob
-}
+};

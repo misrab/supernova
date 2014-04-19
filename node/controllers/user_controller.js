@@ -105,7 +105,7 @@ function signup(req, res, next) {
 		result.success = true;
 		return next(null, result);
 	});
-}
+};
 	
 function login(req, res, next) {
 	async.waterfall([
@@ -140,7 +140,7 @@ function login(req, res, next) {
 		result.user = req.user;
 		next(null, result);
 	});
-}
+};
 
 
 
@@ -190,9 +190,9 @@ function changeAttribute(user, object, next) {
 			}
 		}
 	], next);
-}
+};
 
 module.exports = {
 	signup:				signup,
 	login:				login
-}
+};
