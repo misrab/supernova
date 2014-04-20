@@ -15,6 +15,8 @@ var mongo = require('mongodb')
 
 // next(err, mongoId)
 function writeSingleFile(db, filepath, next) {
+	// for (k in db) { console.log('### DB IS: ' + k); }
+	
 	var fileId = new ObjectID();
 	var gridStore = new GridStore(db, fileId, "w", { root:'fs' });
 	gridStore.chunkSize = 1024 * 512;

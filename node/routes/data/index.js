@@ -1,6 +1,8 @@
 var worker_controller = require('../../controllers/worker_controller.js');
 var data_controller = require('../../controllers/data_controller.js');
 
+var async = require('async');
+
 
 module.exports = function(app) {
 	app.get('/api/data', function(req, res) {
@@ -15,11 +17,18 @@ module.exports = function(app) {
 		
 		// TODO: screen file.mime
 		
-		data_controller.writeFilesToMongo(filepaths, function(err, mongoIds) {
-			if (err) return res.json(400, err);
-			
-			res.json(200, { ids: mongoIds });
+		async.waterfall([
+			// write files to mongo
+			function(cb) {
+				data_controller.writeFilesToMongo(filepaths, cb);
+			},
+			// pass to worker for processing
+			function(mongoIds, cb) {			
+				worker_controller.addJob('processFiles', mongoIds);
+				cb();
+			}
+		], function(err) {
+			res.send(200);
 		});
-
 	});
 }

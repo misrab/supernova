@@ -4,21 +4,35 @@ var client = require('../models').redis.client;
 
 
 // redis queue names
-var PENDING_JOBS = 'supernovaJobsPending';
-var COMPLETED_JOBS = 'supernovaJobsCompleted';
+//var PENDING_JOBS = 'supernovaJobsPending';
+//var COMPLETED_JOBS = 'supernovaJobsCompleted';
 
 
 // adds job with given 'functionName' - expect python worker to understand
-// 'dataSource' is id in gridFS
-function addJob(functionName, dataSource) {
+// 'dataSources' is ARRAY of ids in gridFS
+function addJob(functionName, dataSources) {
 	var job = {
 		functionName:	functionName,
-		dataSource:		dataSource,
+		dataSources:	dataSources,
 		timestamp:		new Date()
 	};
 	//console.log('##PUSHED: '  + JSON.stringify(job));
 	
-	client.lpush(PENDING_JOBS, JSON.stringify(job));
+	client.lpush('pendingjobs', JSON.stringify(job), function(err) {
+		//client.rpop('mooo', function(err, reply) {
+		//	console.log('##FROM Q: ' + reply);
+		//});
+	});
+	
+	/*
+	client.lpush(PENDING_JOBS, JSON.stringify(job), function(err) {
+		client.rpop(PENDING_JOBS, function(err, reply) {
+			console.log('##FROM Q: ' + reply);
+		});
+	});*/
+	
+	
+	
 };
 
 // next(err, result)

@@ -105,7 +105,6 @@ clearDB(function(err) {
 		if (err) { throw err }
 		else {
 			console.log ('### Succeeded connected to: ' + db_pg.url + ' ###');
-			//var port = process.env.PORT || 8080;
 			var port = process.env.NODE_ENV=='development' ? 8080 : process.env.PORT;
 			app.listen(port, function() {
 				console.log('### Environment is: ' + process.env.NODE_ENV);
@@ -114,7 +113,3 @@ clearDB(function(err) {
 		}
 	})
 });
-
-//var port = process.env.PORT || 5000;
-//app.listen(port);
-//console.log("App listening on port 5000");

@@ -1,4 +1,3 @@
-*analytics*
 venv
 *.pyc
 dump.rdb
