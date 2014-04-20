@@ -1,52 +1,52 @@
 var async = require('async');
 
-/*
-var mongo = require('mongodb')
-	, MongoClient = require('mongodb').MongoClient
-	, ObjectID = require('mongodb').ObjectID
-	, GridStore = require('mongodb').GridStore
-	, Grid = require('mongodb').Grid;*/
-  
 
+var crypto = require('crypto');
+var knox = require('knox');
+var client = knox.createClient({
+    key: 	process.env.AWS_ACCESS_KEY_ID
+  , secret: process.env.AWS_SECRET_ACCESS_KEY
+  , bucket: process.env.S3_BUCKET_NAME
+});
 
-
-// next(err, mongoId)
-function writeSingleFile(db, filepath, next) {
-	next(null, null);
-};
 
 
 // takes array of string 'filepaths'
-// writes files to mongo gridFS
-// next(err, ids): 'ids' is array of mongo ids to retrieve file(s)
-function writeFilesToMongo(filepaths, next) {
-	var ids = [];
+// next(err, urls) urls array of file locations
+function writeFilesToStore(userId, files, next) {
+	var urls = [];
 	
-	next(null, null);
-	/*
-	// connect to mongo
-	MongoClient.connect(process.env.MONGOHQ_URL, function(err, db) {
-		if (err) return console.log(err);
+	//for (key in req.files) { filepaths.push(req.files[key].path); }
+	
+	async.each(files, function(file, cb) {
+	
+		var filepath = file.path;
+		var filename = file.name;
+		var fileExt = filename.split('.').pop();
+		var newPath = '/files/' + userId + '/' + crypto.randomBytes(128).toString('hex') + '.' + fileExt;
+		//crypto.randomBytes(48, function(ex, buf) {
+  		//var token = buf.toString('hex');
+		//});
 		
-
-		// write each file
-		async.each(filepaths, function(filepath, cb) {
-			writeSingleFile(db, filepath, function(err, id) {
-				if (err) return cb(err);
-			
-				ids.push(id);
-				cb();
-			});
-		}, function(err) {
-			// close db
-			db.close();
-			// forward results
-			next(err, ids);
+		client.putFile(filepath, newPath, function(err, res) {
+			/*
+			console.log('## READ:' + filepath);
+			console.log('## RESULT:' + res.statusCode);
+			console.log('## NEWPATH ' + newPath);
+			for (k in res) { console.log('## RES: ' + k); } */
+		
+			urls.push(newPath);
+		 	 // Always either do something with `res` or at least call `res.resume()`.
+		  	res.resume();
+		  	cb();
 		});
-	});*/
+	}, function(err) {
+		if (err) return next(err);
+		next(null, urls);
+	});
 };
 
 
 module.exports = {
-	writeFilesToMongo:	writeFilesToMongo
+	writeFilesToStore:	writeFilesToStore
 };

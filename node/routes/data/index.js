@@ -12,19 +12,19 @@ module.exports = function(app) {
 	
 	
 	app.post('/api/file', function(req, res) {
-		var filepaths = [];
-		for (key in req.files) { filepaths.push(req.files[key].path); }
+		var files = [];
+		for (key in req.files) { files.push(req.files[key]); }
 		
 		// TODO: screen file.mime
-		
+
 		async.waterfall([
-			// write files to mongo
+			// write files to store
 			function(cb) {
-				data_controller.writeFilesToMongo(filepaths, cb);
+				data_controller.writeFilesToStore(req.user.id, files, cb);
 			},
 			// pass to worker for processing
-			function(mongoIds, cb) {			
-				worker_controller.addJob('processFiles', mongoIds);
+			function(urls, cb) {			
+				worker_controller.addJob('processFiles', urls);
 				cb();
 			}
 		], function(err) {

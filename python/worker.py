@@ -30,7 +30,7 @@ class Listener(threading.Thread):
     def checkQueue(self):
     	r = self.redis    	
     	job = r.rpop('pendingjobs') # brpop doens't work
-    	
+    	   	
     	# allocate job as json
     	if job is not None:
     		allocate_job(json.loads(job))

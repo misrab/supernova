@@ -9,7 +9,7 @@
 import logging
 
 # internal
-from analytics.assimilation import extract_cubes
+from analytics.assimilation import process_files #extract_cubes
 
 
 
@@ -18,12 +18,12 @@ from analytics.assimilation import extract_cubes
 PENDING_JOBS = 'supernovaJobsPending'
 COMPLETED_JOBS = 'supernovaJobsCompleted'
 JOBS_DICT = {
-	'processFiles':	extract_cubes
+	'processFiles':	process_files # extract_cubes
 }
 
 
 
-def allocate_job(fs, job):
+def allocate_job(job):
 	'''
 		Input:
 			 - JSON job: {
@@ -33,8 +33,12 @@ def allocate_job(fs, job):
 				}
 			- fs GridFS object
 			
-	'''
 
+	'''
+	#import json
+	#f = open('./python/lala.txt', 'w')
+	#f.write(json.dumps(job))
+	#f.close()
 	
 	# make sure job has values we need
 	try:
@@ -49,5 +53,7 @@ def allocate_job(fs, job):
 		job_fn = JOBS_DICT[functionName]
 	else:
 		return
+		
+	job_fn(dataSources)
 	
 	
