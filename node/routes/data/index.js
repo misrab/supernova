@@ -12,6 +12,10 @@ module.exports = function(app) {
 	
 	
 	app.post('/api/file', function(req, res) {
+		// don't keep them waiting!
+		res.send(200);
+		
+	
 		var files = [];
 		for (key in req.files) { files.push(req.files[key]); }
 		
@@ -28,7 +32,7 @@ module.exports = function(app) {
 				cb();
 			}
 		], function(err) {
-			res.send(200);
+			if (err) console.log('Error processing files');
 		});
 	});
 }
