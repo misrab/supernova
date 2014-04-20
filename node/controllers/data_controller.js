@@ -1,30 +1,18 @@
 var async = require('async');
 
 /*
-var db_mongo = require('../models').mongo // db is in db_mongo.mongo.db
-	, ObjectID = require('mongodb').ObjectID
-	, GridStore = require('mongodb').GridStore;*/
-	
 var mongo = require('mongodb')
-	, Db = mongo.Db
+	, MongoClient = require('mongodb').MongoClient
 	, ObjectID = require('mongodb').ObjectID
-	, GridStore = require('mongodb').GridStore;
+	, GridStore = require('mongodb').GridStore
+	, Grid = require('mongodb').Grid;*/
   
 
 
 
 // next(err, mongoId)
 function writeSingleFile(db, filepath, next) {
-	// for (k in db) { console.log('### DB IS: ' + k); }
-	
-	var fileId = new ObjectID();
-	var gridStore = new GridStore(db, fileId, "w", { root:'fs' });
-	gridStore.chunkSize = 1024 * 512;
-	
-	gridStore.writeFile(filepath, function(err, fileInfo) {
-		if (err) return next(err);
-		next(null, fileId);
-	});
+	next(null, null);
 };
 
 
@@ -34,10 +22,13 @@ function writeSingleFile(db, filepath, next) {
 function writeFilesToMongo(filepaths, next) {
 	var ids = [];
 	
+	next(null, null);
+	/*
 	// connect to mongo
-	Db.connect(process.env.MONGOHQ_URL, function(err, db) {
+	MongoClient.connect(process.env.MONGOHQ_URL, function(err, db) {
 		if (err) return console.log(err);
 		
+
 		// write each file
 		async.each(filepaths, function(filepath, cb) {
 			writeSingleFile(db, filepath, function(err, id) {
@@ -52,7 +43,7 @@ function writeFilesToMongo(filepaths, next) {
 			// forward results
 			next(err, ids);
 		});
-	});
+	});*/
 };
 
 

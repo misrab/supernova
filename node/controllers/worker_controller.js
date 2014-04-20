@@ -23,23 +23,7 @@ function addJob(functionName, dataSources) {
 		//	console.log('##FROM Q: ' + reply);
 		//});
 	});
-	
-	/*
-	client.lpush(PENDING_JOBS, JSON.stringify(job), function(err) {
-		client.rpop(PENDING_JOBS, function(err, reply) {
-			console.log('##FROM Q: ' + reply);
-		});
-	});*/
-	
-	
-	
 };
-
-// next(err, result)
-// 'result' is completed job, or null
-function checkJob(jobId, next) {
-
-}
 
 
 
