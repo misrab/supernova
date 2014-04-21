@@ -1,4 +1,5 @@
-*analytics*
+*extract_cubes.py
+/tmp*
 venv
 *.pyc
 dump.rdb
