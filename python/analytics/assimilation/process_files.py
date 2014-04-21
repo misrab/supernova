@@ -3,8 +3,6 @@ import os, binascii
 from boto.s3.connection import S3Connection
 import csv
 import xlrd
-from datetime import datetime
-
 
 # internal
 from analytics.helpers import check_list, split_filename

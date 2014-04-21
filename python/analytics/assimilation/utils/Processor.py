@@ -3,6 +3,10 @@ from analytics.helpers import check_list
 from analytics.datatypes import Cube
 
 
+""" Constants """
+CUBE_ROW_THRESHOLD = 10 	# min rows to be counted as a likely cube
+JUMP_THRESHOLD = 0.4 		# leeway allowed before breaking cube
+
 class Processor(object):
 	"""
 		Persistent class across a bunch of files/sheets being processed to store
@@ -13,13 +17,13 @@ class Processor(object):
 	"""
 	
 	
-	""" Constants & Init """
-	CUBE_ROW_THRESHOLD = 10
-	
+	""" Init """
 	
 	def __init__(self):
 		self._row_counter = 0
 		self._current_sheet_name = None
+		self._previous_length = None
+		
 		self._current_cube = Cube() # initialise with a Cube
 		self._label_candidates = []
 		self._row_lengths = []
@@ -44,6 +48,15 @@ class Processor(object):
 			raise TypeError('Expected str type')
 			return
 		self._current_sheet_name = value
+	
+	### Previous Row Length ###
+	@property
+	def previous_length(self):
+		return self._previous_length
+	@previous_length.setter
+	def previous_length(self, value):
+		assert isinstance(value, int)
+		self._previous_length = value
 		
 	### Current Cube ###
 	@property
@@ -75,7 +88,7 @@ class Processor(object):
 	@property
 	def tidbits(self):
 		return self._tidbits
-	@row_lengths.setter
+	@tidbits.setter
 	def tidbits(self, value):
 		check_list(value, str)
 		self._tidbits = value
@@ -84,9 +97,27 @@ class Processor(object):
 	@property
 	def likely_cubes(self):
 		return self._likely_cubes
-	@row_lengths.setter
+	@likely_cubes.setter
 	def likely_cubes(self, value):
 		self._likely_cubes = value
 		
+	
+	""" Methods that use/act on properties """
+	
+	def increment_row_counter(self):
+		self._row_counter = self._row_counter + 1
 		
+	def small_jump(self, new_length):	
+		assert isinstance(new_length, int)
+		# if no other row, consider it a small jump
+		if self.previous_length is None:
+			return True
+			
+		smaller_l = min(self.previous_length, new_length)
+		bigger_l = max(self.previous_length, new_length)
+	
+		# ! reasonable difference
+		# i.e. if only 2 columns dont want +/-0.4
+		diff = max(2, JUMP_THRESHOLD*bigger_l)
 		
+		return bigger_l - diff <= smaller_l <=  bigger_l + diff
