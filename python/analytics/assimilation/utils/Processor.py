@@ -4,8 +4,8 @@ from analytics.datatypes import Cube
 
 
 """ Constants """
-CUBE_ROW_THRESHOLD = 10 	# min rows to be counted as a likely cube
 JUMP_THRESHOLD = 0.4 		# leeway allowed before breaking cube
+#CUBE_ROW_THRESHOLD = 10 	# min rows to be counted as a likely cube
 
 class Processor(object):
 	"""
@@ -19,6 +19,7 @@ class Processor(object):
 	
 	""" Init """
 	
+	
 	def __init__(self):
 		self._row_counter = 0
 		self._current_sheet_name = None
@@ -26,7 +27,7 @@ class Processor(object):
 		
 		self._current_cube = Cube() # initialise with a Cube
 		self._label_candidates = []
-		self._row_lengths = []
+		#self._row_lengths = []
 		self._tidbits = []
 		self._likely_cubes = []
 		
@@ -76,9 +77,9 @@ class Processor(object):
 		self._label_candidates = value
 		
 	### Row lengths ###
-	@property
-	def row_lengths(self):
-		return self._row_lengths
+	#@property
+	#def row_lengths(self):
+	#	return self._row_lengths
 	#@row_lengths.setter
 	#def row_lengths(self, value):
 	#	check_list(value, int)
