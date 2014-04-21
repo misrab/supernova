@@ -48,11 +48,15 @@ module.exports = function(app) {
 	
 	
 	app.delete('/session', function(req, res) {
+		req.logout();
+		res.send(200);
+		// ! want to logout regardless of success
+		/*
 		if (req.user) {
 			req.logout();
 			res.send(200);
 		} else {
 			res.send(400, "Not logged in");
-		}
+		}*/
 	});
 }

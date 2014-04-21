@@ -6,7 +6,7 @@
 #from pymongo import MongoClient
 #import gridfs
 
-import logging
+import json
 
 # internal
 from analytics.assimilation import process_files #extract_cubes
@@ -31,14 +31,10 @@ def allocate_job(job):
 					dataSources:	
 					timestamp:		new Date() [javascript] when job pushed to queue
 				}
-			- fs GridFS object
+			- functioName's corresponding function MUST return an object. This
+			  object will be stringified and put to completed jobs in redis			
 			
-
 	'''
-	#import json
-	#f = open('./python/lala.txt', 'w')
-	#f.write(json.dumps(job))
-	#f.close()
 	
 	# make sure job has values we need
 	try:
@@ -53,7 +49,12 @@ def allocate_job(job):
 		job_fn = JOBS_DICT[functionName]
 	else:
 		return
-		
-	job_fn(dataSources)
+	
+	result = job_fn(dataSources)
+	
+	
+	#f = open('./python/test.txt', 'w')
+	#f.write(json.dumps(result))
+	#f.close()
 	
 	

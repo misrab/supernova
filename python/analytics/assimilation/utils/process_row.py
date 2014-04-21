@@ -109,9 +109,7 @@ def process_row(processor, row, excel=False, sheet_info=None):
 	
 	# append to list of row lengths
 	true_l = len(unemptied_row)
-	
-	# TODO push to stack
-	
+		
 	# ignore empty rows they shouldn't break a cube
 	if true_l==0:
 		processor.increment_row_counter()

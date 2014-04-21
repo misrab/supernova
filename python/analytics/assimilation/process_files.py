@@ -25,8 +25,8 @@ CSV_EXTENSION = '.csv'
 def read_excel_file(processor, filename):
 	with xlrd.open_workbook(filename) as excelbook:
 		# cycle sheets
-		for i in range(0, 1): #testing
-		#for i in range(0, excelbook.nsheets):
+		#for i in range(0, 1): #testing
+		for i in range(0, excelbook.nsheets):
 			sht = excelbook.sheet_by_index(i)
 			# store sheet name to add to all cubes found
 			# TODO: what happens if no sheet name
@@ -66,6 +66,27 @@ def process_file(processor, url, fileKey):
 	process_local_file(processor, tempPath, file_extension)
 	
 
+# processes results into json and returns array of results
+def return_results(likely_cubes):
+	results = []
+	for cube in likely_cubes:
+		c = {}
+		# careful dict vs class with properties
+		c['labels'] = cube.labels
+		c['tidbits'] = cube.tidbits
+		c['num_rows'] = cube.num_rows
+		results.append(c)
+	return results
+	
+	# test print cubes
+	"""
+	for cube in processor.likely_cubes:
+		print '========================== LIKELY CUBE ========================='
+		print 'LABELS:  ====> ' + str(cube.labels)
+		print 'TIDBITS: ====> ' + str(cube.tidbits)
+		print 'ROWS:    ====> ' + str(cube.num_rows)
+	"""
+	
 """
 	Main Function
 """
@@ -81,3 +102,6 @@ def process_files(urls):
 	for url in urls:
 		fileKey = bucket.get_key(url, validate=False)
 		process_file(processor, url, fileKey)
+		
+		
+	return return_results(processor.likely_cubes)
