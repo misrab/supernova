@@ -4,10 +4,21 @@ var user_controller = require('../../controllers/user_controller.js');
 var db_pg = require('../../models/index.js').pg;
 var User = db_pg.User;
 var passport = require('passport');
-//var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var BasicStrategy = require('passport-http').BasicStrategy;
 
+
 passport.use(new BasicStrategy(
+  {
+    usernameField: 'email',
+    passwordField: 'hash'
+  }, function(username, password, done) {
+  	//console.log('### passport is authenticating User');
+  	User.authenticateHash(username, password, done);
+  	
+  }	
+));
+passport.use(new LocalStrategy(
   {
     usernameField: 'email',
     passwordField: 'password'
@@ -47,8 +58,13 @@ module.exports = function(app) {
 		});
 	});
 	
+	app.get('/moo',
+		passport.authenticate('basic', { session: false }), function(req, res) {
+			res.send(200, 'foo');
+		});
+	
 	app.post('/session',
-		passport.authenticate('basic', { session: false }),
+		passport.authenticate('local', { session: false }),
 		function(req, res) {
 			var result = {};
 			

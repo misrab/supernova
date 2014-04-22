@@ -1,23 +1,27 @@
 var app = angular.module('app');
 
-app.service('UserService', function($location, $http, $rootScope, $cookieStore) {
+app.service('UserService', function($location, $http, $rootScope, $cookieStore, Base64) {
 	
 	this.logout = function() {
 		$rootScope.currentUser = null;
-		$cookieStore.remove('user');		
+		$cookieStore.remove('user');	
+		
+		$http.defaults.headers.common.Authorization = 'Basic ';
+			
 		$location.url('/');
-		/*
-		$http.delete('/session')
-			.success(function(data) {
-				$rootScope.currentUser = null;
-				$cookieStore.remove('user');
-				
-				$location.url('/');
-			})
-			.error(function() {
-				console.log('Error logging out')
-			});*/
 	};
+	
+	function setHttpBasicHeaders() {
+		if ($rootScope.currentUser) {
+			var username = $rootScope.currentUser.email;
+			var password = $rootScope.currentUser.hash;
+			var encoded = Base64.encode(username + ':' + password);
+			$http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+		} else {
+			$http.defaults.headers.common.Authorization = 'Basic ';
+		}
+	};
+	this.setHttpBasicHeaders = setHttpBasicHeaders;
 
 	// either creating a /session or a /user
 	this.postUserInfo = function(email, password, route) {
@@ -31,11 +35,14 @@ app.service('UserService', function($location, $http, $rootScope, $cookieStore) 
 				if (!data) return;
 				
 				if (data.success) {
-					console.log('Success post user info:' + data.success + ', ' + JSON.stringify(data.user));
+					//console.log('Success post user info:' + data.success + ', ' + JSON.stringify(data.user));
 					
 					$rootScope.currentUser = data.user;
 					// store to cookie
 					$cookieStore.put('user', $rootScope.currentUser);
+					
+					
+					setHttpBasicHeaders();					
 					
 					// route to workspace
 					$location.url('/workspace');

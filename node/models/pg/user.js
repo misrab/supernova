@@ -65,6 +65,28 @@ module.exports = function(sequelize, DataTypes) {
     				//console.log(error);
     				return callback(error);
     			});
+			},
+			
+			// takes hash as password (as opposed to pure password)
+			authenticateHash: function(email, hash, callback) {
+    			this.find({ where: {email: email} }).success(function(user) {
+    				// on success no user
+    				if (!user) {
+    					//console.log('didnt find user\n');
+    					return callback(null, false); 
+    				}
+    				// on success user found
+    				if (hash==user.hash) {
+    					return callback(null, user);
+    				} else {
+    					return callback(null, false); 
+    				}
+    			}).error(function(error) {
+    				// on error
+    				//console.log('error finding user\n');
+    				//console.log(error);
+    				return callback(error);
+    			});
 			}
 		}
 	});

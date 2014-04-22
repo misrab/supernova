@@ -4,7 +4,7 @@ var app = angular.module('app', [
 	'ngRoute',
 	//'ngResource',
 	'ngCookies',
-	//'http-auth-interceptor',
+	'http-auth-interceptor',
 	'angularFileUpload'
 ]);
 

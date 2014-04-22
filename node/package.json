@@ -14,7 +14,8 @@
     "pg": "^3.0.3",
     "ejs": "^1.0.0",
     "knox": "^0.8.9",
-    "passport-http": "^0.2.2"
+    "passport-http": "^0.2.2",
+    "passport-local": "^1.0.0"
   },
   "engines": {
     "node": "0.10.x",
