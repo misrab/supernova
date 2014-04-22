@@ -58,10 +58,11 @@ module.exports = function(app) {
 		});
 	});
 	
+	/*
 	app.get('/moo',
 		passport.authenticate('basic', { session: false }), function(req, res) {
 			res.send(200, 'foo');
-		});
+		});*/
 	
 	app.post('/session',
 		passport.authenticate('local', { session: false }),
@@ -74,35 +75,13 @@ module.exports = function(app) {
 			//return res.send(200, JSON.stringify(result));
 			} else {
 				result.success = true;
-				result.user = req.user;
+				result.user = {
+					id:		req.user.id,
+					email:	req.user.email,
+					hash:	req.user.hash
+				};
 			}
 			res.json(result);			
 	});
-	
-	//app.post('/session', function(req, res) {
-	//	res.send(200);
-		/*
-		user_controller.login(req, res, function(err, result) {
-			if (err) return res.send(400, JSON.stringify(err));
-			
-			
-			res.send(200, JSON.stringify(result));
-		});*/
-	//});
-	
-	// returns serialised user if logged in, or null
-	/*
-	app.get('/session', function(req, res) {
-		console.log('### USER IS: ' + req.user);
-	
-		if (req.user!=null && req.user!=undefined) return res.json(200, req.user);
-		res.send(200, null);
-	});
-	
-	
-	app.delete('/session', function(req, res) {
-		req.logout();
-		res.send(200);
-		// ! want to logout regardless of success
-	});*/
+
 }

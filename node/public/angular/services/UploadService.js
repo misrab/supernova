@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.service('UploadService', function() {
+app.service('UploadService', function($http) {
 	/*
 		Expect #upload_area, .progress > .progress-bar, .alert-danger html fields
 	
@@ -59,10 +59,16 @@ app.service('UploadService', function() {
 		fileInput.attr('disabled', 'disabled');
 		progress.show();
 		
+		alert($http.defaults.headers.common.Authorization);
+		
+		
 		$.ajax({
 			// progress
 			xhr:			function() {
 								return updateProgressBar(progressBar);
+							},
+			beforeSend: 	function (xhr) {
+								xhr.setRequestHeader ("Authorization", $http.defaults.headers.common.Authorization);
 							},
 
 			type: 			"POST",
@@ -74,6 +80,8 @@ app.service('UploadService', function() {
 			success:		function(data) {
 								//var str = JSON.stringify(data);
 								//console.log(str);
+								// show extraction engine
+								$('.processing', area).show();
 							},
 			error: 			function(jqXHR, textStatus, errorThrown) {
 								if (jqXHR.responseText != '') {

@@ -8,6 +8,7 @@ var app = angular.module('app', [
 	'angularFileUpload'
 ]);
 
+
 // directive for ng-enter on enter button press
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
@@ -35,7 +36,7 @@ app.controller('HeaderController', function($scope, $rootScope) {
 });
 
 
-app.config(function($locationProvider, $routeProvider) {
+app.config(function($locationProvider, $routeProvider, $httpProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider
     .when('/', {
@@ -59,6 +60,43 @@ app.config(function($locationProvider, $routeProvider) {
       requireLogin: true
     })
     .otherwise({ redirectTo: '/' });
+    
+    
+    
+    
+    // 401 handling
+    var interceptor = ['$rootScope', '$q', '$location', function (scope, $q, $location) {
+
+        function success(response) {
+            return response;
+        }
+
+        function error(response) {
+            var status = response.status;
+
+            if (status == 401) {
+               // window.location = "/login";
+                $location.path = '/login';
+                var spot =  $('.alert-danger');
+                
+                if (spot.length) {
+                	spot.html('Invalid email or password');
+                	spot.show();
+                }
+                
+                return false; // false to stop ajax req
+            }
+            // otherwise
+            return $q.reject(response);
+
+        }
+
+        return function (promise) {
+            return promise.then(success, error);
+        }
+
+    }];
+    $httpProvider.responseInterceptors.push(interceptor);
 });
 
 

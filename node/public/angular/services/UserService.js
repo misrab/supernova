@@ -11,8 +11,8 @@ app.service('UserService', function($location, $http, $rootScope, $cookieStore, 
 		$location.url('/');
 	};
 	
-	function setHttpBasicHeaders() {
-		if ($rootScope.currentUser) {
+	function setHttpBasicHeaders() {			
+		if ($rootScope.currentUser!=null) {
 			var username = $rootScope.currentUser.email;
 			var password = $rootScope.currentUser.hash;
 			var encoded = Base64.encode(username + ':' + password);
@@ -30,6 +30,7 @@ app.service('UserService', function($location, $http, $rootScope, $cookieStore, 
 		data.email = email;
 		data.password = password;
 	
+	
 		$http.post(route, data)
 			.success(function(data, status, headers, config) {
 				if (!data) return;
@@ -42,7 +43,7 @@ app.service('UserService', function($location, $http, $rootScope, $cookieStore, 
 					$cookieStore.put('user', $rootScope.currentUser);
 					
 					
-					setHttpBasicHeaders();					
+					setHttpBasicHeaders();			
 					
 					// route to workspace
 					$location.url('/workspace');

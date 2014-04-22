@@ -5,8 +5,8 @@ app.controller('AppController', function($http, $location, $scope, $rootScope, $
 	init();
 	
 	function init() {
-		//UserService.authenticate();
-		UserService.setHttpBasicHeaders();
+		$rootScope.currentUser = $rootScope.currentUser || $cookieStore.get('user') || null;
+		UserService.setHttpBasicHeaders();		
 	};
 	
 });

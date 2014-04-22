@@ -2,16 +2,17 @@ var worker_controller = require('../../controllers/worker_controller.js');
 var data_controller = require('../../controllers/data_controller.js');
 
 var async = require('async');
+var passport = require('passport');
 
 
 module.exports = function(app) {
-	app.get('/api/data', function(req, res) {
+	app.get('/api/data', passport.authenticate('basic', { session: false }), function(req, res) {
 	
 		res.send(200, 'data');
 	});
 	
 	
-	app.post('/api/file', function(req, res) {
+	app.post('/api/file', passport.authenticate('basic', { session: false }), function(req, res) {
 		
 		/*
 			allowed types...
