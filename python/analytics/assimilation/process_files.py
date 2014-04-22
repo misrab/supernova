@@ -51,6 +51,14 @@ def process_local_file(processor, localPath, file_extension):
 		read_csv_file(processor, localPath)
 	else:
 		raise ValueError('Unsupported file type. Currently supported are .csv, .xls, .xlsx')
+	
+	
+	for cube in processor.likely_cubes:
+		print '========================== LIKELY CUBE ========================='
+		print 'LABELS:  ====> ' + str(cube.labels)
+		print 'TIDBITS: ====> ' + str(cube.tidbits)
+		print 'ROWS:    ====> ' + str(cube.num_rows)
+	
 		
 
 # determine file type, read data and process
@@ -61,8 +69,7 @@ def process_file(processor, url, fileKey):
 	# store it in tmp folder with random name + file extension
 	tempPath = './tmp/' + binascii.b2a_hex(os.urandom(15)) + file_extension
 	fileKey.get_contents_to_filename(tempPath)
-	
-	
+
 	process_local_file(processor, tempPath, file_extension)
 	
 
@@ -76,32 +83,30 @@ def return_results(likely_cubes):
 		c['tidbits'] = cube.tidbits
 		c['num_rows'] = cube.num_rows
 		results.append(c)
-	return results
 	
-	# test print cubes
-	"""
-	for cube in processor.likely_cubes:
-		print '========================== LIKELY CUBE ========================='
-		print 'LABELS:  ====> ' + str(cube.labels)
-		print 'TIDBITS: ====> ' + str(cube.tidbits)
-		print 'ROWS:    ====> ' + str(cube.num_rows)
-	"""
+	return results
+		
 	
 """
 	Main Function
 """
 # note urls are relative i.e. /files/...., NOT http://amazon.s3....
-def process_files(urls):
+# ! if remote False files are local
+def process_files(urls, remote=True):
 	check_list(urls)
-	
-	conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
-	bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
 	
 	processor = Processor()
 	
-	for url in urls:
-		fileKey = bucket.get_key(url, validate=False)
-		process_file(processor, url, fileKey)
+	if remote==True:
+		conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
+		bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
+		for url in urls:
+			fileKey = bucket.get_key(url, validate=False)
+			process_file(processor, url, fileKey)
+	else:
+		for localPath in urls:
+			file_name_only, file_extension = split_filename(localPath)
+			process_local_file(processor, localPath, file_extension)
 		
 		
 	return return_results(processor.likely_cubes)

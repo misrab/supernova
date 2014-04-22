@@ -1,8 +1,6 @@
 
-from analytics.assimilation.utils import Processor
-from analytics.assimilation import process_local_file
+from analytics.assimilation import process_files
 
 
-path = '../tmp/test.xlsx'
-processor = Processor()
-process_local_file(processor, path, '.xlsx')
+paths = ['../tmp/test.xlsx']
+process_files(paths, False)

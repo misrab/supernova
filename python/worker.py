@@ -33,7 +33,7 @@ class Listener(threading.Thread):
     	   	
     	# allocate job as json
     	if job is not None:
-    		allocate_job(json.loads(job))
+    		allocate_job(json.loads(job), r)
     	
 
     # separate checkQueue() from timer logic

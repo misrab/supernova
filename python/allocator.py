@@ -23,9 +23,10 @@ JOBS_DICT = {
 
 
 
-def allocate_job(job):
+def allocate_job(job, r):
 	'''
 		Input:
+			 - r:	redis client to push complete job
 			 - JSON job: {
 					functionName:	string name of function to run
 					dataSources:	
@@ -38,6 +39,7 @@ def allocate_job(job):
 	
 	# make sure job has values we need
 	try:
+		jobId = job['id']
 		functionName = job['functionName']
 		dataSources = job['dataSources']
 	except:
@@ -52,9 +54,13 @@ def allocate_job(job):
 	
 	result = job_fn(dataSources)
 	
+	# push completed job with result
+	r.set(jobId, json.dumps(result))
 	
-	#f = open('./python/test.txt', 'w')
-	#f.write(json.dumps(result))
-	#f.close()
+	meow = r.get(jobId)
+	# test
+	f = open('./python/test.txt', 'w')
+	f.write(json.dumps(meow))
+	f.close()
 	
 	

@@ -42,7 +42,7 @@ module.exports = function(app) {
 	app.get('/session', function(req, res) {
 		console.log('### USER IS: ' + req.user);
 	
-		if (req.user) return res.json(req.user);
+		if (req.user!=null && req.user!=undefined) return res.json(req.user);
 		res.json(null);
 	});
 	

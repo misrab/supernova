@@ -12,17 +12,51 @@ module.exports = function(app) {
 	
 	
 	app.post('/api/file', function(req, res) {
-		// don't keep them waiting!
-		res.send(200);
+		
+		/*
+			allowed types...
+			text/csv
+			application/vnd.ms-excel
+			application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+			
+			(later ods, tsv, txt)
+			application/vnd.oasis.opendocument.spreadsheet
+			text/tab-separated-values
+			text/plain
+		*/
+		
+		// bool if file type ok
+		function checkFileType(file) {
+			// A copy of this in Angular UploadService as well
+			var ALLOWED_TYPES = [
+				'text/csv',
+				'application/vnd.ms-excel',
+				'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+			];
+			var mime = file.mime;
+			//var filepath = file.path;
+			//var filename = file.name;
+			//var fileExt = filename.split('.').pop();
+			if (ALLOWED_TYPES.indexOf(mime)==-1) return false;
+			
+			return true;
+		}
 		
 	
 		var files = [];
-		for (key in req.files) { files.push(req.files[key]); }
+		for (key in req.files) {		
+			if (checkFileType(req.files[key])==false) {
+				return res.send(400, 'Please only upload .xls, .xlsx, .csv, or .sav files')
+			} else {
+				files.push(req.files[key]);
+			}
+		}
 		
-		// TODO: screen file.mime
-
+		// ! get back to them asap
+		res.send(200);
+		
 		async.waterfall([
-			// write files to store
+			// write files to store - /tmp directory is not persistent!
 			function(cb) {
 				data_controller.writeFilesToStore(req.user.id, files, cb);
 			},

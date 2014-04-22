@@ -1,3 +1,5 @@
+var crypto = require('crypto');
+
 // var async = require('async');
 // ! assumes common client between job scheduler and worker
 var client = require('../models').redis.client;
@@ -12,6 +14,7 @@ var client = require('../models').redis.client;
 // 'dataSources' is ARRAY of ids in gridFS
 function addJob(functionName, dataSources) {
 	var job = {
+		id:				crypto.randomBytes(20).toString('hex'),
 		functionName:	functionName,
 		dataSources:	dataSources,
 		timestamp:		new Date()

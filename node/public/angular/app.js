@@ -39,8 +39,8 @@ app.config(function($locationProvider, $routeProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider
     .when('/', {
-      templateUrl: '/angular/views/basic/landing.html', 
-      controller: 'AppController'
+      templateUrl: '/angular/views/basic/landing.html'
+      //controller: 'AppController'
     })
     .when('/signup', {
       templateUrl: '/angular/views/basic/signup.html', 
