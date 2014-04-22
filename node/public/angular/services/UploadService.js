@@ -59,7 +59,7 @@ app.service('UploadService', function($http) {
 		fileInput.attr('disabled', 'disabled');
 		progress.show();
 		
-		alert($http.defaults.headers.common.Authorization);
+		//alert($http.defaults.headers.common.Authorization);
 		
 		
 		$.ajax({
@@ -94,7 +94,8 @@ app.service('UploadService', function($http) {
 			complete:		function() {
 								progress.hide();
 								// temporarily re-enable input
-								fileInput.removeAttr('disabled');
+								// ! not re-enabled until files processed
+								//fileInput.removeAttr('disabled');
 							}
 		});
 	

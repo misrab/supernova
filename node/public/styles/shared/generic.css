@@ -4,6 +4,24 @@
 @import url("http://fonts.googleapis.com/css?family=Lato");
 
 
+
+/*************
+	WORKSPACE
+**************/
+
+#upload_area {
+	border: 2px dashed grey;
+	border-radius: 6px;
+	background-color: white;
+	padding: 15px;
+}
+
+
+/************
+	GENERIC
+*************/
+
+
 html, body {
   height: 100%;
 }

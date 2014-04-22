@@ -7,9 +7,10 @@ app.controller('WorkspaceController', function($http, $scope, UserService, Uploa
 	
 	function init() {		
 		// listen to file select
+		/*
 		$scope.onFileSelect = function($files) {
 			UploadService.onFileSelect($files, $scope);
-		};
+		};*/
 		
 		//$scope.data = [1,2,3,4];
 	};
