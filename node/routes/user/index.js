@@ -1,5 +1,22 @@
 var user_controller = require('../../controllers/user_controller.js');
 
+
+var db_pg = require('../../models/index.js').pg;
+var User = db_pg.User;
+var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
+var BasicStrategy = require('passport-http').BasicStrategy;
+
+passport.use(new BasicStrategy(
+  {
+    usernameField: 'email',
+    passwordField: 'password'
+  }, function(username, password, done) {
+  	//console.log('### passport is authenticating User');
+  	User.authenticate(username, password, done);
+  }
+));
+
 /**
  *  Route middleware to ensure user is authenticated.
  */
@@ -30,20 +47,40 @@ module.exports = function(app) {
 		});
 	});
 	
-	app.post('/session', function(req, res) {
+	app.post('/session',
+		passport.authenticate('basic', { session: false }),
+		function(req, res) {
+			var result = {};
+			
+			if (!req.user) {
+				result.success = false;
+				result.message = 'Invalid email or password';
+			//return res.send(200, JSON.stringify(result));
+			} else {
+				result.success = true;
+				result.user = req.user;
+			}
+			res.json(result);			
+	});
+	
+	//app.post('/session', function(req, res) {
+	//	res.send(200);
+		/*
 		user_controller.login(req, res, function(err, result) {
 			if (err) return res.send(400, JSON.stringify(err));
 			
+			
 			res.send(200, JSON.stringify(result));
-		});
-	});
+		});*/
+	//});
 	
 	// returns serialised user if logged in, or null
+	/*
 	app.get('/session', function(req, res) {
 		console.log('### USER IS: ' + req.user);
 	
-		if (req.user!=null && req.user!=undefined) return res.json(req.user);
-		res.json(null);
+		if (req.user!=null && req.user!=undefined) return res.json(200, req.user);
+		res.send(200, null);
 	});
 	
 	
@@ -51,12 +88,5 @@ module.exports = function(app) {
 		req.logout();
 		res.send(200);
 		// ! want to logout regardless of success
-		/*
-		if (req.user) {
-			req.logout();
-			res.send(200);
-		} else {
-			res.send(400, "Not logged in");
-		}*/
-	});
+	});*/
 }

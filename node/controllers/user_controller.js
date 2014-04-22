@@ -1,41 +1,12 @@
 var async = require('async');
 var crypto = require('crypto');
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
 
 var db_pg = require('../models/index.js').pg;
 var User = db_pg.User;
 
-
-/*
- * Passport serialization and local strategy
- */
-// Define local strategy for Passport
-passport.use(new LocalStrategy(
-  {
-    usernameField: 'email',
-    passwordField: 'password'
-  }, function(username, password, done) {
-  	//console.log('### passport is authenticating User');
-  	User.authenticate(username, password, done);
-  }
-));
-
-
-// serialize user on login
-passport.serializeUser(function(user, done) {
-  console.log('serializing user\n');
-  done(null, user.id);
-});
-// deserialize user on logout
-passport.deserializeUser(function(id, done) {
-  User.find(id).success(function(user) {
-    done(null, user);
-  }).error(function(error) {
-    done(error, null);
-  });
-});
 
 function signup(req, res, next) {
 	
@@ -72,23 +43,14 @@ function signup(req, res, next) {
 		function(newUser, callback){
 		
 			newUser.save().success(function(user){
+				if(!user){
+					var errorMessage = "## Error inserting user into database on signup";
+					var insertionError = new Error(errorMessage);
+					return callback(insertionError);
+				}
 				return callback(null, user);
 			}).error(callback);
-		},
-
-		//logs user in
-		function(savedUser, callback) {		
-			if(!savedUser){
-				var errorMessage = "## Error inserting user into database on signup";
-				var insertionError = new Error(errorMessage);
-				return callback(insertionError);
-			}
-			
-			req.login(savedUser, function(err) {
-				if(err) return callback(err);
-				return callback(null, savedUser);
-			});
-		}			
+		}		
 	], function(err, user) {
 		var result = {};
 		result.code = null;
@@ -106,7 +68,30 @@ function signup(req, res, next) {
 		return next(null, result);
 	});
 };
-	
+
+/*
+function login(req, res, next) {
+	console.log('## AUTHING');
+	passport.authenticate('local', {session:false}, function(err, user, info) {			
+		var result = {};
+		console.log('## start');
+		// dealing with these together
+		if (err || !user) {
+			result.success = false;
+			result.message = 'Invalid email or password';
+			return next(null, result);
+			//return res.send(200, JSON.stringify(result));
+		}
+		
+		result.success = true;
+		result.user = req.user;
+		next(null, result);
+	})(req, res, function() {
+		console.log('#ND');
+	});
+};
+*/
+/*
 function login(req, res, next) {
 	async.waterfall([
 		// checks to see if user is authenticated
@@ -141,7 +126,7 @@ function login(req, res, next) {
 		next(null, result);
 	});
 };
-
+*/
 
 
 // for user to change attribute, i.e. email, password
@@ -193,6 +178,6 @@ function changeAttribute(user, object, next) {
 };
 
 module.exports = {
-	signup:				signup,
-	login:				login
+	signup:				signup
+	//login:				login
 };

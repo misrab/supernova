@@ -4,29 +4,29 @@
 		<img style="height: 50px; padding: 4px 0;" class="inline_block" src="/img/analytics_logo.png" />
 	</a>
 	<ul class="nav navbar-nav pull-right font1">
-		<li ng-if="false">
+		<li ng-if="!currentUser">
 			<a href="/workspace">(Workspace)</a>
 		</li>
-		<li>
-			<a href="#how_it_works">HOW IT WORKS</a>
+		<li ng-if="!currentUser">
+			<a href="/#how_it_works">HOW IT WORKS</a>
 		</li>
-		<li>
-			<a href="/pricing">BUSINESS PRICING</a>
+		<li ng-if="!currentUser">
+			<a href="/#pricing">BUSINESS PRICING</a>
 		</li>
-		<li>
-			<a href="#faq">FAQ</a>
+		<li ng-if="!currentUser">
+			<a href="/#faq">FAQ</a>
 		</li>
-		<li>
+		<li ng-if="!currentUser">
 			<a class="special_button left_right_margin" style="background-color: orange;" href="/signup">GET STARTED</a>
 		</li>
-		<li>
+		<li ng-if="!currentUser">
 			<a class="special_button" style="background-color: #428bca;" href="/login">LOG IN</a>
 		</li>
 
-		<li>
+		<li ng-if="currentUser">
 			<a onClick="javascript: void(0);" style="color: white;">Logged in as {{ currentUser.email }}</a>
 		</li>
-		<li ng-controller="RegistrationController">
+		<li ng-if="currentUser" ng-controller="RegistrationController">
 			<a ng-click="logout()" class="special_button" style="background-color: #428bca;" href="#">LOG OUT</a>
 		</li>
 	</ul>

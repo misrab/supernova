@@ -5,6 +5,6 @@ app.controller('AppController', function($location, $scope, $rootScope, $cookieS
 	init();
 	
 	function init() {
-		UserService.authenticate();
+		//UserService.authenticate();
 	};
 });

@@ -2,6 +2,15 @@ var app = angular.module('app');
 
 	
 app.controller('RegistrationController', function($scope, UserService) {
+	init();
+	
+	
+	function init() {
+		//if (UserService.getUserAuthenticated()) {
+		//	$location.path('/workspace');
+		//}
+	};
+
 	/*
 	 *	Login, signup, logout
 	 */

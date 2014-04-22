@@ -3,14 +3,14 @@
 var express  = require('express')
 	, passport = require('passport')
 	, url = require('url')
-	, db_pg = require('./models').pg
-	, RedisStore = require( "connect-redis" )(express)
-	, db_redis = require('./models').redis;
+	, db_pg = require('./models').pg;
+	//, RedisStore = require( "connect-redis" )(express)
+	//, db_redis = require('./models').redis;
 	//, redis = require('redis');
 
 
 // redis for session store ===========================
-
+/*
 if (process.env.REDISTOGO_URL) {
 	var redisUrl = url.parse(process.env.REDISTOGO_URL);
 	var redisAuth = redisUrl.auth.split(':');
@@ -29,7 +29,7 @@ if (process.env.REDISTOGO_URL) {
                         });
 }
 
-
+*/
 
 
 
@@ -51,20 +51,30 @@ app.configure(function() {
 	app.use(express.logger('dev')); 						// log every request to the console
 	app.use(express.bodyParser()); 							// pull information from html in POST
 	app.use(express.methodOverride()); 						// simulate DELETE and PUT
+	
+	// Passport and Sessions
+	app.use(express.cookieParser());
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(passport.initialize());
+	app.use(app.router);
 });
 
 // Passport and Sessions
-app.use(express.cookieParser());
-app.use(express.bodyParser());
-app.use(express.methodOverride());
+//app.use(express.cookieParser());
+//app.use(express.bodyParser());
+//app.use(express.methodOverride());
+
+/*
 app.use(express.session({ 
   store: redisClient 
   , secret: 'teafortwo'
   }, function() {
     app.use(app.router);
-  }));
-app.use(passport.initialize());
-app.use(passport.session());
+  }));*/
+
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 
 

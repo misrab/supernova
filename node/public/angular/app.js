@@ -39,51 +39,61 @@ app.config(function($locationProvider, $routeProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider
     .when('/', {
-      templateUrl: '/angular/views/basic/landing.html'
+      templateUrl: '/angular/views/basic/landing.html',
       //controller: 'AppController'
+      requireLogin: false
     })
     .when('/signup', {
       templateUrl: '/angular/views/basic/signup.html', 
-      controller: 'RegistrationController'
+      controller: 'RegistrationController',
+      requireLogin: false
     })
     .when('/login', {
       templateUrl: '/angular/views/basic/login.html', 
-      controller: 'RegistrationController'
+      controller: 'RegistrationController',
+      requireLogin: false
     })
     .when('/workspace', {
       templateUrl: '/angular/views/workspace/index.html', 
-      controller: 'WorkspaceController'
+      controller: 'WorkspaceController',
+      requireLogin: true
     })
     .otherwise({ redirectTo: '/' });
 });
 
 
-//app.run(function ($rootScope, $location, Auth) {
-app.run(function ($rootScope, $location) {
+app.run(function($rootScope, $location, $cookieStore){
 
-	//watching the value of the currentUser variable.
-	/*
-	$rootScope.$watch('currentUser', function(currentUser) {
-	  // if no currentUser and on a page that requires authorization then try to update it
-	  // will trigger 401s if user does not have a valid session
-	  if (!currentUser && (['/', '/login', '/logout', '/signup'].indexOf($location.path()) == -1 )) {
-		Auth.currentUser();
-	  }
-	});*/
-	
-	/*
-	$rootScope.$watch('currentUser', function(currentUser) {
-	  // if no currentUser and on a page that requires authorization then try to update it
-	  // will trigger 401s if user does not have a valid session
-	  if (!currentUser && (['/workspace'].indexOf($location.path()) != -1 )) {
-	  	alert('foo!');
-		//Auth.currentUser();
-	  }
+	// Everytime the route in our app changes check auth status
+	$rootScope.$on("$routeChangeStart", function(event, next, current) {
+		//$cookieStore.remove('user');
+		//console.log('## COOKIE: ' + $cookieStore.get('user'));
+		
+		$rootScope.currentUser = $cookieStore.get('user') || null;
+		
+		console.log('Current user is ' + JSON.stringify($rootScope.currentUser));
+		if (next.requireLogin && !$rootScope.currentUser) {
+			$location.path('/login');
+			event.preventDefault();
+		}
+		// send to workspace if logged in and not in generic page
+		else if (!next.requireLogin && $rootScope.currentUser 
+			&& ['/terms', '/about'].indexOf($location.path)==-1) {
+			
+			$location.path('/workspace');
+			event.preventDefault();
+		}
+		
+		/*
+		// if you're logged out send to login page.
+		if (next.requireLogin && !UserService.getUserAuthenticated()) {
+			$location.path('/login');
+			event.preventDefault();
+		// send to workspace if logged in and not in generic page
+		} else if (!next.requireLogin && UserService.getUserAuthenticated()
+			&& ['/terms', '/about'].indexOf($location.path)==-1) {
+			$location.path('/workspace');
+			event.preventDefault();
+		}*/
 	});
-
-	// On catching 401 errors, redirect to the login page.
-	$rootScope.$on('event:auth-loginRequired', function() {
-	  $location.path('/login');
-	  return false;
-	});*/
 });
