@@ -11,9 +11,6 @@ app.directive('cubeSummary', function(UploadService) {
 	return {
 		restrict: 		'E',
 		templateUrl:	'/angular/views/workspace/cubeSummary.html',
-		link:			link,
-		scope:			{
-							data:	'=cubeData'
-						}
+		link:			link
 	};
 });

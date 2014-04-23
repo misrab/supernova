@@ -3,6 +3,8 @@ import os, binascii
 import csv
 import numpy as np
 
+import time
+
 # internal imports
 from analytics.helpers import check_list # as check_list
 from analytics.helpers import infer_type # as infer_type
@@ -219,6 +221,8 @@ class Cube(object):
 	
 	def complete(self, tidbits, current_sheet_name, candidate_labels, prev_cube_labels):
 		"""Finalise tidbits, labels, and types"""
+		
+		
 		# set tidbits
 		if current_sheet_name is not None:
 			tidbits.insert(0, current_sheet_name)
@@ -233,6 +237,8 @@ class Cube(object):
 		
 		# store data to disk and clear from main memory
 		self._set_data()
+		
+		
 		
 		
 	def add_row(self, tuples):

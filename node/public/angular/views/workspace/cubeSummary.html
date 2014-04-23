@@ -1,1 +1,16 @@
-meowow {{ cubeData.labels }}
+<div class="cube_summary">
+	<div class='pull-left italic'>{{ data.num_rows }} rows</div>
+	<div>
+		<div ng-repeat="tidbit in data.tidbits">{{ tidbit }}</div>
+	</div>
+	<table>
+		<tr>
+			<td style="background-color: lightgrey;">Labels</td>
+			<td ng-repeat="label in data.labels track by $index">{{ label }}</td>
+		</tr>
+		<tr>
+			<td style="background-color: lightgrey;">Types</td>
+			<td ng-repeat="type in data.types track by $index">{{ type }}</td>
+		</tr>
+	</table>
+</div>

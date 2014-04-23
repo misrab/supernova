@@ -2,6 +2,8 @@
 from datetime import datetime
 import xlrd
 
+import time
+
 # internal
 from analytics.helpers import strip_list, infer_type, trim_row
 from analytics.datatypes import Cube
@@ -117,7 +119,7 @@ def process_row(processor, row, excel=False, sheet_info=None):
 		return
 		
 	# CASE 1: Add row to current cube
-	if processor.row_counter > 0 and processor.small_jump(true_l):
+	if processor.row_counter > 0 and processor.small_jump(true_l):	
 		add_row_to_cube(processor, stripped_row, excel, sheet_info)
 
 	# CASE 2: First row, or break in cube

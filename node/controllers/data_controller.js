@@ -98,9 +98,21 @@ function getUserCubes(email, next) {
 		},
 		// get cubes
 		function(user, cb) {
-			user.getCubes().success(function(cubes) {			
+			user.getCubes().success(function(cubes) {	
+				// !! return as json!		
 				cb(null, cubes);
 			}).error(cb);
+		},
+		// convert them to JSON
+		function(cubes, cb) {
+			var results = [];
+			async.each(cubes, function(c, cb) {
+				results.push(c.toJSON());
+				cb();
+			}, function(err) {
+				if (err) return cb(err);
+				cb(null, results);
+			});
 		}
 	], next);
 }

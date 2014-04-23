@@ -30,7 +30,23 @@ CSV_EXTENSION = '.csv'
 
 
 def read_excel_file(processor, filename):
+	"""
+	wb = xlrd.open_workbook(filename)
+	def read_sheet(i):
+		sht = wb.sheet_by_index(i)
+		# store sheet name to add to all cubes found
+		# TODO: what happens if no sheet name
+		processor.current_sheet_name = str(sht.name) # cast to string from unicode
+		for r in range(sht.nrows):
+			row = sht.row_values(r) # method, not array
+			process_row(processor, row, excel=True, sheet_info=(wb.datemode, sht, r))
+				
+	pool = ThreadPool(processes=32)
+	pool.map(read_sheet, range(wb.nsheets))
+	"""
 	with xlrd.open_workbook(filename) as excelbook:
+		
+		
 		# cycle sheets
 		#for i in range(0, 1): #testing
 		for i in range(0, excelbook.nsheets):
@@ -42,7 +58,7 @@ def read_excel_file(processor, filename):
 			for r in range(sht.nrows):
 				row = sht.row_values(r) # method, not array
 				process_row(processor, row, excel=True, sheet_info=(excelbook.datemode, sht, r))
-
+				
 
 def read_csv_file(processor, filename):
 	with open(filename, 'rb') as csvfile:
@@ -52,6 +68,7 @@ def read_csv_file(processor, filename):
 			
 
 def process_local_file(processor, localPath, file_extension):
+	t0 = time.time()
 	if file_extension in EXCEL_EXTENSIONS:
 		read_excel_file(processor, localPath)
 	elif file_extension == CSV_EXTENSION:
@@ -61,6 +78,10 @@ def process_local_file(processor, localPath, file_extension):
 	
 	# remove local file
 	remove_local_file(localPath)
+	
+	t1 = time.time()
+	
+	print "======= processing a file took " + str(t1-t0)
 	
 	"""
 	for cube in processor.likely_cubes:
@@ -114,6 +135,8 @@ def process_cubes(cubes, bucket):
 			logging.error('Failed to fetch files from S3 for processing')
 			return []
 		"""
+		#conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
+		#bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
 	
 		localPath = cube.data_path
 		# ! could rehash new name, but just removing '.../tmp/'
@@ -121,8 +144,7 @@ def process_cubes(cubes, bucket):
 		fileName = localPath[localPath.find(AFTER)+len(AFTER):]
 		remotePath = '/datafiles/' + fileName
 		try:
-			k = bucket.new_key(remotePath)
-			k.set_contents_from_filename(localPath)
+			k = bucket.new_key(remotePath).set_contents_from_filename(localPath)
 		except:
 			logging.warning('Failed to upload new cube data to S3')
 			return
@@ -135,9 +157,10 @@ def process_cubes(cubes, bucket):
 	
 	#for cube in cubes:
 	#	upload(cube)
-		#t = threading.Thread(target = upload, args=(cube,)).start()
-	pool = ThreadPool(processes=10)
+	#	t = threading.Thread(target = upload, args=(cube,)).start()
+	pool = ThreadPool(processes=128)
 	pool.map(upload, cubes)
+	
 
 """
 	Main Function
@@ -145,7 +168,7 @@ def process_cubes(cubes, bucket):
 # note urls are relative i.e. /files/...., NOT http://amazon.s3....
 # ! if remote False files are local
 def process_files(urls, remote=True):
-	#start = time.time()
+	t0 = time.time()
 
 	check_list(urls)
 	
@@ -158,6 +181,7 @@ def process_files(urls, remote=True):
 	
 	processor = Processor()
 	
+	# local vs remote case
 	def start_remote(url):
 		fileKey = bucket.get_key(url, validate=False)
 		process_file(processor, url, fileKey)
@@ -173,15 +197,22 @@ def process_files(urls, remote=True):
 		file_name_only, file_extension = split_filename(localPath)
 		process_local_file(processor, localPath, file_extension)
 	
-	
+	# start the process
 	thread_fn = start_remote if remote else start_local
 
-	for path in urls:
-		thread_fn(path)
+	pool = ThreadPool(processes=64)
+	pool.map(thread_fn, urls)
+	
+	#for path in urls:
+	#	thread_fn(path)
+		
 		#t = threading.Thread(target = thread_fn, args=(path,)).start()
 
-	
+	t1 = time.time()
 	process_cubes(processor.likely_cubes, bucket)
-		
+	t2 = time.time()
+	
+	print '------ Up to process_cubes: ' + str(t1-t0)
+	print '------ Time to process_cubes: ' + str(t2-t1)
 		
 	return return_results(processor.likely_cubes)

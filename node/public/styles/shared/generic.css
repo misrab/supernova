@@ -16,6 +16,16 @@
 	padding: 15px;
 }
 
+.cube_summary {
+	display: inline-block;
+	margin: 10px;
+}
+.cube_summary table td {
+	background-color: white;
+	border: 1px solid grey;
+	padding: 5px;
+}
+
 
 /************
 	GENERIC
@@ -71,6 +81,12 @@ a:hover {
 
 
 
+.italic {
+	font-style: italic;
+}
+.bold {
+	font-weight: bold;
+}
 
 .very_big_space_top {
 	margin-top: 40px;
