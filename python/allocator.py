@@ -52,15 +52,15 @@ def allocate_job(job, r):
 	else:
 		return
 	
-	result = job_fn(dataSources)
+	results = job_fn(dataSources)
 	
-	# push completed job with result
-	r.set(jobId, json.dumps(result))
+	# push completed job with results
+	r.set(jobId, json.dumps(results))	
 	
-	meow = r.get(jobId)
+	#meow = r.get(jobId)
 	# test
-	f = open('./python/test.txt', 'w')
-	f.write(json.dumps(meow))
-	f.close()
+	#f = open('./python/test.txt', 'w')
+	#f.write(json.dumps(meow))
+	#f.close()
 	
 	

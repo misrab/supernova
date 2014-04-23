@@ -5,7 +5,7 @@ app.service('UploadService', function($http) {
 		Expect #upload_area, .progress > .progress-bar, .alert-danger html fields
 	
 	*/
-	this.onFileSelect = function() {
+	this.onFileSelect = function(element) {
 		// internal
 		function updateProgressBar(progressBar) {
 			var xhr = new window.XMLHttpRequest();
@@ -24,7 +24,7 @@ app.service('UploadService', function($http) {
 		};
 		
 		// main function
-		var area = $('#upload_area');
+		var area = $('.upload_area', element);
 		var progress = $('.progress', area);
 		var progressBar = $('.progress-bar', progress); // for xhr updating
 		var error = $('.alert-danger', area);

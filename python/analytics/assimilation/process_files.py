@@ -3,9 +3,10 @@ import os, binascii
 from boto.s3.connection import S3Connection
 import csv
 import xlrd
+import logging
 
 # internal
-from analytics.helpers import check_list, split_filename
+from analytics.helpers import check_list, split_filename, remove_local_file
 from utils import Processor, process_row
 
 """
@@ -52,16 +53,21 @@ def process_local_file(processor, localPath, file_extension):
 	else:
 		raise ValueError('Unsupported file type. Currently supported are .csv, .xls, .xlsx')
 	
+	# remove local file
+	remove_local_file(localPath)
 	
+	"""
 	for cube in processor.likely_cubes:
 		print '========================== LIKELY CUBE ========================='
 		print 'LABELS:  ====> ' + str(cube.labels)
 		print 'TIDBITS: ====> ' + str(cube.tidbits)
 		print 'ROWS:    ====> ' + str(cube.num_rows)
+	"""
 	
 		
 
 # determine file type, read data and process
+# ! for remote files. If local use process_local_file
 def process_file(processor, url, fileKey):
 	file_name_only, file_extension = split_filename(url)
 	
@@ -85,8 +91,10 @@ def return_results(likely_cubes):
 		results.append(c)
 	
 	return results
+
+
 		
-	
+
 """
 	Main Function
 """
@@ -98,15 +106,26 @@ def process_files(urls, remote=True):
 	processor = Processor()
 	
 	if remote==True:
-		conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
-		bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
+		try:
+			conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
+			bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
+		except:
+			logging.error('Failed to fetch files from S3 for processing')
+			return []
+			
 		for url in urls:
 			fileKey = bucket.get_key(url, validate=False)
 			process_file(processor, url, fileKey)
+			# delete the file from S3
+			# ! may want to do this after returning result
+			try:
+				bucket.delete_key(fileKey)
+			except:
+				logging.warning('Failed to delete S3 file after processing')
+				pass
 	else:
 		for localPath in urls:
 			file_name_only, file_extension = split_filename(localPath)
 			process_local_file(processor, localPath, file_extension)
-		
 		
 	return return_results(processor.likely_cubes)

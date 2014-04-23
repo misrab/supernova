@@ -1,4 +1,6 @@
 # external imports
+import os, binascii
+import csv
 import numpy as np
 
 # internal imports
@@ -145,16 +147,18 @@ class Cube(object):
 	def _set_types(self):
 		types = ['' for i in range(len(self.labels))]
 	
+		# set the type as the most frequent type in that column
 		for column, counts in self._type_counts.items():
 			types[column] = TYPES[counts.index(max(counts))]
 			
 		self.types = types
 	
 	# we'll take a candidate label row if they're close to the average length of up to the following rows
+	# remember before this we've filtered candidates that look like they could be labels
 	def _set_labels(self, candidate_labels, prev_cube_labels):
-	
 		FOLLOWING_ROWS_CAP = 10
 		THRESHOLD = 0.2
+		
 		length_sum = 0
 		for i in range(FOLLOWING_ROWS_CAP):
 			if i >= len(self._data):
@@ -175,9 +179,12 @@ class Cube(object):
 	# takes array of tuples [ ( value , type)... ]
 	# adds type count for self._type_counts for type inference on COLUMNS
 	def _count_types(self, tuples):
+		VALUE_INDEX = 0
+		TYPE_INDEX = 1
+	
 		for i in range(len(tuples)):
-			value = tuples[i][0]
-			type = tuples[i][1]
+			value = tuples[i][VALUE_INDEX]
+			type = tuples[i][TYPE_INDEX]
 			
 			# index in array to increment { 0: [ here ] }
 			idx = TYPE_TO_INDEX[type]
@@ -190,7 +197,20 @@ class Cube(object):
 				self._type_counts[i][idx] = 1
 				
 				
-	
+	# writes self._data to temp folder as .csv
+	# and clears from main memory
+	def _set_data(self):
+		# random file name
+		# !! running from supernova root; if from python folder would be ../
+		tempPath = './tmp/' + binascii.b2a_hex(os.urandom(15)) + '.csv'
+		with open(tempPath, "wb") as f:
+			writer = csv.writer(f)
+			writer.writerows(self._data)
+		# set path
+		self._data_path = tempPath
+		# allow for garbage collection
+		self._data = []
+			
 	#########################
 	#						#
 	#  Public Methods   	#
@@ -211,6 +231,9 @@ class Cube(object):
 		# process data based on types
 		self._set_types()
 		
+		# store data to disk and clear from main memory
+		self._set_data()
+		
 		
 	def add_row(self, tuples):
 		"""
@@ -224,10 +247,12 @@ class Cube(object):
 		"""
 		check_list(tuples)
 		
+		# add to type counts for later usage
 		self._count_types(tuples)
-		values = [ x[0] for x in tuples ]		
-		
+		# take values only
+		values = [ x[0] for x in tuples ]
 		self._data.append(values)
+		# increment row count
 		self._num_rows = self._num_rows + 1
 		
 		

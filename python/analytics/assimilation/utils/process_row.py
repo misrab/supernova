@@ -30,6 +30,7 @@ def break_in_cube(processor, true_l, stripped_row, unemptied_row):
 	# complete current cube if big enough
 	if processor.current_cube.num_rows >= CUBE_ROW_THRESHOLD:
 		# prev cube labels if any: we might need them in cube completion
+		# ! at least pass [] or error may occur in Cube()._set_labels
 		prev_cube_labels = processor.likely_cubes[-1].labels if len(processor.likely_cubes) else []
 		# complete this cube
 		processor.current_cube.complete(processor.tidbits, processor.current_sheet_name, processor.label_candidates, prev_cube_labels)				

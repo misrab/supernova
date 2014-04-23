@@ -9,7 +9,7 @@
 	WORKSPACE
 **************/
 
-#upload_area {
+.upload_area {
 	border: 2px dashed grey;
 	border-radius: 6px;
 	background-color: white;

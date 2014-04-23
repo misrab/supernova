@@ -53,7 +53,10 @@ def infer_type(x, excel=False):
 	
 	
 	# order matters e.g. empty would pass excel date
-	if is_datetime(x):
+	if is_number(x):
+		type = 'number'
+		parsed = float(x)
+	elif is_datetime(x):
 		type = 'datetime'
 		parsed = parser.parse(x)
 	elif is_excel_date(x):
@@ -64,9 +67,6 @@ def infer_type(x, excel=False):
 			parsed = datetime(*xlrd.xldate_as_tuple(int(x), 0))
 		except:
 			parsed = None
-	elif is_number(x):
-		type = 'number'
-		parsed = float(x)
 	elif is_empty(x):
 		type = 'empty'
 		parsed = ''
