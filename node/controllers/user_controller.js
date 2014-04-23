@@ -65,68 +65,17 @@ function signup(req, res, next) {
 		
 		// success
 		result.success = true;
+		
+		result.user = {
+				id:		user.id,
+				email:	user.email,
+				hash:	user.hash
+			};
+		
 		return next(null, result);
 	});
 };
 
-/*
-function login(req, res, next) {
-	console.log('## AUTHING');
-	passport.authenticate('local', {session:false}, function(err, user, info) {			
-		var result = {};
-		console.log('## start');
-		// dealing with these together
-		if (err || !user) {
-			result.success = false;
-			result.message = 'Invalid email or password';
-			return next(null, result);
-			//return res.send(200, JSON.stringify(result));
-		}
-		
-		result.success = true;
-		result.user = req.user;
-		next(null, result);
-	})(req, res, function() {
-		console.log('#ND');
-	});
-};
-*/
-/*
-function login(req, res, next) {
-	async.waterfall([
-		// checks to see if user is authenticated
-		function(callback){
-			passport.authenticate('local', function(err, user, info) {			
-				return callback(err, user);
-			})(req, res, callback);
-		}, 
-		//logs user in
-		function(user, callback){
-			// to avoid serializing
-			if (!user) return callback(null, null);
-			
-			req.login(user, function(err) {
-				if (err) return callback(err);
-				return callback(null, user);
-			});
-		}
-	], function(err, user){
-		var result = {};
-		
-		// dealing with these together
-		if (err || !user) {
-			result.success = false;
-			result.message = 'Invalid email or password';
-			return next(null, result);
-			//return res.send(200, JSON.stringify(result));
-		}
-		
-		result.success = true;
-		result.user = req.user;
-		next(null, result);
-	});
-};
-*/
 
 
 // for user to change attribute, i.e. email, password

@@ -31,6 +31,7 @@ body {
   /*height: auto; font-family: 'Open Sans', sans-serif;*/
   color: #3B3C36; /* black olive */
   background-color: #F5F5DC;
+  word-wrap: break-word;
 }
 #content, .container {
 	min-height: 100%;

@@ -5,11 +5,43 @@ var async = require('async');
 var passport = require('passport');
 var crypto = require('crypto');
 
+function getEmail(req) {
+	var header=req.headers['authorization']||'',          // get the header
+	  token=header.split(/\s+/).pop()||'',            // and the encoded auth token
+	  auth=new Buffer(token, 'base64').toString(),    // convert from base64
+	  parts=auth.split(/:/),                          // split on colon
+	  username=parts[0];
+	  //password=parts[1];
+	  
+	return username;
+}
+
 
 module.exports = function(app) {
-	app.get('/api/job/:id', passport.authenticate('basic', { session: false }), function(req, res) {
+	app.get('/api/cubes', passport.authenticate('basic', { session: false }), function(req, res) {
+		var email = getEmail(req);
+		data_controller.getUserCubes(email, function(err, cubes) {
+			console.log('## FOUND CUBES: '  + JSON.stringify(cubes));
+		
+			if (err) return res.send(400);
+			res.json(cubes);
+		});
+	});
+
+
+
+	app.get('/api/job/:type/:id', passport.authenticate('basic', { session: false }), function(req, res) {
 		worker_controller.checkJob(req.param('id'), function(err, result) {
 			if (err) return res.send(400);
+			
+			if (result!=null && result.results!=undefined && req.param('type')=='processFiles') {
+				
+				var email = getEmail(req);
+				data_controller.associateCubes(email, result.results, function(err) {
+					if (err) console.log('## Error associating cubes');
+				});
+			}
+			
 			res.json(200, result);
 		});
 	});

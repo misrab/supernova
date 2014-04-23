@@ -1,8 +1,12 @@
 var async = require('async');
+var db_pg = require('../models').pg;
+var User = db_pg.User;
+var Cube = db_pg.Cube;
 
 
 var crypto = require('crypto');
 var knox = require('knox');
+
 var client = knox.createClient({
     key: 	process.env.AWS_ACCESS_KEY_ID
   , secret: process.env.AWS_SECRET_ACCESS_KEY
@@ -47,6 +51,63 @@ function writeFilesToStore(userId, files, next) {
 };
 
 
+// user email, array of cubes
+function associateCubes(email, cubes, next) {
+	async.waterfall([
+		// create cubes
+		function(cb) {
+			var sqlCubes = [];
+			async.each(cubes, function(c, cb) {
+				Cube.create({
+					labels:		c['labels'],
+					types:		c['types'],
+					tidbits:	c['tidbits'],
+					data_path:	c['data_path']
+				}).success(function(cube) {
+					sqlCubes.push(cube);
+					cb();
+				}).error(cb);
+			}, function(err) {
+				if (err) return cb(err);
+				cb(null, sqlCubes);
+			});
+		},
+		// find user
+		function(sqlCubes, cb) {		
+			User.find({ where: { email: email } }).success(function(user) {
+				cb(null, sqlCubes, user);
+			}).error(cb);
+		},
+		// associate
+		function(sqlCubes, user, cb) {
+			async.each(sqlCubes, function(c, cb) {
+				user.addCube(c).success(cb).error(cb);
+			}, cb);
+		}
+	], next);
+};
+
+
+function getUserCubes(email, next) {
+	async.waterfall([
+		// get user
+		function(cb) {
+			User.find({ where: { email: email } }).success(function(user) {
+				cb(null, user);
+			}).error(cb);
+		},
+		// get cubes
+		function(user, cb) {
+			user.getCubes().success(function(cubes) {			
+				cb(null, cubes);
+			}).error(cb);
+		}
+	], next);
+}
+
+
 module.exports = {
-	writeFilesToStore:	writeFilesToStore
+	writeFilesToStore:	writeFilesToStore,
+	associateCubes:		associateCubes,
+	getUserCubes:		getUserCubes
 };

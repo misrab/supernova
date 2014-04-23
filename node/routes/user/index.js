@@ -54,7 +54,9 @@ module.exports = function(app) {
 				console.log('### Error signing up: ' + JSON.stringify(err));
 				return res.send(400, JSON.stringify(err));
 			}
-			res.send(200, JSON.stringify(result));
+		
+			res.json(result);
+			//res.send(200, JSON.stringify(result));
 		});
 	});
 	

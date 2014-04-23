@@ -84,7 +84,11 @@ app.service('UploadService', function($http, JobService) {
 								$('.processing', area).show();
 								
 								// start polling for job
-								JobService.pollForJob(data.jobId);
+								JobService.pollForJob('processFiles', data.jobId, function(cubes) {
+									console.log('## Uload service got cubes back: ' + JSON.stringify(cubes));
+									$('.processing', area).slideUp();
+								});
+								
 								//console.log('### Job id is: ' + data.jobId);
 							},
 			error: 			function(jqXHR, textStatus, errorThrown) {

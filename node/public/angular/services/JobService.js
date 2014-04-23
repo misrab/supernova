@@ -1,15 +1,15 @@
 var app = angular.module('app');
 
 app.service('JobService', function($http) {
-	this.pollForJob = function(jobId) {
+	this.pollForJob = function(type, jobId, successFn) {
 		var t = setInterval(function() {
-			$http.get('/api/job/'+jobId)
+			$http.get('/api/job/'+type+'/'+jobId)
 				.success(function(data) {
 					console.log('## Received: ' + JSON.stringify(data));
 					
 					if (data.results != undefined) {
 						clearInterval(t);
-						//return data;
+						successFn(data);
 					}
 					//var parsed = JSON.parse(data);
 					//console.log('## DATA?:   '+ typeof(parsed));

@@ -31,12 +31,16 @@ var pg = {
 	Sequelize: 				Sequelize,
 	sequelize: 				sequelize,
 	
-	User: 				sequelize.import(__dirname + '/user')
+	User: 				sequelize.import(__dirname + '/user'),
+	Cube: 				sequelize.import(__dirname + '/cube')
 }
 
 /*
  *	Associations
  */
+ 
+pg.User.hasMany(pg.Cube);
+pg.Cube.belongsTo(pg.User);
 
     
     

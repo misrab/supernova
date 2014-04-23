@@ -4,38 +4,6 @@ var express  = require('express')
 	, passport = require('passport')
 	, url = require('url')
 	, db_pg = require('./models').pg;
-	//, RedisStore = require( "connect-redis" )(express)
-	//, db_redis = require('./models').redis;
-	//, redis = require('redis');
-
-
-// redis for session store ===========================
-/*
-if (process.env.REDISTOGO_URL) {
-	var redisUrl = url.parse(process.env.REDISTOGO_URL);
-	var redisAuth = redisUrl.auth.split(':');
-	var redisClient = new RedisStore({
-                          host: redisUrl.hostname,
-                          port: redisUrl.port,
-                          db: redisAuth[0],
-                          pass: redisAuth[1],
-                          client: db_redis.client
-                        });
-} else {
-	var redisClient = new RedisStore({
-                          host: 'localhost',
-                          port: 6379,
-                          client: db_redis.client
-                        });
-}
-
-*/
-
-
-
-// JOBS ======
-//var worker = require('./controllers/worker_controller.js');
-//worker.addJob('meowJob', 'meowSource');
 
 
 
@@ -60,26 +28,6 @@ app.configure(function() {
 	app.use(app.router);
 });
 
-// Passport and Sessions
-//app.use(express.cookieParser());
-//app.use(express.bodyParser());
-//app.use(express.methodOverride());
-
-/*
-app.use(express.session({ 
-  store: redisClient 
-  , secret: 'teafortwo'
-  }, function() {
-    app.use(app.router);
-  }));*/
-
-//app.use(passport.initialize());
-//app.use(passport.session());
-
-
-
-
-
 
 
 // routes ======================================================================
@@ -91,16 +39,8 @@ var clearDB = null;
 if (process.env.NODE_ENV=='development') {
 	// next(err)
 	clearDB = function(next) {
+		//db_pg.sequelize.drop().complete(next);
 		next(null);
-		
-		// drop
-		/*
-		db_mongo.Neuron.remove({}, function(err) {
-			console.log('Neurons removed') 
-			// drop sequelize
-			db_pg.sequelize.drop().complete(next);
-		});
-		*/
 	};
 }
 else if (process.env.NODE_ENV=='staging') {

@@ -2,6 +2,7 @@
 import os, binascii
 from boto.s3.connection import S3Connection
 from multiprocessing.pool import ThreadPool
+import threading
 import csv
 import xlrd
 import logging
@@ -102,8 +103,18 @@ def return_results(likely_cubes):
 
 # write local cube.data_path file to S3 and deletes local version
 # ! do in parallel
-def process_cubes(cubes, bucket):
+def process_cubes(cubes, bucket):	
 	def upload(cube):
+		# boto not thread safe
+		"""
+		try:
+			conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
+			bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
+		except:
+			logging.error('Failed to fetch files from S3 for processing')
+			return []
+		"""
+	
 		localPath = cube.data_path
 		# ! could rehash new name, but just removing '.../tmp/'
 		AFTER = '/tmp/'
@@ -121,28 +132,12 @@ def process_cubes(cubes, bucket):
 		# update path !URL not relative path!
 		cube.data_path = remotePath
 
-	# execute in parallel
+	
+	#for cube in cubes:
+	#	upload(cube)
+		#t = threading.Thread(target = upload, args=(cube,)).start()
 	pool = ThreadPool(processes=10)
 	pool.map(upload, cubes)
-	"""
-	for cube in processor.likely_cubes:
-		localPath = cube.data_path
-		# ! could rehash new name, but just removing '.../tmp/'
-		AFTER = '/tmp/'
-		fileName = localPath[localPath.find(AFTER)+len(AFTER):]
-		remotePath = '/datafiles/' + fileName
-		try:
-			k = bucket.new_key(remotePath)
-			k.set_contents_from_filename(localPath)
-		except:
-			logging.warning('Failed to upload new cube data to S3')
-			return
-			
-		# remove old
-		remove_local_file(localPath)
-		# update path !URL not relative path!
-		cube.data_path = remotePath
-	"""
 
 """
 	Main Function
@@ -150,7 +145,7 @@ def process_cubes(cubes, bucket):
 # note urls are relative i.e. /files/...., NOT http://amazon.s3....
 # ! if remote False files are local
 def process_files(urls, remote=True):
-	start = time.time()
+	#start = time.time()
 
 	check_list(urls)
 	
@@ -180,15 +175,13 @@ def process_files(urls, remote=True):
 	
 	
 	thread_fn = start_remote if remote else start_local
-	pool = ThreadPool(processes=10)
-	pool.map(thread_fn, urls)
+
+	for path in urls:
+		thread_fn(path)
+		#t = threading.Thread(target = thread_fn, args=(path,)).start()
+
 	
-			
 	process_cubes(processor.likely_cubes, bucket)
-	
 		
-	stop = time.time()
-	print "---------- process files took -------------"
-	print "----------     " + str(stop-start) +  "-------------"
 		
 	return return_results(processor.likely_cubes)

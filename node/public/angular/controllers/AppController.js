@@ -5,6 +5,7 @@ app.controller('AppController', function($http, $location, $scope, $rootScope, $
 	init();
 	
 	function init() {
+		//$cookieStore.remove('user');
 		$rootScope.currentUser = $rootScope.currentUser || $cookieStore.get('user') || null;
 		UserService.setHttpBasicHeaders();		
 	};
