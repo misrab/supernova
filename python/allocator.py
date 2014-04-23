@@ -46,16 +46,24 @@ def allocate_job(job, r):
 		raise TypeError('Job allocator received malformed job')
 		return
 		
+
 	# check if job exists at all
 	if functionName in JOBS_DICT:
 		job_fn = JOBS_DICT[functionName]
 	else:
 		return
 	
-	results = job_fn(dataSources)
+	completedJob = {}
+	completedJob['results'] = job_fn(dataSources)
+	
+	
+	
+	f = open('./python/test.txt', 'w')
+	f.write(json.dumps(completedJob))
+	f.close()
 	
 	# push completed job with results
-	r.set(jobId, json.dumps(results))	
+	r.set(jobId, json.dumps(completedJob))	
 	
 	#meow = r.get(jobId)
 	# test

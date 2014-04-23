@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.service('UploadService', function($http) {
+app.service('UploadService', function($http, JobService) {
 	/*
 		Expect #upload_area, .progress > .progress-bar, .alert-danger html fields
 	
@@ -13,7 +13,7 @@ app.service('UploadService', function($http) {
 			// upload progress
 			xhr.upload.addEventListener("progress", function(evt) {
 				if (evt.lengthComputable) {
-					var percentComplete = 100* evt.loaded / evt.total;
+					var percentComplete = 100 * evt.loaded / evt.total;
 					var percent_str = String(percentComplete) + '%';
 					//Do something with upload progress
 					progressBar.css('width', percent_str);
@@ -82,6 +82,10 @@ app.service('UploadService', function($http) {
 								//console.log(str);
 								// show extraction engine
 								$('.processing', area).show();
+								
+								// start polling for job
+								JobService.pollForJob(data.jobId);
+								//console.log('### Job id is: ' + data.jobId);
 							},
 			error: 			function(jqXHR, textStatus, errorThrown) {
 								if (jqXHR.responseText != '') {

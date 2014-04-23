@@ -1,4 +1,4 @@
-var crypto = require('crypto');
+//var crypto = require('crypto');
 
 // var async = require('async');
 // ! assumes common client between job scheduler and worker
@@ -12,9 +12,11 @@ var client = require('../models').redis.client;
 
 // adds job with given 'functionName' - expect python worker to understand
 // 'dataSources' is ARRAY of ids in gridFS
-function addJob(functionName, dataSources) {
+// next(err, jobId)
+function addJob(functionName, dataSources, jobId) {
+	//var jobId = crypto.randomBytes(20).toString('hex');
 	var job = {
-		id:				crypto.randomBytes(20).toString('hex'),
+		id:				jobId,
 		functionName:	functionName,
 		dataSources:	dataSources,
 		timestamp:		new Date()
@@ -22,14 +24,28 @@ function addJob(functionName, dataSources) {
 	//console.log('##PUSHED: '  + JSON.stringify(job));
 	
 	client.lpush('pendingjobs', JSON.stringify(job), function(err) {
-		//client.rpop('mooo', function(err, reply) {
-		//	console.log('##FROM Q: ' + reply);
-		//});
+		//if (err) return next(err);
+		//next(null, jobId);
 	});
 };
 
+// next(err, result)
+// ! expect 
+function checkJob(jobId, next) {
+	console.log('## CHECKING job with id: ' + jobId);
+
+	client.get(jobId, function(err, reply) {
+		if (err) return next(err);
+		if (reply) {
+			next(null, JSON.parse(reply.toString()));
+		} else {
+			next(null, null);
+		}
+	});
+}
 
 
 module.exports = {
-	addJob:		addJob
+	addJob:		addJob,
+	checkJob:	checkJob
 };

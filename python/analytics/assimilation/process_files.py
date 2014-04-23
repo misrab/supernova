@@ -4,6 +4,7 @@ from boto.s3.connection import S3Connection
 import csv
 import xlrd
 import logging
+import json
 
 # internal
 from analytics.helpers import check_list, split_filename, remove_local_file
@@ -87,13 +88,33 @@ def return_results(likely_cubes):
 		# careful dict vs class with properties
 		c['labels'] = cube.labels
 		c['tidbits'] = cube.tidbits
+		c['types'] = cube.types
 		c['num_rows'] = cube.num_rows
+		c['data_path'] = cube.data_path
 		results.append(c)
 	
 	return results
 
 
-		
+# write local cube.data_path file to S3 and deletes local version
+def process_cubes(processor, bucket):
+	for cube in processor.likely_cubes:
+		localPath = cube.data_path
+		# ! could rehash new name, but just removing '.../tmp/'
+		AFTER = '/tmp/'
+		fileName = localPath[localPath.find(AFTER)+len(AFTER):]
+		remotePath = '/datafiles/' + fileName
+		try:
+			k = bucket.new_key(remotePath)
+			k.set_contents_from_filename(localPath)
+		except:
+			logging.warning('Failed to upload new cube data to S3')
+			return
+			
+		# remove old
+		remove_local_file(localPath)
+		# update path !URL not relative path!
+		cube.data_path = remotePath
 
 """
 	Main Function
@@ -103,16 +124,16 @@ def return_results(likely_cubes):
 def process_files(urls, remote=True):
 	check_list(urls)
 	
+	try:
+		conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
+		bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
+	except:
+		logging.error('Failed to fetch files from S3 for processing')
+		return []
+	
 	processor = Processor()
 	
 	if remote==True:
-		try:
-			conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
-			bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
-		except:
-			logging.error('Failed to fetch files from S3 for processing')
-			return []
-			
 		for url in urls:
 			fileKey = bucket.get_key(url, validate=False)
 			process_file(processor, url, fileKey)
@@ -127,5 +148,8 @@ def process_files(urls, remote=True):
 		for localPath in urls:
 			file_name_only, file_extension = split_filename(localPath)
 			process_local_file(processor, localPath, file_extension)
+			
+	process_cubes(processor, bucket)
+	
 		
 	return return_results(processor.likely_cubes)

@@ -202,7 +202,7 @@ class Cube(object):
 	def _set_data(self):
 		# random file name
 		# !! running from supernova root; if from python folder would be ../
-		tempPath = './tmp/' + binascii.b2a_hex(os.urandom(15)) + '.csv'
+		tempPath = './tmp/' + binascii.b2a_hex(os.urandom(25)) + '.csv'
 		with open(tempPath, "wb") as f:
 			writer = csv.writer(f)
 			writer.writerows(self._data)
