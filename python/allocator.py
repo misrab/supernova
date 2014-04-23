@@ -57,11 +57,6 @@ def allocate_job(job, r):
 	completedJob['results'] = job_fn(dataSources)
 	
 	
-	
-	f = open('./python/test.txt', 'w')
-	f.write(json.dumps(completedJob))
-	f.close()
-	
 	# push completed job with results
 	r.set(jobId, json.dumps(completedJob))	
 	

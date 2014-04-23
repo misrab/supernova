@@ -1,10 +1,14 @@
 # external
 import os, binascii
 from boto.s3.connection import S3Connection
+from multiprocessing.pool import ThreadPool
 import csv
 import xlrd
 import logging
 import json
+
+# for benchmarking
+import time
 
 # internal
 from analytics.helpers import check_list, split_filename, remove_local_file
@@ -97,8 +101,9 @@ def return_results(likely_cubes):
 
 
 # write local cube.data_path file to S3 and deletes local version
-def process_cubes(processor, bucket):
-	for cube in processor.likely_cubes:
+# ! do in parallel
+def process_cubes(cubes, bucket):
+	def upload(cube):
 		localPath = cube.data_path
 		# ! could rehash new name, but just removing '.../tmp/'
 		AFTER = '/tmp/'
@@ -116,12 +121,37 @@ def process_cubes(processor, bucket):
 		# update path !URL not relative path!
 		cube.data_path = remotePath
 
+	# execute in parallel
+	pool = ThreadPool(processes=10)
+	pool.map(upload, cubes)
+	"""
+	for cube in processor.likely_cubes:
+		localPath = cube.data_path
+		# ! could rehash new name, but just removing '.../tmp/'
+		AFTER = '/tmp/'
+		fileName = localPath[localPath.find(AFTER)+len(AFTER):]
+		remotePath = '/datafiles/' + fileName
+		try:
+			k = bucket.new_key(remotePath)
+			k.set_contents_from_filename(localPath)
+		except:
+			logging.warning('Failed to upload new cube data to S3')
+			return
+			
+		# remove old
+		remove_local_file(localPath)
+		# update path !URL not relative path!
+		cube.data_path = remotePath
+	"""
+
 """
 	Main Function
 """
 # note urls are relative i.e. /files/...., NOT http://amazon.s3....
 # ! if remote False files are local
 def process_files(urls, remote=True):
+	start = time.time()
+
 	check_list(urls)
 	
 	try:
@@ -133,23 +163,32 @@ def process_files(urls, remote=True):
 	
 	processor = Processor()
 	
-	if remote==True:
-		for url in urls:
-			fileKey = bucket.get_key(url, validate=False)
-			process_file(processor, url, fileKey)
-			# delete the file from S3
-			# ! may want to do this after returning result
-			try:
-				bucket.delete_key(fileKey)
-			except:
-				logging.warning('Failed to delete S3 file after processing')
-				pass
-	else:
-		for localPath in urls:
-			file_name_only, file_extension = split_filename(localPath)
-			process_local_file(processor, localPath, file_extension)
+	def start_remote(url):
+		fileKey = bucket.get_key(url, validate=False)
+		process_file(processor, url, fileKey)
+		# delete the file from S3
+		# ! may want to do this after returning result
+		try:
+			bucket.delete_key(fileKey)
+		except:
+			logging.warning('Failed to delete S3 file after processing')
+			pass
 			
-	process_cubes(processor, bucket)
+	def start_local(localPath):
+		file_name_only, file_extension = split_filename(localPath)
+		process_local_file(processor, localPath, file_extension)
 	
+	
+	thread_fn = start_remote if remote else start_local
+	pool = ThreadPool(processes=10)
+	pool.map(thread_fn, urls)
+	
+			
+	process_cubes(processor.likely_cubes, bucket)
+	
+		
+	stop = time.time()
+	print "---------- process files took -------------"
+	print "----------     " + str(stop-start) +  "-------------"
 		
 	return return_results(processor.likely_cubes)

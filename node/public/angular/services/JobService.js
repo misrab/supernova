@@ -6,6 +6,11 @@ app.service('JobService', function($http) {
 			$http.get('/api/job/'+jobId)
 				.success(function(data) {
 					console.log('## Received: ' + JSON.stringify(data));
+					
+					if (data.results != undefined) {
+						clearInterval(t);
+						//return data;
+					}
 					//var parsed = JSON.parse(data);
 					//console.log('## DATA?:   '+ typeof(parsed));
 				});

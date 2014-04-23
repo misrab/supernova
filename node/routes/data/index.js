@@ -10,16 +10,9 @@ module.exports = function(app) {
 	app.get('/api/job/:id', passport.authenticate('basic', { session: false }), function(req, res) {
 		worker_controller.checkJob(req.param('id'), function(err, result) {
 			if (err) return res.send(400);
-			//if (result==null) return res.send(200, null);
-			console.log('## SENDING RESULT: ' + result);
-			console.log('## TYPE? ' + typeof(result));
-
-
 			res.json(200, result);
-			//res.json(200, null);
 		});
 	});
-
 
 
 	app.get('/api/data', passport.authenticate('basic', { session: false }), function(req, res) {

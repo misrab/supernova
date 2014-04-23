@@ -14,6 +14,8 @@ var client = require('../models').redis.client;
 // 'dataSources' is ARRAY of ids in gridFS
 // next(err, jobId)
 function addJob(functionName, dataSources, jobId) {
+	console.log('### PUSHED JOB with id: ' + jobId);
+
 	//var jobId = crypto.randomBytes(20).toString('hex');
 	var job = {
 		id:				jobId,
@@ -32,7 +34,7 @@ function addJob(functionName, dataSources, jobId) {
 // next(err, result)
 // ! expect 
 function checkJob(jobId, next) {
-	console.log('## CHECKING job with id: ' + jobId);
+	//console.log('## CHECKING job with id: ' + jobId);
 
 	client.get(jobId, function(err, reply) {
 		if (err) return next(err);
