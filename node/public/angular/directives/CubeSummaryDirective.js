@@ -13,12 +13,12 @@ app.directive('cubeSummary', function($http, CubeService) {
 			CubeService.removeCube(element, cubeId);
 		});
 		
-		/*
-		$http.get(csvPath)
-			.success(function(data) {
-				console.log(data);
-			});
-		*/
+		
+		// !! $http gets error with S3,
+		// I think header settings
+		// use d3 or jquery
+		// d3.csv(csvPath, function(data) {
+		// });
 	};
 
 

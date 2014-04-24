@@ -1,6 +1,8 @@
 // set up ========================
 
 var express  = require('express')
+	, https = require('https')
+	, fs = require('fs')
 	, passport = require('passport')
 	, url = require('url')
 	, db_pg = require('./models').pg;
@@ -50,16 +52,30 @@ else if (process.env.NODE_ENV=='staging') {
 	clearDB = function(next) { next(null); };
 }
 
+
+// SSL
+var options = {
+    key: 	fs.readFileSync('./node/ssl/server-key.pem').toString(),
+    cert: 	fs.readFileSync('./node/ssl/server-cert.pem').toString()
+};
+
+
 clearDB(function(err) {
 	db_pg.sequelize.sync().complete(function(err) {
 		if (err) { throw err }
 		else {
 			console.log ('### Succeeded connected to: ' + db_pg.url + ' ###');
 			var port = process.env.NODE_ENV=='development' ? 8080 : process.env.PORT;
+			
+			https.createServer(options, app).listen(port, function () {
+			  	console.log('### Environment is: ' + process.env.NODE_ENV);
+				console.log('### Listening on ' + port);
+			});
+			/*
 			app.listen(port, function() {
 				console.log('### Environment is: ' + process.env.NODE_ENV);
 				console.log('### Listening on ' + port);
-			});
+			});*/
 		}
 	})
 });
