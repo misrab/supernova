@@ -20,14 +20,20 @@ function getEmail(req) {
 module.exports = function(app) {
 	app.get('/api/cubes', passport.authenticate('basic', { session: false }), function(req, res) {
 		var email = getEmail(req);
-		data_controller.getUserCubes(email, function(err, cubes) {
-			console.log('## FOUND CUBES: '  + JSON.stringify(cubes));
-		
+		data_controller.getUserCubes(email, function(err, cubes) {		
 			if (err) return res.send(400);
 			res.json(cubes);
 		});
 	});
 
+
+	app.delete('/api/cube/:id', passport.authenticate('basic', { session: false }), function(req, res) {
+		var email = getEmail(req);
+		data_controller.removeCube(req.param('id'), email, function(err, result) {
+			if (err) return res.send(400);
+			res.json(200, { success: true });
+		});
+	});
 
 
 	app.get('/api/job/:type/:id', passport.authenticate('basic', { session: false }), function(req, res) {

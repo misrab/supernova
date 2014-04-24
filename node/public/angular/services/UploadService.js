@@ -5,7 +5,7 @@ app.service('UploadService', function($http, JobService, CubeService) {
 		Expect #upload_area, .progress > .progress-bar, .alert-danger html fields
 	
 	*/
-	this.onFileSelect = function(element) {
+	this.onFileSelect = function(element, $scope) {
 		// internal
 		function updateProgressBar(progressBar) {
 			var xhr = new window.XMLHttpRequest();
@@ -87,7 +87,7 @@ app.service('UploadService', function($http, JobService, CubeService) {
 								JobService.pollForJob('processFiles', data.jobId, function(cubes) {
 									//console.log('## Uload service got cubes back: ' + JSON.stringify(cubes));
 									$('.processing', area).slideUp();
-									CubeService.addCubesToView(cubes);
+									CubeService.addCubesToView(cubes, $scope);
 								});
 								
 								//console.log('### Job id is: ' + data.jobId);

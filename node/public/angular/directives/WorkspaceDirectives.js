@@ -3,6 +3,10 @@ var app = angular.module('app');
 
 
 
+/**************
+	uploadArea
+***************/
+
 app.directive('uploadArea', function(UploadService) {
 	
 	function link(scope, element, attrs) {
@@ -13,8 +17,9 @@ app.directive('uploadArea', function(UploadService) {
 		// file select
 		fileInput.change(function() {
 			var files = element[0].files;
-			UploadService.onFileSelect(files);
+			UploadService.onFileSelect(files, scope);
 		});
+		
 		
 		// drag and drop of files
 		// disable window default
@@ -45,12 +50,17 @@ app.directive('uploadArea', function(UploadService) {
 				//fileInput[0].files.push(files[i]);
 			}*/
 		});
-	}
+	};
 
 
 	return {
 		restrict: 		'E',
 		templateUrl:	'/angular/views/workspace/uploadArea.html',
 		link:			link
+		/*
+		scope:			{
+							// to display full or small template
+							dataBool:	"="
+						}*/
 	};
 });

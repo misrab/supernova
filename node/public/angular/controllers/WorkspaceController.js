@@ -1,23 +1,23 @@
 var app = angular.module('app');
 
 	
-app.controller('WorkspaceController', function(CubeService) {
+app.controller('WorkspaceController', function($scope, CubeService) {
 	
 	init();
 	
 	function init() {
-		refreshCubes();		
+		// is there any data? default false
+		// ! before refeshCubes()
+		$scope.dataBool = false; 
+		refreshCubes();
 	};
 	
 	
 	function refreshCubes() {
-		CubeService.getCubes(function(data) {
-			CubeService.addCubesToView(data);
+		CubeService.getCubes(function(cubes) {
+			CubeService.addCubesToView(cubes, $scope);
 		});
 	};
-	
-	
-	
 	
 
 });

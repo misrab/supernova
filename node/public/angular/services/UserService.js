@@ -42,8 +42,7 @@ app.service('UserService', function($location, $http, $rootScope, $cookieStore, 
 					// store to cookie
 					$cookieStore.put('user', $rootScope.currentUser);
 					
-					
-					setHttpBasicHeaders();			
+					setHttpBasicHeaders();
 					
 					// route to workspace
 					$location.url('/workspace');

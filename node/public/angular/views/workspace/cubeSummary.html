@@ -1,5 +1,10 @@
 <div class="cube_summary">
+	<!-- <input type="hidden" name="cubeId" value="{{ data.id }}" /> -->
+	
 	<div class='pull-left italic'>{{ data.num_rows }} rows</div>
+	
+	<a ng-click="alert('d')" href="#" class="remove_cube pull-right">Remove</a>
+	
 	<div>
 		<div ng-repeat="tidbit in data.tidbits">{{ tidbit }}</div>
 	</div>
@@ -14,3 +19,5 @@
 		</tr>
 	</table>
 </div>
+
+<div>{{ data.data_path }}</div>

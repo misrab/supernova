@@ -1,11 +1,11 @@
 var async = require('async');
+var crypto = require('crypto');
+var knox = require('knox');
+
 var db_pg = require('../models').pg;
 var User = db_pg.User;
 var Cube = db_pg.Cube;
 
-
-var crypto = require('crypto');
-var knox = require('knox');
 
 var client = knox.createClient({
     key: 	process.env.AWS_ACCESS_KEY_ID
@@ -19,31 +19,25 @@ var client = knox.createClient({
 // next(err, urls) urls array of file locations
 function writeFilesToStore(userId, files, next) {
 	var urls = [];
-	
-	//for (key in req.files) { filepaths.push(req.files[key].path); }
-	
+		
 	async.each(files, function(file, cb) {
 	
 		var filepath = file.path;
 		var filename = file.name;
 		var fileExt = filename.split('.').pop();
 		var newPath = '/files/' + userId + '/' + crypto.randomBytes(128).toString('hex') + '.' + fileExt;
-		//crypto.randomBytes(48, function(ex, buf) {
-  		//var token = buf.toString('hex');
-		//});
+		
+		// ! moving on asap
+		urls.push(newPath);
 		
 		client.putFile(filepath, newPath, function(err, res) {
-			/*
-			console.log('## READ:' + filepath);
-			console.log('## RESULT:' + res.statusCode);
-			console.log('## NEWPATH ' + newPath);
-			for (k in res) { console.log('## RES: ' + k); } */
-		
-			urls.push(newPath);
+			if (err) console.log('Error pushing file to S3');
+			//urls.push(newPath);
 		 	 // Always either do something with `res` or at least call `res.resume()`.
 		  	res.resume();
-		  	cb();
 		});
+		
+		cb();
 	}, function(err) {
 		if (err) return next(err);
 		next(null, urls);
@@ -102,6 +96,25 @@ function associateCubes(email, cubes, next) {
 };
 
 
+// replace cube urls with authenticated urls for
+// client access to S3
+// next(err, newCubes)
+function replaceCubeUrls(cubes, next) {
+	var newCubes = [];
+	var expiration = new Date();
+	expiration.setMinutes(expiration.getMinutes() + 30);
+	
+	async.each(cubes, function(cube, cb) {
+		
+		cube.data_path = client.signedUrl(cube.data_path, expiration);
+		newCubes.push(cube);
+		cb();
+	}, function(err) {
+		if (err) return cb(err);
+		next(null, newCubes);
+	});
+};
+
 function getUserCubes(email, next) {
 	async.waterfall([
 		// get user
@@ -127,13 +140,64 @@ function getUserCubes(email, next) {
 				if (err) return cb(err);
 				cb(null, results);
 			});
+		},
+		// get authenticated urls
+		function(cubes, cb) {
+			replaceCubeUrls(cubes, cb);
 		}
 	], next);
-}
+};
+
+function removeCube(cubeId, email, next) {
+	var cubeId = parseInt(cubeId);
+	if (isNaN(cubeId)) {
+		var error = new Error('Cube id must be an integer');
+		return next(error);
+	}
+
+	async.waterfall([
+		// get user
+		function(cb) {
+			User.find({ where: { email: email } }).success(function(user) {
+				cb(null, user);
+			}).error(cb);
+		},
+		// get cube
+		function(user, cb) {
+			Cube.find(cubeId).success(function(cube) {
+				cb(null, user, cube);
+			}).error(cb);
+		},
+		// check ownership
+		function(user, cube, cb) {
+			if (user.id != cube.UserId) {
+				var error = new Error('You do not own that cube');
+				return cb(error);
+			}
+			cb(null, cube);
+			//cube.destroy().success(cb).error(cb);
+		},
+		// remove data from S3
+		function(cube, cb) {
+			client.deleteFile('/test/Readme.md', function(err, res){
+  				// check `err`, then do `res.pipe(..)` or `res.resume()` or whatever.
+  				if (err) console.log('Error deleting S3 cube data');
+  				//return cb(err);
+  				res.resume(); // not sure why
+			});
+			cb(null, cube);
+		},
+		// destroy sql cube
+		function(cube, cb) {
+			cube.destroy().success(cb).error(cb);
+		}
+	], next);
+};
 
 
 module.exports = {
 	writeFilesToStore:	writeFilesToStore,
 	associateCubes:		associateCubes,
-	getUserCubes:		getUserCubes
+	getUserCubes:		getUserCubes,
+	removeCube:			removeCube
 };

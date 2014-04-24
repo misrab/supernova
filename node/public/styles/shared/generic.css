@@ -18,12 +18,18 @@
 
 .cube_summary {
 	display: inline-block;
-	margin: 10px;
+	margin: 30px 15px;
+	max-width: 100%;
+	max-height: 300px;
+	overflow: scroll;
 }
 .cube_summary table td {
 	background-color: white;
 	border: 1px solid grey;
 	padding: 5px;
+}
+.cube_summary table td:hover {
+	background-color: lightblue;
 }
 
 

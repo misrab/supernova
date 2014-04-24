@@ -177,8 +177,17 @@ def process_files(urls, remote=True):
 	processor = Processor()
 	
 	# local vs remote case
+	# !!! filekey may not yet be available, keep checking
+	# (async upload on node side)
 	def start_remote(url):
-		fileKey = bucket.get_key(url, validate=False)
+		fileKey = None
+		while fileKey is None:
+			try:
+				fileKey = bucket.get_key(url, validate=True)
+			except:
+				pass
+		
+		
 		process_file(processor, url, fileKey)
 		# delete the file from S3
 		# ! may want to do this after returning result
