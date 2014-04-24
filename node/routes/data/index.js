@@ -37,12 +37,16 @@ module.exports = function(app) {
 			if (result!=null && result.results!=undefined && req.param('type')=='processFiles') {
 				
 				var email = getEmail(req);
-				data_controller.associateCubes(email, result.results, function(err) {
-					if (err) console.log('## Error associating cubes');
+				data_controller.associateCubes(email, result.results, function(err, cubes) {
+					if (err) console.log('## Error associating cubes: ' + JSON.stringify(err));
+					result.results = cubes;
+					res.json(200, result);
 				});
+			} else {
+				res.json(200, result);
 			}
 			
-			res.json(200, result);
+			//res.json(200, result);
 		});
 	});
 

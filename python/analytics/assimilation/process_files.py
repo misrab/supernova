@@ -126,18 +126,6 @@ def return_results(likely_cubes):
 # ! do in parallel
 def process_cubes(cubes, bucket):	
 	def upload(cube):
-		# boto not thread safe
-		"""
-		try:
-			conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
-			bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
-		except:
-			logging.error('Failed to fetch files from S3 for processing')
-			return []
-		"""
-		#conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
-		#bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
-	
 		localPath = cube.data_path
 		# ! could rehash new name, but just removing '.../tmp/'
 		AFTER = '/tmp/'
@@ -154,6 +142,13 @@ def process_cubes(cubes, bucket):
 		# update path !URL not relative path!
 		cube.data_path = remotePath
 
+		"""
+		print '========================== PROCESSED CUBE ========================='
+		print 'LABELS:  ====> ' + str(cube.labels)
+		print 'TYPES: ====> ' + str(cube.types)
+		print 'TIDBITS: ====> ' + str(cube.tidbits)
+		print 'ROWS:    ====> ' + str(cube.num_rows)
+		"""
 	
 	#for cube in cubes:
 	#	upload(cube)
@@ -211,6 +206,7 @@ def process_files(urls, remote=True):
 	t1 = time.time()
 	process_cubes(processor.likely_cubes, bucket)
 	t2 = time.time()
+	
 	
 	print '------ Up to process_cubes: ' + str(t1-t0)
 	print '------ Time to process_cubes: ' + str(t2-t1)

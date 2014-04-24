@@ -54,15 +54,23 @@ function writeFilesToStore(userId, files, next) {
 // user email, array of cubes
 function associateCubes(email, cubes, next) {
 	async.waterfall([
+		// find user
+		function(cb) {		
+			User.find({ where: { email: email } }).success(function(user) {
+				cb(null, user);
+			}).error(cb);
+		},
 		// create cubes
-		function(cb) {
+		function(user, cb) {
 			var sqlCubes = [];
 			async.each(cubes, function(c, cb) {
 				Cube.create({
 					labels:		c['labels'],
 					types:		c['types'],
 					tidbits:	c['tidbits'],
-					data_path:	c['data_path']
+					num_rows:	c['num_rows'],
+					data_path:	c['data_path'],
+					UserId:		user.id
 				}).success(function(cube) {
 					sqlCubes.push(cube);
 					cb();
@@ -72,18 +80,24 @@ function associateCubes(email, cubes, next) {
 				cb(null, sqlCubes);
 			});
 		},
-		// find user
-		function(sqlCubes, cb) {		
-			User.find({ where: { email: email } }).success(function(user) {
-				cb(null, sqlCubes, user);
-			}).error(cb);
-		},
+		// convert them to JSON
+		function(cubes, cb) {
+			var results = [];
+			async.each(cubes, function(c, cb) {
+				results.push(c.toJSON());
+				cb();
+			}, function(err) {
+				if (err) return cb(err);
+				cb(null, results);
+			});
+		}
+		/*
 		// associate
 		function(sqlCubes, user, cb) {
 			async.each(sqlCubes, function(c, cb) {
 				user.addCube(c).success(cb).error(cb);
 			}, cb);
-		}
+		}*/
 	], next);
 };
 

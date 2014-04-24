@@ -9,7 +9,7 @@ app.service('JobService', function($http) {
 					
 					if (data.results != undefined) {
 						clearInterval(t);
-						successFn(data);
+						successFn(data.results);
 					}
 					//var parsed = JSON.parse(data);
 					//console.log('## DATA?:   '+ typeof(parsed));
