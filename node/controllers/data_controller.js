@@ -158,7 +158,8 @@ function getUserCubes(email, next) {
 		},
 		// get cubes
 		function(user, cb) {
-			user.getCubes().success(function(cubes) {	
+			// ! ordered to keep things consistent
+			user.getCubes({ order: 'id ASC' }).success(function(cubes) {	
 				// !! return as json!		
 				cb(null, cubes);
 			}).error(cb);
@@ -236,12 +237,16 @@ function updateCubeMeta(email, meta, cubeId, index, value, next) {
 			
 			// check index bounds
 			var intIndex = parseInt(index);
+			console.log('## int index: ' + String(intIndex));
 			if (isNaN(intIndex) || intIndex < 0 || intIndex >= cube[meta].length) {
-				cube[meta] = value;
-				// save cube
-				cube.save().success(cb).error(cb);
+				var err = new Error('Index out of range');
+				return cb(err);
 			} else {
-				cb();
+				cube[meta][intIndex] = value;
+				// save cube
+				cube.save().success(function() {
+					cb();
+				}).error(cb);
 			}
 		}
 	], next);

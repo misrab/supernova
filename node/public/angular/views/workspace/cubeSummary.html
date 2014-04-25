@@ -14,7 +14,7 @@
 		<tr class="label_row">
 			<td style="background-color: lightgrey;">Labels</td>
 			<td ng-repeat="label in data.labels track by $index">
-				<input ng-model="label" ng-change="updateLabel($index, label)" type="text" name="label" value="{{ label }}" />
+				<input style="margin: 10px;" ng-model="label" ng-change="updateLabel($index, label)" type="text" name="label" value="{{ label }}" />
 			</td>
 		</tr>
 		<tr>
