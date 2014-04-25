@@ -20,8 +20,12 @@
 	display: inline-block;
 	margin: 30px 15px;
 	max-width: 100%;
-	max-height: 300px;
+	
+}
+.cube_summary .cube_data_table {
+	max-height: 340px;
 	overflow: scroll;
+	display: block;
 }
 .cube_summary table td {
 	background-color: white;

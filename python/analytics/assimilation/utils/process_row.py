@@ -83,7 +83,7 @@ def add_row_to_cube(processor, stripped_row, excel, sheet_info):
 		if excel==True and sheet_info[SHEET_INDEX].cell_type(sheet_info[ROW_INDEX], i)==EXCEL_DATE_CELL:
 			new_row.append((datetime(*xlrd.xldate_as_tuple(int(x), sheet_info[DATEMODE_INDEX]))  , 'excel_datetime'))
 		else:
-			new_row.append((infer_type(x, excel)[2], infer_type(x, excel)[1]))
+			new_row.append((infer_type(x)[2], infer_type(x)[1]))
 	
 	processor.current_cube.add_row(new_row)
 

@@ -2,6 +2,63 @@ var app = angular.module('app');
 
 
 app.directive('cubeSummary', function($http, CubeService) {
+
+
+	// parses CSV string and adds to data table for 'element'
+	function displayCsvTable(element, csvString) {
+		//console.log(data.length + ' words');
+		var dataTable = $('.cube_data_table', element);				
+		// use papa parse to stream input
+		$.parse(csvString, {
+			//delimiter: ",",
+			header: false,
+			dynamicTyping: false,
+			preview: 100,			// !! max number to be shown
+			step: function(data, file, inputElem) {
+				if (!data || data==undefined) return;
+				var row = data.results[0];
+				if (!row || row==undefined) return;
+				dataTable
+					.append(
+						$('<tr />')
+							.append('<td />') // buffer column
+							.append(
+								$.map(row, function(value, key) {
+									return $('<td>'+value.toString()+'</td>');
+								})
+							)
+					);
+				
+					/*
+					.append('<tr />')
+					.append(
+					) // buffer column
+					.append(
+						$.map(row, function(value, key) {
+							return $('<td>'+value.toString()+'</td>');
+						})
+					);*/
+				
+				//console.log('## Row: ' + JSON.stringify(row));
+				/*if (!row) return; // ! occasionally undefined
+			
+				// !! add empty col for label
+				var newRow = '<tr><td></td>';
+				for (var i=0; i<row.length; i++) {
+					newRow = newRow + '<td>'+row[i]+'</td>';
+					//console.log('col');
+					//tr.html('<td>'+row[i]+'</td>');
+				}
+				newRow = newRow + '</tr>';
+				//console.log(newRow);
+				dataTable.append(newRow);*/
+			}
+		});
+	};
+							
+
+
+
 	
 	function link(scope, element, attrs) {
 		var cubeId = scope.data.id;
@@ -38,33 +95,7 @@ app.directive('cubeSummary', function($http, CubeService) {
 			type:		"GET",
 			url: 		csvPath,
 			success: 	function(csvString){
-							//console.log(data.length + ' words');
-							var dataTable = $('.cube_data_table', element);
-							
-							
-							// use papa parse to stream input
-							$.parse(csvString, {
-								//delimiter: ",",
-								header: false,
-								dynamicTyping: false,
-								preview: 10,
-								step: function(data, file, inputElem) {
-									
-									var row = data.results[0];
-									if (!row) return; // ! occasionally undefined
-									
-									// !! add empty col for label
-									var newRow = '<tr><td></td>';
-									for (var i=0; i<row.length; i++) {
-										newRow = newRow + '<td>'+row[i]+'</td>';
-										//console.log('col');
-										//tr.html('<td>'+row[i]+'</td>');
-									}
-									newRow = newRow + '</tr>';
-									//console.log(newRow);
-									dataTable.append(newRow);
-								}
-							});
+							displayCsvTable(element, csvString);
 		   				},
 		   	error:		function() {
 		   					console.log('Error fetching csv file...');
