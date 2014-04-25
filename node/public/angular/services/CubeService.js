@@ -2,6 +2,58 @@ var app = angular.module('app');
 
 app.service('CubeService', function($http, $rootScope, $compile) {
 
+
+	// updates given meta at index with value
+	// e.g. 'label'|'type' at 0 with 'Chicken Name'
+	this.updateMeta = function(meta, index, value, cubeId) {
+		if (['labels', 'types'].indexOf(meta)==-1) return;
+	
+		var data = {
+			index:	index,
+			value:	value,
+			cubeId:	cubeId
+		};
+		
+		//alert(JSON.stringify(data));
+		//return;
+		
+		$http.put('/api/cube/'+meta, data)
+			.success(function(data) {
+				console.log('Successfully updated meta...');
+			});
+	};
+
+
+
+	// parses CSV string and adds to data table for 'element'
+	this.displayCsvTable = function(element, csvString) {
+		//console.log(data.length + ' words');
+		var dataTable = $('.cube_data_table', element);				
+		// use papa parse to stream input
+		$.parse(csvString, {
+			//delimiter: ",",
+			header: false,
+			dynamicTyping: false,
+			preview: 100,			// !! max number to be shown
+			step: function(data, file, inputElem) {
+				if (!data || data==undefined) return;
+				var row = data.results[0];
+				if (!row || row==undefined) return;
+				dataTable
+					.append(
+						$('<tr />')
+							.append('<td />') // buffer column
+							.append(
+								$.map(row, function(value, key) {
+									return $('<td>'+value.toString()+'</td>');
+								})
+							)
+					);
+			}
+		});
+	};
+
+
 	this.confirmClick = function(element, fn) {
 		element.click(function(e) {
 			e.preventDefault();

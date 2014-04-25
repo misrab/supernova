@@ -14,6 +14,65 @@ var client = knox.createClient({
 });
 
 
+/********************
+
+	INTERNAL
+
+*********************/
+
+// replace cube urls with authenticated urls for
+// client access to S3
+// next(err, newCubes)
+function replaceCubeUrls(cubes, next) {
+	var newCubes = [];
+	var expiration = new Date();
+	expiration.setMinutes(expiration.getMinutes() + 30);
+	
+	async.each(cubes, function(cube, cb) {
+		
+		cube.data_path = client.signedUrl(cube.data_path, expiration);
+		newCubes.push(cube);
+		cb();
+	}, function(err) {
+		if (err) return cb(err);
+		next(null, newCubes);
+	});
+};
+
+
+// next(err, cube)
+function checkCubeOwnership(email, cubeId, next) {
+	async.waterfall([
+		// get user first for authentication
+		function(cb) {
+			User.find({ where: { email: email } }).success(function(user) {
+				cb(null, user);
+			}).error(cb);
+		},
+		// get cube
+		function(user, cb) {
+			Cube.find(cubeId).success(function(cube) {
+				cb(null, user, cube);
+			}).error(cb);
+		},
+		// check ownership
+		function(user, cube, cb) {
+			if (user.id != cube.UserId) {
+				var error = new Error('You do not own that cube');
+				return cb(error);
+			}
+			cb(null, cube);
+		}
+	], next);
+};
+
+
+/********************
+
+	EXTERNAL
+
+*********************/
+
 
 // takes array of string 'filepaths'
 // next(err, urls) urls array of file locations
@@ -85,35 +144,9 @@ function associateCubes(email, cubes, next) {
 				cb(null, results);
 			});
 		}
-		/*
-		// associate
-		function(sqlCubes, user, cb) {
-			async.each(sqlCubes, function(c, cb) {
-				user.addCube(c).success(cb).error(cb);
-			}, cb);
-		}*/
 	], next);
 };
 
-
-// replace cube urls with authenticated urls for
-// client access to S3
-// next(err, newCubes)
-function replaceCubeUrls(cubes, next) {
-	var newCubes = [];
-	var expiration = new Date();
-	expiration.setMinutes(expiration.getMinutes() + 30);
-	
-	async.each(cubes, function(cube, cb) {
-		
-		cube.data_path = client.signedUrl(cube.data_path, expiration);
-		newCubes.push(cube);
-		cb();
-	}, function(err) {
-		if (err) return cb(err);
-		next(null, newCubes);
-	});
-};
 
 function getUserCubes(email, next) {
 	async.waterfall([
@@ -156,26 +189,9 @@ function removeCube(cubeId, email, next) {
 	}
 
 	async.waterfall([
-		// get user
-		function(cb) {
-			User.find({ where: { email: email } }).success(function(user) {
-				cb(null, user);
-			}).error(cb);
-		},
-		// get cube
-		function(user, cb) {
-			Cube.find(cubeId).success(function(cube) {
-				cb(null, user, cube);
-			}).error(cb);
-		},
 		// check ownership
-		function(user, cube, cb) {
-			if (user.id != cube.UserId) {
-				var error = new Error('You do not own that cube');
-				return cb(error);
-			}
-			cb(null, cube);
-			//cube.destroy().success(cb).error(cb);
+		function(cb) {
+			checkCubeOwnership(email, cubeId, cb);
 		},
 		// remove data from S3
 		function(cube, cb) {
@@ -195,9 +211,48 @@ function removeCube(cubeId, email, next) {
 };
 
 
+
+
+
+// next(err)
+function updateCubeMeta(email, meta, cubeId, index, value, next) {
+	async.waterfall([
+		// get user first for authentication
+		function(cb) {
+			checkCubeOwnership(email, cubeId, cb);
+		},
+		function(cube, cb) {
+			// check cube there
+			if (!cube) {
+				var err = new Error('No such cube');
+				return cb(err);
+			}
+			
+			// check meta
+			if (['labels', 'types'].indexOf(meta)==-1) {
+				var err = new Error('Invalid meta type');
+				return cb(err);
+			}
+			
+			// check index bounds
+			var intIndex = parseInt(index);
+			if (isNaN(intIndex) || intIndex < 0 || intIndex >= cube[meta].length) {
+				cube[meta] = value;
+				// save cube
+				cube.save().success(cb).error(cb);
+			} else {
+				cb();
+			}
+		}
+	], next);
+};
+
+
+
 module.exports = {
 	writeFilesToStore:	writeFilesToStore,
 	associateCubes:		associateCubes,
 	getUserCubes:		getUserCubes,
-	removeCube:			removeCube
+	removeCube:			removeCube,
+	updateCubeMeta:		updateCubeMeta
 };

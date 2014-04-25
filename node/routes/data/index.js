@@ -18,6 +18,22 @@ function getEmail(req) {
 
 
 module.exports = function(app) {
+	// change label or type
+	// :meta is 'label' or 'type'
+	// expect in body cubeId, value, index
+	app.put('/api/cube/:meta', passport.authenticate('basic', { session: false }), function(req, res) {
+		var email = getEmail(req);
+		data_controller.updateCubeMeta(email, req.param('meta'), req.body.cubeId, req.body.index, req.body.value, function(err) {
+			if (err) {
+				console.log('Error updating meta: ' + JSON.stringify(err));
+				return res.send(400);
+			}
+			res.send(200);
+		});
+	});
+
+
+	// get user's cubes
 	app.get('/api/cubes', passport.authenticate('basic', { session: false }), function(req, res) {
 		var email = getEmail(req);
 		data_controller.getUserCubes(email, function(err, cubes) {		
@@ -26,7 +42,7 @@ module.exports = function(app) {
 		});
 	});
 
-
+	// delete a cube
 	app.delete('/api/cube/:id', passport.authenticate('basic', { session: false }), function(req, res) {
 		var email = getEmail(req);
 		data_controller.removeCube(req.param('id'), email, function(err, result) {
@@ -35,7 +51,8 @@ module.exports = function(app) {
 		});
 	});
 
-
+	// check on job
+	// if processFiles it also associates cubes when done
 	app.get('/api/job/:type/:id', passport.authenticate('basic', { session: false }), function(req, res) {
 		worker_controller.checkJob(req.param('id'), function(err, result) {
 			if (err) return res.send(400);
@@ -56,13 +73,8 @@ module.exports = function(app) {
 		});
 	});
 
-
-	app.get('/api/data', passport.authenticate('basic', { session: false }), function(req, res) {
 	
-		res.send(200, 'data');
-	});
-	
-	
+	// post file(s) for processing
 	// respond with job id for polling
 	app.post('/api/file', passport.authenticate('basic', { session: false }), function(req, res) {
 		

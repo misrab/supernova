@@ -8,10 +8,14 @@
 	<div>
 		<div ng-repeat="tidbit in data.tidbits">{{ tidbit }}</div>
 	</div>
+	
 	<table class="cube_data_table">
-		<tr>
+		<!-- labels editable -->
+		<tr class="label_row">
 			<td style="background-color: lightgrey;">Labels</td>
-			<td ng-repeat="label in data.labels track by $index">{{ label }}</td>
+			<td ng-repeat="label in data.labels track by $index">
+				<input ng-model="label" ng-change="updateLabel($index, label)" type="text" name="label" value="{{ label }}" />
+			</td>
 		</tr>
 		<tr>
 			<td style="background-color: lightgrey;">Types</td>
