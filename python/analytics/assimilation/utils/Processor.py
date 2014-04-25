@@ -21,13 +21,12 @@ class Processor(object):
 	
 	
 	def __init__(self):
-		self._row_counter = 0
+		#self._row_counter = 0
 		self._current_sheet_name = None
 		self._previous_length = None
 		
 		self._current_cube = Cube() # initialise with a Cube
 		self._label_candidates = []
-		#self._row_lengths = []
 		self._tidbits = []
 		self._likely_cubes = []
 		
@@ -35,9 +34,10 @@ class Processor(object):
 	""" Properties (not all have setters) """
 
 	### Row Counter ###
-	@property
-	def row_counter(self):
-		return self._row_counter
+	#@property
+	#def row_counter(self):
+	#	return self._row_counter
+	
 		
 	### Sheet name ###
 	@property
@@ -105,8 +105,8 @@ class Processor(object):
 	
 	""" Methods that use/act on properties """
 	
-	def increment_row_counter(self):
-		self._row_counter = self._row_counter + 1
+	#def increment_row_counter(self):
+	#	self._row_counter = self._row_counter + 1
 		
 	def small_jump(self, new_length):	
 		assert isinstance(new_length, int)

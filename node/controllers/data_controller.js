@@ -179,7 +179,7 @@ function removeCube(cubeId, email, next) {
 		},
 		// remove data from S3
 		function(cube, cb) {
-			client.deleteFile('/test/Readme.md', function(err, res){
+			client.deleteFile(cube.data_path, function(err, res){
   				// check `err`, then do `res.pipe(..)` or `res.resume()` or whatever.
   				if (err) console.log('Error deleting S3 cube data');
   				//return cb(err);

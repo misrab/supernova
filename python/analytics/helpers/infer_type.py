@@ -1,4 +1,5 @@
 import xlrd
+import re
 from dateutil import parser
 from datetime import datetime
 
@@ -21,8 +22,37 @@ def infer_type(x, excel=False):
 		Output: (item, type, parsed_item)
 	'''
 	# Internals
+	
+	
+	
+	""" NOT YET POLISHED """
+	def parse_number(x):
+		# returns parsed number if successful
+		def try_float(f):
+			try:
+				result = float(f)
+				return result
+			except:
+				raise ValueError('Could not parse float')
+
+		# first make sure first digit is numeric
+		if len(x)==0:
+			raise ValueError('Candidate float string has 0 length')
+		try_float(x[0])
+	
+		# take this number remove following alphanumeric
+		r1 = re.compile(r'[\d.]+[^\d.]*')
+		a = r1.search(x).group(0)
+		# remove alpha
+		r2 = re.compile(r'[^\d.]+')
+		b = r2.sub('', a)
+	
+		return try_float(b)
+	
+	
 	def is_number(x):
 		try:
+			#y = parse_number(x)
 			float(x)
 			return True
 		except ValueError:
@@ -30,7 +60,6 @@ def infer_type(x, excel=False):
 	def is_excel_date(x):
 		if excel==False:
 			return False
-	
 		try:
 			xlrd.xldate_as_tuple(int(x), 0)
 			return True
@@ -52,10 +81,22 @@ def infer_type(x, excel=False):
 	parsed = None
 	
 	
-	# order matters e.g. empty would pass excel date
-	if is_number(x):
+	# order matters
+	if excel==True:
+		# return as a datetime object, not just a tuple
+		type = 'excel_datetime'
+		# !! do a try catch: excel is never safe!
+		try:
+			parsed = datetime(*xlrd.xldate_as_tuple(int(x), 0))
+		except:
+			parsed = None
+	elif is_empty(x):
+		type = 'empty'
+		parsed = ''
+	elif is_number(x):
 		type = 'number'
 		parsed = float(x)
+		#parsed = parse_number(x)
 	elif is_datetime(x):
 		type = 'datetime'
 		parsed = parser.parse(x)
@@ -67,9 +108,6 @@ def infer_type(x, excel=False):
 			parsed = datetime(*xlrd.xldate_as_tuple(int(x), 0))
 		except:
 			parsed = None
-	elif is_empty(x):
-		type = 'empty'
-		parsed = ''
 	else:
 		type = 'string'
 		parsed = x

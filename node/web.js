@@ -12,7 +12,9 @@ var express  = require('express')
 // configuration =================
 var app = express();
 
-app.set('views', __dirname + '/public');
+//app.set('views', __dirname + '/public/views');
+
+app.set('views', __dirname + '/public/angular');
 //app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 

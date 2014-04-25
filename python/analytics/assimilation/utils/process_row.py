@@ -115,20 +115,19 @@ def process_row(processor, row, excel=False, sheet_info=None):
 		
 	# ignore empty rows they shouldn't break a cube
 	if true_l==0:
-		processor.increment_row_counter()
+		#processor.increment_row_counter()
 		return
 		
 	# CASE 1: Add row to current cube
-	if processor.row_counter > 0 and processor.small_jump(true_l):	
+	if processor.previous_length is not None and processor.small_jump(true_l):	
 		add_row_to_cube(processor, stripped_row, excel, sheet_info)
 
 	# CASE 2: First row, or break in cube
 	else:
-		break_in_cube(processor, true_l, stripped_row, unemptied_row)
-	
+		break_in_cube(processor, true_l, stripped_row, unemptied_row)	
 	
 	# update previous length
 	processor.previous_length = true_l
 	# increment counter
-	processor.increment_row_counter()
+	#processor.increment_row_counter()
 	

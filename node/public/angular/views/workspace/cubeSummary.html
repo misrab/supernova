@@ -8,7 +8,7 @@
 	<div>
 		<div ng-repeat="tidbit in data.tidbits">{{ tidbit }}</div>
 	</div>
-	<table>
+	<table class="cube_data_table">
 		<tr>
 			<td style="background-color: lightgrey;">Labels</td>
 			<td ng-repeat="label in data.labels track by $index">{{ label }}</td>
@@ -19,5 +19,3 @@
 		</tr>
 	</table>
 </div>
-
-<div>{{ data.data_path }}</div>

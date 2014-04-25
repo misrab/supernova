@@ -69,6 +69,7 @@ def read_csv_file(processor, filename):
 
 def process_local_file(processor, localPath, file_extension):
 	t0 = time.time()
+	
 	if file_extension in EXCEL_EXTENSIONS:
 		read_excel_file(processor, localPath)
 	elif file_extension == CSV_EXTENSION:
@@ -142,13 +143,13 @@ def process_cubes(cubes, bucket):
 		# update path !URL not relative path!
 		cube.data_path = remotePath
 
-		"""
+		
 		print '========================== PROCESSED CUBE ========================='
 		print 'LABELS:  ====> ' + str(cube.labels)
 		print 'TYPES: ====> ' + str(cube.types)
 		print 'TIDBITS: ====> ' + str(cube.tidbits)
 		print 'ROWS:    ====> ' + str(cube.num_rows)
-		"""
+		
 	
 	#for cube in cubes:
 	#	upload(cube)

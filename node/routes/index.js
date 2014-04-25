@@ -9,6 +9,6 @@ module.exports = function(app) {
 	
 	// ANGULAR APP AS DEFAULT
 	app.get('*', function(req, res) {
-		res.render('angular/index.html');
+		res.render('index.html');
 	});
 }
