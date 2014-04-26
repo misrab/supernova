@@ -1,54 +1,74 @@
-<div class="container">
-	<!-- alerts -->
-	<div class="row">
-		<div id='main_alerts' class='col-md-12 text-center'>
-			<div class="alert alert-success my_hide">Successful</div>
+<div id="wrapper">
+
+	<div id="top-left-mask"></div>
+	
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#">Home</a></li>
+            <li><a href="#">Another link</a></li>
+            <li><a href="#">Next link</a></li>
+            <li><a href="#">Last link</a></li>
+        </ul>
+    </div>
+    
+    <div id="page-content-wrapper">
+        <div class="page-content">
+            <div class="container">
+				<!-- alerts -->
+				<div class="row">
+					<div id='main_alerts' class='col-md-12 text-center'>
+						<div class="alert alert-success my_hide">Successful</div>
 			
-			<div class="alert alert-danger my_hide">Something went wrong</div>
-		</div>
-	</div>
+						<div class="alert alert-danger my_hide">Something went wrong</div>
+					</div>
+				</div>
 	
 
-	<!-- place upload area -->
-	<!-- 1. no data case -->
-	<div ng-if="dataBool==false">
-		<div class="row">
-			<div class='col-md-12 text-center'>
-				<h1>
-					Upload data to get started
-				</h1>
+				<!-- place upload area -->
+				<!-- 1. no data case -->
+				<div ng-if="dataBool==false">
+					<div class="row">
+						<div class='col-md-12 text-center'>
+							<h1>
+								Upload data to get started
+							</h1>
+						</div>
+					</div>
+					<div class="row medium_space_top">
+						<div class='col-md-4 col-md-offset-4 text-center'>
+							<upload-area></upload-area>
+						</div>
+					</div>
+				</div>
+	
+				<!-- 2. some data case -->
+				<div ng-if="dataBool==true" class="pull-right">
+					<upload-area></upload-area>
+				</div>
+				<!--
+				<div ng-if="dataBool==true">
+					<div class="row">
+						<div class="col-md-2 col-md-offset-10">
+							<upload-area big-bool="{{ !dataBool }}"></upload-area>
+						</div>
+					</div>
+				</div>
+				-->
+	
+				<!-- place upload area end -->
+	
+				<!-- place cubes -->
+				<div class="row">
+					<div id="cubes" class='col-md-12 text-center'>
+					</div>
+				</div>
+	
+	
+				<!-- confirmation modal -->
+				<div ng-include="'/angular/views/shared/confirmation_modal.html'"></div>
+			
+			
 			</div>
 		</div>
-		<div class="row medium_space_top">
-			<div class='col-md-4 col-md-offset-4 text-center'>
-				<upload-area></upload-area>
-			</div>
-		</div>
 	</div>
-	
-	<!-- 2. some data case -->
-	<div ng-if="dataBool==true" class="pull-right">
-		<upload-area></upload-area>
-	</div>
-	<!--
-	<div ng-if="dataBool==true">
-		<div class="row">
-			<div class="col-md-2 col-md-offset-10">
-				<upload-area big-bool="{{ !dataBool }}"></upload-area>
-			</div>
-		</div>
-	</div>
-	-->
-	
-	<!-- place upload area end -->
-	
-	<!-- place cubes -->
-	<div class="row">
-		<div id="cubes" class='col-md-12 text-center'>
-		</div>
-	</div>
-	
-	
-	<!-- confirmation modal -->
-	<div ng-include="'/angular/views/shared/confirmation_modal.html'"></div>
 </div>

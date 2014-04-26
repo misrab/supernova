@@ -20,7 +20,7 @@
 .cube_summary {
 	display: inline-block;
 	margin: 30px 15px;
-	max-width: 100%;
+	max-width: 80%;
 	
 }
 .cube_summary .cube_data_table {
@@ -36,6 +36,87 @@
 .cube_summary table td:hover {
 	background-color: lightblue;
 }
+
+/* sidebar stuff */
+
+#wrapper {
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+}
+
+#top-left-mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	/* sidebar width, navbar height */
+	width: 250px;
+	height: 59px;
+	z-index: 1000;
+}
+
+#top-left-mask, #sidebar-wrapper {
+  background-color: black;
+  opacity: .50; /* Standard: FF gt 1.5, Opera, Safari, CSS3 */
+  filter: alpha(opacity=50); /* IE lt 8 */
+  -ms-filter: "alpha(opacity=50)"; /* IE 8 */
+  -khtml-opacity: .50; /* Safari 1.x */
+  -moz-opacity: .50; /* FF lt 1.5, Netscape */
+}
+
+#sidebar-wrapper {
+
+  padding-top: 20px;
+  text-align: center;
+  
+
+  margin-left: -250px;
+  left: 250px;
+  width: 250px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  padding-top: 25px;
+}
+
+.sidebar-nav {
+  /*position: absolute;
+  top: 0;*/
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width:767px) {
+
+    #wrapper {
+      padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+      left: 0;
+    }
+
+    #wrapper.active {
+      position: relative;
+      left: 250px;
+    }
+
+    #wrapper.active #sidebar-wrapper {
+      left: 250px;
+      width: 250px;
+      transition: all 0.4s ease 0s;
+    }
+
+}
+
+/* sidebar stuff end */
 
 
 /************
@@ -61,6 +142,7 @@ body {
   padding-bottom: 150px;
 }
 .navbar {
+	z-index: 1001; /* rel to mask top left */
 	text-shadow: none;
 	background-color: #2f2f2f;
 	padding: 4px 10%;

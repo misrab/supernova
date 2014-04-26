@@ -153,6 +153,10 @@ class Cube(object):
 		for column, counts in self._type_counts.items():
 			types[column] = TYPES[counts.index(max(counts))]
 			
+			# if nothing counted set as empty
+			if (types[column]=='' or types[column] is None):
+				types[column] = 'empty'
+			
 		self.types = types
 	
 	# we'll take a candidate label row if they're close to the average length of up to the following rows

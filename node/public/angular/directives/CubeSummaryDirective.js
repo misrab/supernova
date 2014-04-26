@@ -27,6 +27,12 @@ app.directive('cubeSummary', function($http, CubeService) {
 			CubeService.updateMeta('labels', index, value, cubeId);
 		};
 		
+		
+		// true if items the same
+		scope.show = function(type, otherType) {
+			return type != otherType;
+		};
+		
 		/*** Get CSV data on compile ***/
 		// !! $http gets error with S3,
 		// I think header settings

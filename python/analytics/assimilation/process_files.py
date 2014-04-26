@@ -70,6 +70,7 @@ def read_csv_file(processor, filename):
 def process_local_file(processor, localPath, file_extension):
 	t0 = time.time()
 	
+	
 	if file_extension in EXCEL_EXTENSIONS:
 		read_excel_file(processor, localPath)
 	elif file_extension == CSV_EXTENSION:

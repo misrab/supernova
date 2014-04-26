@@ -14,12 +14,17 @@
 		<tr class="label_row">
 			<td style="background-color: lightgrey;">Labels</td>
 			<td ng-repeat="label in data.labels track by $index">
-				<input style="margin: 10px;" ng-model="label" ng-change="updateLabel($index, label)" type="text" name="label" value="{{ label }}" />
+				<input class="form-control" style="width: auto; margin: 10px;" ng-model="label" ng-change="updateLabel($index, label)" type="text" name="label" value="{{ label }}" />
 			</td>
 		</tr>
 		<tr>
 			<td style="background-color: lightgrey;">Types</td>
-			<td ng-repeat="type in data.types track by $index">{{ type }}</td>
+			<td ng-repeat="type in data.types track by $index">
+				<select class="form-control">
+					<option value="{{ type }}">{{ type }}</option>
+					<option ng-repeat="otherType in ['excel_datetime', 'datetime', 'number', 'string', 'empty']" ng-if="show(type, otherType)" value="{{ otherType }}">{{ otherType }}</option>
+				</select>
+			</td>
 		</tr>
 	</table>
 </div>
