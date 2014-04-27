@@ -20,6 +20,14 @@ app.directive('uploadArea', function(UploadService) {
 			UploadService.onFileSelect(files, scope);
 		});
 		
+		// toggle file input display by clicking
+		// on image
+		scope.clickImage = function(e) {
+			e.preventDefault();
+			var input = element.find('input:file');
+			input.toggle('slow');
+		};
+		
 		
 		// drag and drop of files
 		// disable window default
@@ -42,13 +50,6 @@ app.directive('uploadArea', function(UploadService) {
 			e.preventDefault();
 			e.stopPropagation()
 			fileInput.prop("files", e.originalEvent.dataTransfer.files);
-			/*
-			var files = e.originalEvent.dataTransfer.files;
-			
-			for (var i=0; i<files.length; i++) {
-				console.log(fileInput[0].files.push('fds'));
-				//fileInput[0].files.push(files[i]);
-			}*/
 		});
 	};
 

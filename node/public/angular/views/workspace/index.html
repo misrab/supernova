@@ -8,23 +8,24 @@
 		<div id="sidebar_background"></div>
     
     	<div id="sidebar_content">
-    		<!--
-    		<div style="width: 100%; text-align: right;">
-				<a id="sidebar_toggle" href="javascript:void(0);"><< collapse</a>
-			</div>
-			-->
-			
-			<div ng-if="dataBool==true" style="max-width: 80%; margin: 30px auto;">
+    		<!-- upload -->
+			<div ng-if="dataBool==true" class="sidebar_item">
 				<upload-area></upload-area>
 			</div>
+			
+			<!-- data -->
+			<div class="sidebar_item" style="cursor: pointer;">
+				<img style="width: 96px; height: 96px;; margin: 5px;" src="/img/workspace/sidebar_data.png"
+				onmouseover="this.src='/img/workspace/sidebar_data_hover.png'"
+				onmouseout="this.src='/img/workspace/sidebar_data.png'"></img>
+			</div>
 	
-	
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand"><a href="#">Home</a></li>
-				<li><a href="#">Another link</a></li>
-				<li><a href="#">Next link</a></li>
-				<li><a href="#">Last link</a></li>
-			</ul>
+			<!-- analysis -->
+			<div class="sidebar_item" style="cursor: pointer;">
+				<img style="width: 96px; height: 96px;; margin: 5px;" src="/img/workspace/sidebar_analysis.png"
+				onmouseover="this.src='/img/workspace/sidebar_analysis_hover.png'"
+				onmouseout="this.src='/img/workspace/sidebar_analysis.png'"></img>
+			</div>
 		</div>
     </div>
     
@@ -41,8 +42,8 @@
 				</div>
 	
 
-				<!-- place upload area -->
-				<!-- 1. no data case -->
+				<!-- upload area -->
+				<!-- no data case -->
 				<div ng-if="dataBool==false">
 					<div class="row">
 						<div class='col-md-12 text-center'>
@@ -58,21 +59,8 @@
 					</div>
 				</div>
 	
-				<!-- 2. some data case -->
-				
-				<!--
-				<div ng-if="dataBool==true">
-					<div class="row">
-						<div class="col-md-2 col-md-offset-10">
-							<upload-area big-bool="{{ !dataBool }}"></upload-area>
-						</div>
-					</div>
-				</div>
-				-->
 	
-				<!-- place upload area end -->
-	
-				<!-- place cubes -->
+				<!-- cubes -->
 				<div class="row">
 					<div id="cubes" class='col-md-12 text-center'>
 					</div>

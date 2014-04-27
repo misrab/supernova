@@ -9,6 +9,9 @@
 	WORKSPACE
 **************/
 
+
+
+
 .upload_area {
 	border: 2px dashed grey;
 	border-radius: 6px;
@@ -16,6 +19,10 @@
 	padding: 15px;
 	text-align: center;
 }
+.upload_area img {
+	cursor: pointer;
+}
+
 
 .cube_summary {
 	display: inline-block;
@@ -49,6 +56,17 @@
 }
 
 /* sidebar stuff */
+
+.sidebar_item {
+	max-width: 80%;
+	margin: 30px auto;
+}
+
+.sidebar_item img:hover {
+  -moz-box-shadow:    0 0 20px whitesmoke;
+  -webkit-box-shadow: 0 0 20px whitesmoke;
+  box-shadow:         0 0 20px whitesmoke;
+}
 
 #wrapper {
   padding-left: 250px;

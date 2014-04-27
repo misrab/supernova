@@ -79,21 +79,42 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 	this.removeCube = function(cube, cubeId) {
 		//console.log('Removing cube w/ id: ' + cubeId);
 		
-		var success = $('#main_alerts').find('.alert-success');
+		//var success = $('#main_alerts').find('.alert-success');
 		//var error
+		function successMessage() {
+			var success = $('<div class="my_hide alert alert-success">Cube successfully removed</div>');
+			cube.before(success);
+			
+			cube.slideUp("fast", function() {
+				cube.remove();
+			});
+			
+			success.slideDown();
+			setTimeout(function() {
+				success.slideUp("slow", function() {
+					success.remove();
+				});
+			}, 3000);
+		};
 		
+		successMessage();
+		
+		/*
 		$http.delete('/api/cube/'+cubeId)
 			.success(function(data) {
 				if (data.success) {
+					var success = cube.before(
+						'<div class="my_hide alert alert-success">Cube successfully removed</div>'
+					);
 					cube.remove();
-					
-					success.html('Cube successfully removed');
+					//success.html('Cube successfully removed');
 					success.slideDown();
 					setTimeout(function() {
 						success.slideUp();
+						success.remove();
 					}, 3000);
 				}
-			});
+			});*/
 	};
 
 	this.getCubes = function(next) {

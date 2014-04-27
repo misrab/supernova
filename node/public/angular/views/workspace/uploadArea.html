@@ -1,17 +1,18 @@
 <div class="upload_area" style="position: relative; display: inline-block;">
 	<!-- big version -->
 	<div ng-if="dataBool==false">
-		<img style="position: absolute; top: 5px; left: 5px; width: 48px; height: 48px;" src="/img/workspace/upload.png"></img>
+		<img ng-click="clickImage($event)" style="position: absolute; top: 5px; left: 5px; width: 48px; height: 48px;" src="/img/workspace/upload.png"></img>
 		<h3 >Drag file(s) here</h3>
 		<p>Or choose from folder...</p>
 	</div>
 	<!-- small version -->
 	<div ng-if="dataBool==true">
-		<img style="width: 48px; height: 48px;; margin: 5px;" src="/img/workspace/upload.png"></img>
+		<img ng-click="clickImage($event)" style="width: 48px; height: 48px;; margin: 5px;" src="/img/workspace/upload.png"></img>
 	</div>
 	
-	<!-- replication causes jquery selection issues -->
-	<input multiple ng-hide="dataBool==true" style="width: 100%; margin: 0 auto;" class="text-center form-control" type="file"></input>
+	<!-- display if big version -->
+	<input multiple ng-if="dataBool==true" style="display: none; width: 100%; margin: 0 auto;" class="text-center form-control" type="file"></input>
+	<input multiple ng-if="dataBool==false" style="width: 100%; margin: 0 auto;" class="text-center form-control" type="file"></input>
 
 	
 	<div style="margin: 0; margin-top: 10px;" class="my_hide progress progress-striped active">
