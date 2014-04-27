@@ -28,7 +28,10 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 	// parses CSV string and adds to data table for 'element'
 	this.displayCsvTable = function(element, csvString) {
 		//console.log(data.length + ' words');
-		var dataTable = $('.cube_data_table', element);				
+		var dataTable = $('.cube_data_table > tbody', element);	
+		//var csvSpot = $('.csv_data', dataTable);
+		
+					
 		// use papa parse to stream input
 		$.parse(csvString, {
 			//delimiter: ",",

@@ -1,14 +1,31 @@
 <div id="wrapper">
 
-	<div id="top-left-mask"></div>
+	
 	
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand"><a href="#">Home</a></li>
-            <li><a href="#">Another link</a></li>
-            <li><a href="#">Next link</a></li>
-            <li><a href="#">Last link</a></li>
-        </ul>
+    
+    	<div id="top_left_mask"></div>
+		<div id="sidebar_background"></div>
+    
+    	<div id="sidebar_content">
+    		<!--
+    		<div style="width: 100%; text-align: right;">
+				<a id="sidebar_toggle" href="javascript:void(0);"><< collapse</a>
+			</div>
+			-->
+			
+			<div ng-if="dataBool==true" style="max-width: 80%; margin: 30px auto;">
+				<upload-area></upload-area>
+			</div>
+	
+	
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="#">Home</a></li>
+				<li><a href="#">Another link</a></li>
+				<li><a href="#">Next link</a></li>
+				<li><a href="#">Last link</a></li>
+			</ul>
+		</div>
     </div>
     
     <div id="page-content-wrapper">
@@ -42,9 +59,7 @@
 				</div>
 	
 				<!-- 2. some data case -->
-				<div ng-if="dataBool==true" class="pull-right">
-					<upload-area></upload-area>
-				</div>
+				
 				<!--
 				<div ng-if="dataBool==true">
 					<div class="row">
