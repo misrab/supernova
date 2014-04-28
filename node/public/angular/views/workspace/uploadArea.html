@@ -6,12 +6,8 @@
 		<p>Or choose from folder...</p>
 	</div>
 	<!-- small version -->
-	<div ng-if="dataBool==true">
-		<img ng-click="clickImage($event)" style="width: 48px; height: 48px;; margin: 5px;" src="/img/workspace/upload.png"></img>
-	</div>
+	<div ng-click="clickImage($event)" ng-if="dataBool==true"></div>
 	
-	<!-- display if big version -->
-	<input multiple ng-if="dataBool==true" style="display: none; width: 100%; margin: 0 auto;" class="text-center form-control" type="file"></input>
 	<input multiple ng-if="dataBool==false" style="width: 100%; margin: 0 auto;" class="text-center form-control" type="file"></input>
 
 	
@@ -29,3 +25,5 @@
 		Supported file types are .xls, .xlsx, .csv, and .sav
 	</div>
 </div>
+
+<input multiple ng-if="dataBool==true" style="display: none; width: 100%; margin: 10px auto;" class="text-center form-control" type="file"></input>

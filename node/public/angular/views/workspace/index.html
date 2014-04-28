@@ -10,27 +10,12 @@
 			<div ng-show="dataBool==true" class="sidebar_item">
 				<upload-area></upload-area>
 			</div>
-			
 			<!-- data -->
-			<div id="sidebar_data" ng-click="sidebarClick($event, 'sidebar_data')" class="active sidebar_item" style="cursor: pointer;">
-				<!--
-				<img style="width: 96px; height: 96px;; margin: 5px;" src="/img/workspace/sidebar_data.png"
-				onmouseover="this.src='/img/workspace/sidebar_data_hover.png'"
-				onmouseout="this.src='/img/workspace/sidebar_data.png'"></img>-->
-			</div>
-			<sidebar-helper></sidebar-helper>
-			
-			
-
-
+			<div id="sidebar_data" ng-click="sidebarClick($event, 'sidebar_data')" class="active sidebar_item" style="cursor: pointer;"></div>
 			<!-- analysis -->
-			<div id="sidebar_analysis" ng-click="sidebarClick($event, 'sidebar_analysis')" class="sidebar_item" style="cursor: pointer;">
-				<!--
-				<img style="width: 96px; height: 96px;; margin: 5px;" src="/img/workspace/sidebar_analysis.png"
-				onmouseover="this.src='/img/workspace/sidebar_analysis_hover.png'"
-				onmouseout="this.src='/img/workspace/sidebar_analysis.png'"></img>-->
-			</div>
-			<sidebar-helper style="display: none;"></sidebar-helper>
+			<div id="sidebar_analysis" ng-click="sidebarClick($event, 'sidebar_analysis')" class="sidebar_item" style="cursor: pointer;"></div>
+			
+			<sidebar-helper></sidebar-helper>
 		</div>
     </div>
     

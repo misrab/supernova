@@ -2,6 +2,67 @@ var app = angular.module('app');
 
 
 
+/**********************
+	sidebar menu item
+***********************/
+
+
+app.directive('sidebarItem', function() {
+	function link(scope, element, attrs) {
+		/*
+		 *	Init and vars
+		 */
+		 
+		var cubeId = scope.cubeId;
+		init();
+		
+		function init() {
+			bindToggleView();
+		};
+		
+	
+		/*
+		 *	Internals
+		 */
+		
+		// toggle view of cube when user clicks on icon
+		function bindToggleView() {
+			$('.glyphicon', element).click(function(e) {
+				e.preventDefault();
+				
+				var show; // true if we want to show corresponding cube
+				// toggle active class
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+					show = false
+				} else {
+					$(this).addClass('active');
+					show = true;
+				}
+				
+				var cubeHtmlId = '#cube_summary_' + String(cubeId);
+				if (show) {
+					$(cubeHtmlId).show();
+				} else {
+					$(cubeHtmlId).hide();
+				}
+			});
+		};
+	
+	};
+	
+	
+	return {
+		restrict: 		'E',
+		templateUrl:	'/angular/views/workspace/sidebarItem.html',
+		link:			link,
+		scope:			{
+							cubeId:	'@',
+							title:	'@'
+						}
+	};
+});
+
 /*****************
 	sidebarHelper
 ******************/

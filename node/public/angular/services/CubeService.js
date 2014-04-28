@@ -132,7 +132,7 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 			var $newScope = $rootScope.$new();
 			$newScope.data = cube;
 			
-			var newElement = $compile( '<cube-summary></cube-summary>' )( 
+			var newElement = $compile( '<cube-summary id="cube_summary_'+cube.id+'"></cube-summary>' )( 
 				$newScope
 			);
 			spot.append(newElement);
@@ -140,17 +140,23 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 		
 		function addSidebarCube(cube, spot) {
 			var title = cube.tidbits.length ? cube.tidbits[0] : 'Cube ' + String(cube.id);
-			spot.append(
-				'<div class="menu_item">' + title
-				+ '<span class="glyphicon glyphicon-th left_right_margin"></span>'
-				+ '</div>'
+			
+			
+			var newElement = $compile( 
+				'<sidebar-item title="'
+				+ title +'" '
+				+ 'cube-id="' + cube.id + '"'
+				+'></sidebar-item>' 
+			)( 
+				$scope
 			);
+			spot.append(newElement);
 		};
-	
+		
 		// script
 		if (cubes && cubes.length) $scope.dataBool = true;
 
-		var spot = $('#sidebar_data').next('sidebar-helper').find('.sidebar_files');;		
+		var spot = $('sidebar-helper').find('.sidebar_files');;		
 		for (var i=0; i < cubes.length; i++) {
 			addCube(cubes[i]);
 			addSidebarCube(cubes[i], spot);

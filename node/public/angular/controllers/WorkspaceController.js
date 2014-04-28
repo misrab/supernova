@@ -33,11 +33,8 @@ app.controller('WorkspaceController', function($scope, CubeService) {
 	
 	// click sidebar button, make active
 	function sidebarClick(e, id) {
-
 			e.preventDefault();
-			
 			var el = $('#'+id);
-			
 			if (el.hasClass('active')) return;
 			
 			// make active
@@ -57,23 +54,7 @@ app.controller('WorkspaceController', function($scope, CubeService) {
 				default:
 					return;
 			};
-						
-			// show folder and 'files'
-			$('sidebar-helper').hide();
-			el.next('sidebar-helper').show();
 	};
-	
-	// bind sidebar toggle button
-	/*
-	function sidebarToggle() {
-		var btn = $('#sidebar_toggle');
-		var sidebar = $('#sidebar-wrapper');
-		
-		sidebar.click(function(e) {
-			e.preventDefault();
-			sidebar.animate({ width: 0 }, 1000);
-		});
-	};*/
 	
 	
 	function refreshCubes() {

@@ -10,10 +10,21 @@
 **************/
 
 #sidebar_data, #sidebar_analysis {
-	width: 96px;
-	height: 96px;
+	width: 64px;
+	height: 64px;
 	
-	background-size: 96px 96px;
+	background-size: 64px 64px;
+}
+#sidebar_content .upload_area {
+	/* want min to allow for expanding 
+	when showing file input */
+	width: 64px;
+	height: 64px;
+	background-image: url('/img/workspace/upload.png');
+	background-size: 48px 48px;
+	background-repeat:no-repeat;
+	/*background-attachment:fixed;*/
+	background-position:center; 
 }
 #sidebar_data {
 	background-image: url('/img/workspace/sidebar_data.png');
@@ -49,18 +60,15 @@
 	padding: 5px;
 	cursor: pointer;
 }
-.sidebar_item_menu .sidebar_files .menu_item .glyphicon:hover,
-.sidebar_item_menu .sidebar_files .menu_item .glyphicon:active {
+
+/*.sidebar_item_menu .sidebar_files .menu_item .glyphicon:hover*/
+.sidebar_item_menu .sidebar_files .menu_item .glyphicon.active {
 	background-color: #5bc0de;
 }
 
 
-#sidebar_content .upload_area {
-	/* want min to allow for expanding 
-	when showing file input */
-	min-width: 96px;
-	min-height: 96px;
-}
+
+
 .upload_area {
 	border: 2px dashed grey;
 	border-radius: 6px;
