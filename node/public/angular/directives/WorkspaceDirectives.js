@@ -2,6 +2,24 @@ var app = angular.module('app');
 
 
 
+/*****************
+	sidebarHelper
+******************/
+
+app.directive('sidebarHelper', function() {
+	function link(scope, element, attrs) {
+	};
+	
+	
+	
+	
+	return {
+		restrict: 		'E',
+		templateUrl:	'/angular/views/workspace/sidebarHelper.html',
+		link:			link
+	};
+});
+
 
 /**************
 	uploadArea
@@ -58,10 +76,5 @@ app.directive('uploadArea', function(UploadService) {
 		restrict: 		'E',
 		templateUrl:	'/angular/views/workspace/uploadArea.html',
 		link:			link
-		/*
-		scope:			{
-							// to display full or small template
-							dataBool:	"="
-						}*/
 	};
 });

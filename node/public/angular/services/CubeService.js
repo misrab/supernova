@@ -82,7 +82,7 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 		//var success = $('#main_alerts').find('.alert-success');
 		//var error
 		function successMessage() {
-			var success = $('<div class="my_hide alert alert-success">Cube successfully removed</div>');
+			var success = $('<div style="width: 90%; margin: 15px auto;" class="my_hide alert alert-success">Cube successfully removed</div>');
 			cube.before(success);
 			
 			cube.slideUp("fast", function() {
@@ -124,21 +124,39 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 
 	// used in upload service as well
 	this.addCubesToView = function(cubes, $scope) {
-		if (cubes && cubes.length) $scope.dataBool = true;
-					
-		var spot = $('#cubes');
-		// clear spot
-		//spot.html('');
-				
-		for (var i=0; i < cubes.length; i++) {
+		// internal functions
+		function addCube(cube) {
+			var spot = $('#cubes');
+			
 			// creating a new scope for each item
 			var $newScope = $rootScope.$new();
-			$newScope.data = cubes[i];
-			var newElement = $compile( '<cube-summary></cube-summary' )( 
+			$newScope.data = cube;
+			
+			var newElement = $compile( '<cube-summary></cube-summary>' )( 
 				$newScope
 			);
 			spot.append(newElement);
-		}		
+		};
+		
+		function addSidebarCube(cube, spot) {
+			var title = cube.tidbits.length ? cube.tidbits[0] : 'Cube ' + String(cube.id);
+			spot.append(
+				'<div class="menu_item">' + title
+				+ '<span class="glyphicon glyphicon-th left_right_margin"></span>'
+				+ '</div>'
+			);
+		};
+	
+		// script
+		if (cubes && cubes.length) $scope.dataBool = true;
+
+		var spot = $('#sidebar_data').next('sidebar-helper').find('.sidebar_files');;		
+		for (var i=0; i < cubes.length; i++) {
+			addCube(cubes[i]);
+			addSidebarCube(cubes[i], spot);
+		}
+		
+		//console.log('Cubes are : ' + JSON.stringify($scope.cubes));
 	};
 
 });

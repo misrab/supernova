@@ -12,6 +12,7 @@ app.directive('cubeSummary', function($http, CubeService) {
 	 */
 
 	function link(scope, element, attrs) {
+	
 		var cubeId = scope.data.id;
 		var csvPath = scope.data.data_path;
 		var remove = $('.remove_cube', element);
@@ -31,10 +32,10 @@ app.directive('cubeSummary', function($http, CubeService) {
 		};
 		
 		
-		
 		/*
 		 *	Internal functions
 		 */
+		 
 		
 		
 		function bindRemove() {
@@ -77,6 +78,7 @@ app.directive('cubeSummary', function($http, CubeService) {
 		// need table loaded to determine overflow
 		function bindSeeMore() {
 			var cubeSummary = element.find('.cube_summary');
+			var seeMore = $('.cube_see_more', element);
 			//var table = cubeSummary.find('.cube_data_table');
 			
 			function cubeOverflowing() {
@@ -89,31 +91,24 @@ app.directive('cubeSummary', function($http, CubeService) {
 				e.preventDefault();
 				
 				var table_h = element.find('.cube_data_table').height();
-				var INCREMENT = 200;
-				
-				//console.log('old h: ' + cubeSummary.height());
-				//console.log('table h : ' + table_h);
+				var INCREMENT = 300;
 				
 				// new height min of table or current + x
 				var new_h = String(Math.min(cubeSummary.height()+INCREMENT, table_h)) + 'px';
-				
-				console.log('new h: ' + new_h);
-				
+								
 				// increase height
 				cubeSummary.animate({ height: new_h }, 1000, function() {
-					console.log('done');
 					// show see more or not
 					if (cubeOverflowing()) {
-						$(this).show();
+						seeMore.show();
 					} else {
-						$(this).hide();
+						seeMore.hide();
 					}
 				});
 			};
 	
 			if (cubeOverflowing()) {
 			   // show seeMore
-			   var seeMore = $('.cube_see_more', element);
 			   seeMore.show();
 			   seeMore.click(seeMoreClick);
 			}

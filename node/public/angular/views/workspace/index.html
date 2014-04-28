@@ -1,7 +1,5 @@
 <div id="wrapper">
 
-	
-	
     <div id="sidebar-wrapper">
     
     	<div id="top_left_mask"></div>
@@ -9,69 +7,43 @@
     
     	<div id="sidebar_content">
     		<!-- upload -->
-			<div ng-if="dataBool==true" class="sidebar_item">
+			<div ng-show="dataBool==true" class="sidebar_item">
 				<upload-area></upload-area>
 			</div>
 			
 			<!-- data -->
-			<div class="sidebar_item" style="cursor: pointer;">
+			<div id="sidebar_data" ng-click="sidebarClick($event, 'sidebar_data')" class="active sidebar_item" style="cursor: pointer;">
+				<!--
 				<img style="width: 96px; height: 96px;; margin: 5px;" src="/img/workspace/sidebar_data.png"
 				onmouseover="this.src='/img/workspace/sidebar_data_hover.png'"
-				onmouseout="this.src='/img/workspace/sidebar_data.png'"></img>
+				onmouseout="this.src='/img/workspace/sidebar_data.png'"></img>-->
 			</div>
-	
+			<sidebar-helper></sidebar-helper>
+			
+			
+
+
 			<!-- analysis -->
-			<div class="sidebar_item" style="cursor: pointer;">
+			<div id="sidebar_analysis" ng-click="sidebarClick($event, 'sidebar_analysis')" class="sidebar_item" style="cursor: pointer;">
+				<!--
 				<img style="width: 96px; height: 96px;; margin: 5px;" src="/img/workspace/sidebar_analysis.png"
 				onmouseover="this.src='/img/workspace/sidebar_analysis_hover.png'"
-				onmouseout="this.src='/img/workspace/sidebar_analysis.png'"></img>
+				onmouseout="this.src='/img/workspace/sidebar_analysis.png'"></img>-->
 			</div>
+			<sidebar-helper style="display: none;"></sidebar-helper>
 		</div>
     </div>
     
     <div id="page-content-wrapper">
         <div class="page-content">
             <div class="container">
-				<!-- alerts -->
-				<div class="row">
-					<div id='main_alerts' class='col-md-12 text-center'>
-						<div class="alert alert-success my_hide">Successful</div>
-			
-						<div class="alert alert-danger my_hide">Something went wrong</div>
-					</div>
-				</div>
-	
-
-				<!-- upload area -->
-				<!-- no data case -->
-				<div ng-if="dataBool==false">
-					<div class="row">
-						<div class='col-md-12 text-center'>
-							<h1>
-								Upload data to get started
-							</h1>
-						</div>
-					</div>
-					<div class="row medium_space_top">
-						<div class='col-md-4 col-md-offset-4 text-center'>
-							<upload-area></upload-area>
-						</div>
-					</div>
-				</div>
-	
-	
-				<!-- cubes -->
-				<div class="row">
-					<div id="cubes" class='col-md-12 text-center'>
-					</div>
-				</div>
-	
-	
-				<!-- confirmation modal -->
-				<div ng-include="'/angular/views/shared/confirmation_modal.html'"></div>
-			
-			
+            	<!-- data viewing -->
+				<div ng-show="dataView" ng-include="'/angular/views/workspace/pageContentData.html'"></div>
+				<!-- analysis viewing -->
+				<div ng-show="!dataView" ng-include="'/angular/views/workspace/pageContentAnalysis.html'"></div>
 			</div>
 		</div>
 	</div>
+	<!-- confirmation modal -->
+	<div ng-include="'/angular/views/shared/confirmation_modal.html'"></div>
 </div>

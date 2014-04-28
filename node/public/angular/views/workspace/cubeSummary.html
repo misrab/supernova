@@ -1,14 +1,23 @@
-<div class="cube_summary">
-	<!-- <input type="hidden" name="cubeId" value="{{ data.id }}" /> -->
-	
+<!-- info -->
+<div style="width: 90%; margin: 0 auto; margin-top: 30px; background-color: #5bc0de; padding: 10px;">
+	<div style="font-weight: bold; margin: 5px auto; color: grey;" class="text-center full_width">
+		Information Retrieved
+	</div>
+
 	<div class='pull-left italic'>{{ data.num_rows }} rows</div>
 	
-	<a ng-click="alert('d')" href="#" class="remove_cube pull-right">Remove</a>
+	<div ng-click="alert('d')" href="#" class="remove_cube pull-right">
+		<span class="glyphicon glyphicon-remove"></span>
+		Remove
+	</div>
 	
 	<div>
 		<div ng-repeat="tidbit in data.tidbits">{{ tidbit }}</div>
 	</div>
-	
+</div>
+
+<!-- cube -->
+<div class="cube_summary">
 	<table class="cube_data_table">
 		<thead>
 			<!-- labels editable -->
@@ -18,6 +27,7 @@
 					<input class="form-control" style="width: auto; margin: 10px;" ng-model="label" ng-change="updateLabel($index, label)" type="text" name="label" value="{{ label }}" />
 				</td>
 			</tr>
+			<!-- types -->
 			<tr>
 				<td style="background-color: lightgrey;">Types</td>
 				<td ng-repeat="type in data.types track by $index">

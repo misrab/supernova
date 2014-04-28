@@ -65,38 +65,30 @@ app.config(function($locationProvider, $routeProvider, $httpProvider) {
     
     
     // 401 handling
-    var interceptor = ['$rootScope', '$q', '$location', function (scope, $q, $location) {
+    // 401
+	var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
+		var success = function (response) {
+		  return response;
+		};
 
-        function success(response) {
-            return response;
-        }
+		var error = function (response) {
+		  if (response.status === 401) {
+			//redirect them back to login page
+			$location.path('/login');
 
-        function error(response) {
-            var status = response.status;
+			return $q.reject(response);
+		  } 
+		  else {
+			return $q.reject(response);
+		  }
+		};
 
-            if (status == 401) {
-               // window.location = "/login";
-                $location.path = '/login';
-                var spot =  $('.alert-danger');
-                
-                if (spot.length) {
-                	spot.html('Invalid email or password');
-                	spot.show();
-                }
-                
-                return false; // false to stop ajax req
-            }
-            // otherwise
-            return $q.reject(response);
+		return function (promise) {
+		  return promise.then(success, error);
+		};
+  	}];
 
-        }
-
-        return function (promise) {
-            return promise.then(success, error);
-        }
-
-    }];
-    $httpProvider.responseInterceptors.push(interceptor);
+  	$httpProvider.responseInterceptors.push(logsOutUserOn401);
 });
 
 
