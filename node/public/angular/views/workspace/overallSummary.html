@@ -1,10 +1,16 @@
 <div>
-	<div class='text-left'>
+	<div class='text-left'>		
+		<span ng-click="zoomCubes()" class="btn btn-default summary_table_icon glyphicon glyphicon-zoom-in"></span>
+		<span class="btn btn-default summary_table_icon glyphicon glyphicon-stats"></span>
 		Number of tables: {{ cubes.length }}
 	</div>
 	
 	<table class="overall_summary_table">
 		<tr>
+			<td style='background-color: transparent;'>
+				<!-- selection -->
+				<input type='checkbox' ng-model='masterCheckBox' />
+			</td>
 			<td class="grey_background">
 				Information
 			</td>
@@ -13,8 +19,15 @@
 			</td>
 		</tr>
 		<tr ng-repeat="cube in cubes">
+			<!-- selection -->
+			<td style='background-color: transparent;'>
+				<input ng-model="selectedCubes[cube.id]" ng-checked='masterCheckBox' type='checkbox' />
+			</td>
 			<!-- info -->
 			<td>
+				<div style='text-align: left; color: grey; font-style: italic;'>
+					{{ cube.num_rows }} rows
+				</div>
 				<div ng-repeat="tidbit in cube.tidbits track by $index">{{ tidbit }}</div>
 			</td>
 			<!-- labels or types -->
@@ -32,7 +45,8 @@
 								<div ng-switch-when="excel_datetime">datetime</div>
 								<div ng-switch-when="datetime">datetime</div>
 								<div ng-switch-when="string">text</div>
-								<div ng-switch-default></div>
+								<div ng-switch-when="empty">empty</div>
+								<div ng-switch-default>{{ type }}</div>
 							</div>
 						</td>
 					</tr>

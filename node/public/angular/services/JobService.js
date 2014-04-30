@@ -5,7 +5,7 @@ app.service('JobService', function($http) {
 		var t = setInterval(function() {
 			$http.get('/api/job/'+type+'/'+jobId)
 				.success(function(data) {
-					console.log('## Received: ' + JSON.stringify(data));
+					//console.log('## Received: ' + JSON.stringify(data));
 					
 					if (data.results != undefined) {
 						clearInterval(t);

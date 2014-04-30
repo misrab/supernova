@@ -1,18 +1,59 @@
-<div>
-	<div class="row">
-		<div class='col-md-12 text-center'>
-			<!-- no data case -->
-			<div ng-if="dataBool==false">
-				<h1 style="margin-bottom: 30px;">Upload data to get started</h1>
-				<upload-area></upload-area>
-			</div>
-			<!-- data summary case -->
-			<div ng-if="dataBool==true">
-				<h1 style="margin-bottom: 30px;">Data Summary</h1>
-				
-				<overall-summary></overall-summary>
-			</div>
+
+<!-- no data case -->
+<div ng-if="dataBool==false" class="row">
+	<div class='col-md-12 text-center'>	
+		<h1 style="margin-bottom: 30px;">Upload data to get started</h1>
+		<upload-area></upload-area>
+	</div>
+</div>
+
+
+<!-- data summary case -->
+<div ng-if="dataBool==true" class='row bottom'>
+	<div class='col-md-3 text-left'>
+		<h1>Data Summary</h1>
+	</div>
+	<div class='col-md-3 text-center'>
+		<a href='#' class='page_hint'>
+			<span class="glyphicon glyphicon-ok left_right_margin"></span>
+			Browse data tables
+		</a>
+		
+		<div class='page_hint_text'>
+			Tables of data from your uploaded files are displayed below, along with 
+			information that seemed linked to each one, column labels, and column types for 
+			data manipulation
 		</div>
+	</div>
+	<div class='col-md-3 text-center'>
+		<a href='#' class='page_hint'>
+			<span class="glyphicon glyphicon-ok left_right_margin"></span>
+			Edit data easily
+		</a>
+		<div class='page_hint_text'>
+			Alter one label, and you'll be prompted to make the same 
+			change automatically across all tables. 
+			Select tables and press 
+			<span class="glyphicon glyphicon-zoom-in"></span>
+			to zoom in on data
+		</div>
+	</div>
+	<div class='col-md-3 text-center'>
+		<a href='#' class='page_hint'>
+			<span class="glyphicon glyphicon-ok left_right_margin"></span>
+			Select data for charting
+		</a>
+		<div class='page_hint_text'>
+			Visualising data is easy. Simply select your desired tables 
+			and press 
+			<span class="glyphicon glyphicon-stats"></span>. 
+			You'll be prompted to select columns, and voilà
+		</div>
+	</div>
+</div>
+<div ng-if="dataBool==true" class='row'>
+	<div class="col-md-12 text-center">
+		<overall-summary></overall-summary>
 	</div>
 </div>
 

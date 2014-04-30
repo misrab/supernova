@@ -81,7 +81,7 @@ app.service('UploadService', function($http, $route, JobService, CubeService) {
 								//var str = JSON.stringify(data);
 								//console.log(str);
 								// show extraction engine
-								$('.processing', area).show();
+								$('.processing').show();
 								
 								// start polling for job
 								JobService.pollForJob('processFiles', data.jobId, function() { // (cubes)

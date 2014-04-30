@@ -1,0 +1,51 @@
+<div class='row bottom'>
+	<div class='col-md-3 text-left'>
+		<h1>Data Zoom</h1>
+		
+		<a ng-click="workspaceViewChange('data_summary')" href="#"><< Back</a>
+	</div>
+	<div class='col-md-3 text-center'>
+		<a href='#' class='page_hint'>
+			<span class="glyphicon glyphicon-ok left_right_margin"></span>
+			Browse data tables
+		</a>
+		
+		<div class='page_hint_text'>
+			Tables of data from your uploaded files are displayed below, along with 
+			information that seemed linked to each one, column labels, and column types for 
+			data manipulation
+		</div>
+	</div>
+	<div class='col-md-3 text-center'>
+		<a href='#' class='page_hint'>
+			<span class="glyphicon glyphicon-ok left_right_margin"></span>
+			Browse data tables
+		</a>
+		
+		<div class='page_hint_text'>
+			Tables of data from your uploaded files are displayed below, along with 
+			information that seemed linked to each one, column labels, and column types for 
+			data manipulation
+		</div>
+	</div>
+	<div class='col-md-3 text-center'>
+		<a href='#' class='page_hint'>
+			<span class="glyphicon glyphicon-ok left_right_margin"></span>
+			Browse data tables
+		</a>
+		
+		<div class='page_hint_text'>
+			Tables of data from your uploaded files are displayed below, along with 
+			information that seemed linked to each one, column labels, and column types for 
+			data manipulation
+		</div>
+	</div>
+</div>
+
+
+<!-- cubes -->
+<div class='row bottom'>
+	<div class='col-md-12'>
+		<cube-summary ng-repeat="data in selectedCubes"></cube-summary>
+	</div>
+</div>

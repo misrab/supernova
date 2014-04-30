@@ -10,8 +10,14 @@ app.directive('overallSummary', function() {
 		init();
 		
 		function init() {
+			//scope.zoomCubes = zoomCubes;
 		};
 	};
+	
+	/*
+	function zoomCubes($scope) {
+		$scope.dataView = 'data_analysis';
+	};*/
 	
 	
 	return {

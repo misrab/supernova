@@ -43,8 +43,8 @@ var clearDB = null;
 if (process.env.NODE_ENV=='development') {
 	// next(err)
 	clearDB = function(next) {
-		//db_pg.sequelize.drop().complete(next);
-		next(null);
+		db_pg.sequelize.drop().complete(next);
+		//next(null);
 	};
 }
 else if (process.env.NODE_ENV=='staging') {

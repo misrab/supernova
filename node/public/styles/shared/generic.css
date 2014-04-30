@@ -9,12 +9,30 @@
 	WORKSPACE
 **************/
 
+.page_hint {
+	display: block;
+	margin-top: 20px;
+}
+.page_hint_text {
+	width: 100%;
+	background-color: white;
+	padding: 5px;
+	text-align: justify;
+}
+
+.summary_table_icon {
+	font-size: 2em;
+}
+.overall_summary_table {
+	border-collapse: separate;
+	border-spacing: 5px;
+}
 .overall_summary_table td:hover {
 	background-color: #5bc0de;
 }
 .overall_summary_table td {
 	background-color: white;
-	border: 1px solid grey;
+	/*border: 1px solid grey;*/
 	padding: 5px;
 }
 
@@ -22,7 +40,7 @@
 	width: 100%;
 }
 .overall_summary_subtable td {
-	background-color: white;
+	background-color: #F5F5DC;
 	border: 1px solid grey;
 }
 
@@ -42,7 +60,7 @@
 
 #sidebar_data, #sidebar_analysis, 
 #sidebar_content .upload_area {
-	position: absolute;
+	position: absolute !important;
 	width: 96px;
 	height: 96px;
 	left: 50%;
@@ -125,10 +143,9 @@
 	color: white;
 }
 .cube_summary {
-	display: inline-block;
 	max-width: 90%;
-	
-	height: 500px;
+	margin: 0 auto;
+	height: 300px;
 	overflow-y: hidden;
 	overflow-x: scroll;
 	

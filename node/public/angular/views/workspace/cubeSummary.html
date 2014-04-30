@@ -4,7 +4,7 @@
 		Information Retrieved
 	</div>
 
-	<div class='pull-left italic'>{{ data.num_rows }} rows</div>
+	<div class='text-left italic'>{{ data.num_rows }} rows</div>
 	
 	<div href="#" class="remove_cube pull-right">
 		<span class="glyphicon glyphicon-remove"></span>
@@ -48,5 +48,5 @@
 
 
 <div class="text-center">
-	<a class="cube_see_more my_hide" href="#">see more...</a>
+	<a ng-click="cubeSeeMore()" class="cube_see_more" href="#">see more...</a>
 </div>

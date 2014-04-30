@@ -32,11 +32,15 @@
         <div class="page-content">
             <div class="container">
                         
-            	<!-- data viewing -->
-				<div ng-show="dataView" ng-include="'/angular/views/workspace/pageContentData.html'"></div>
+            	<!-- overall summary viewing -->
+				<div ng-show="dataView=='data_summary'" ng-include="'/angular/views/workspace/pageContentData.html'"></div>
+				
+				<!-- cube zoom in -->
+				<!-- if to avoid bug with selectedCubes being a boolean instead of cube, until zoomCubes() is called -->
+				<div ng-if="dataView=='data_zoom'" ng-include="'/angular/views/workspace/pageContentZoom.html'"></div>
 				
 				<!-- analysis viewing -->
-				<div ng-show="!dataView" ng-include="'/angular/views/workspace/pageContentAnalysis.html'"></div>
+				<div ng-show="dataView=='data_analysis'" ng-include="'/angular/views/workspace/pageContentAnalysis.html'"></div>
 			
 			</div>
 		</div>
