@@ -1,20 +1,29 @@
-# external
-from datetime import datetime
-import xlrd
+"""
+	Process a row in list form, from a compatible file already read
 
-import time
+	Input:
+		- processor object for variables and methods
+		- row to be processed (array)
+		- sheet_info
+			tuple (wb_datemode, sheet, row_index) to deal with date types
+			e.g. Cell Types: 0=Empty, 1=Text, 2=Number, 3=Date, 4=Boolean, 5=Error, 6=Blank
+				 sht.cell_type(row_index, col_index)
+"""
+
+# external
 
 # internal
-from analytics.helpers import strip_list, infer_type, trim_row
-from analytics.datatypes import Cube
+from analytics.utils import strip_list, trim_row, infer_type
+from analytics.classes import Cube
 
+""" Constants """
 
-""" Constants (that matter) """
 CUBE_ROW_THRESHOLD = 10		# min rows to be counted as a likely cube
 TIDBIT_MAX_LENGTH = 1
 
 
-""" Private """
+""" Helpers """
+
 # returns true if row looks like labels
 # 1. full after trimmed
 # 2. all strings
@@ -54,8 +63,7 @@ def break_in_cube(processor, true_l, stripped_row, unemptied_row):
 	if true_l <= TIDBIT_MAX_LENGTH:
 		for tidbit in unemptied_row:
 			processor.tidbits.append(tidbit)
-		#processor.tidbits.append(unemptied_row[0])
-
+			
 
 def add_row_to_cube(processor, stripped_row, excel, sheet_info):
 	# indices for getting info from 'sheet_info'
@@ -81,29 +89,22 @@ def add_row_to_cube(processor, stripped_row, excel, sheet_info):
 			we are appending an array of tuples (value, type), hence the indexing of infer_type's result
 		'''
 		if excel==True and sheet_info[SHEET_INDEX].cell_type(sheet_info[ROW_INDEX], i)==EXCEL_DATE_CELL:
-			new_row.append((datetime(*xlrd.xldate_as_tuple(int(x), sheet_info[DATEMODE_INDEX]))  , 'excel_datetime'))
+			parsed_date = None
+			try:
+				parsed_date = datetime(*xlrd.xldate_as_tuple(int(x), sheet_info[DATEMODE_INDEX]))
+				#(datetime(*xlrd.xldate_as_tuple(int(x), sheet_info[DATEMODE_INDEX]))
+			except:
+				pass
+			new_row.append((parsed_date , 'excel_datetime'))
 		else:
 			new_row.append((infer_type(x)[2], infer_type(x)[1]))
 	
 	processor.current_cube.add_row(new_row)
 
 
-""" Public """
+""" Main """
 
 def process_row(processor, row, excel=False, sheet_info=None):
-	'''
-		This is where the intelligence lies. We try our best to get what we need
-		in one pass for O(n)
-		
-		Input:
-			- processor object for variables and methods
-			- row to be processed (array)
-			- sheet_info
-				tuple (wb_datemode, sheet, row_index) to deal with date types
-				e.g. Cell Types: 0=Empty, 1=Text, 2=Number, 3=Date, 4=Boolean, 5=Error, 6=Blank
-					 sht.cell_type(row_index, col_index)
-	'''
-	
 	# strip row fields no matter what
 	stripped_row = strip_list(row)
 	
@@ -128,6 +129,3 @@ def process_row(processor, row, excel=False, sheet_info=None):
 	
 	# update previous length
 	processor.previous_length = true_l
-	# increment counter
-	#processor.increment_row_counter()
-	

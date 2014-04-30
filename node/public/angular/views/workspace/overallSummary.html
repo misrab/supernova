@@ -1,0 +1,43 @@
+<div>
+	<div class='text-left'>
+		Number of tables: {{ cubes.length }}
+	</div>
+	
+	<table class="overall_summary_table">
+		<tr>
+			<td class="grey_background">
+				Information
+			</td>
+			<td class="grey_background">
+				Column Labels & Types
+			</td>
+		</tr>
+		<tr ng-repeat="cube in cubes">
+			<!-- info -->
+			<td>
+				<div ng-repeat="tidbit in cube.tidbits track by $index">{{ tidbit }}</div>
+			</td>
+			<!-- labels or types -->
+			<td>
+				<table class="overall_summary_subtable">
+					<tr>
+						<td class="grey_background">Label</td>
+						<td ng-repeat="label in cube.labels track by $index">{{ label }}</td>
+					</tr>
+					<tr>
+						<td class="grey_background">Type</td>
+						<td ng-repeat="type in cube.types track by $index">
+							<div ng-switch="type">
+								<div ng-switch-when="number">number</div>
+								<div ng-switch-when="excel_datetime">datetime</div>
+								<div ng-switch-when="datetime">datetime</div>
+								<div ng-switch-when="string">text</div>
+								<div ng-switch-default></div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

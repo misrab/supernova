@@ -62,8 +62,6 @@ app.config(function($locationProvider, $routeProvider, $httpProvider) {
     .otherwise({ redirectTo: '/' });
     
     
-    
-    
     // 401 handling
     // 401
 	var logsOutUserOn401 = ['$q', '$location', function ($q, $location) {
@@ -73,6 +71,10 @@ app.config(function($locationProvider, $routeProvider, $httpProvider) {
 
 		var error = function (response) {
 		  if (response.status === 401) {
+		  	// display error
+		  	$('.alert-danger').html('Invalid username or password');
+		  	$('.alert-danger').show();
+		  	
 			//redirect them back to login page
 			$location.path('/login');
 
@@ -92,17 +94,18 @@ app.config(function($locationProvider, $routeProvider, $httpProvider) {
 });
 
 
-app.run(function($rootScope, $location, $cookieStore){
+app.run(function($rootScope, $location, $cookieStore) {
 
 	// Everytime the route in our app changes check auth status
 	$rootScope.$on("$routeChangeStart", function(event, next, current) {
-		//$cookieStore.remove('user');
-		//console.log('## COOKIE: ' + $cookieStore.get('user'));
 		
 		$rootScope.currentUser = $cookieStore.get('user') || null;
 		
-		console.log('Current user is ' + JSON.stringify($rootScope.currentUser));
+		// console.log('Current user is ' + JSON.stringify($rootScope.currentUser));
 		if (next.requireLogin && !$rootScope.currentUser) {
+			// clear cookie just in case mismatch
+			$cookieStore.remove('user');
+			
 			$location.path('/login');
 			event.preventDefault();
 		}
@@ -113,17 +116,5 @@ app.run(function($rootScope, $location, $cookieStore){
 			$location.path('/workspace');
 			event.preventDefault();
 		}
-		
-		/*
-		// if you're logged out send to login page.
-		if (next.requireLogin && !UserService.getUserAuthenticated()) {
-			$location.path('/login');
-			event.preventDefault();
-		// send to workspace if logged in and not in generic page
-		} else if (!next.requireLogin && UserService.getUserAuthenticated()
-			&& ['/terms', '/about'].indexOf($location.path)==-1) {
-			$location.path('/workspace');
-			event.preventDefault();
-		}*/
 	});
 });

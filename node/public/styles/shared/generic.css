@@ -9,19 +9,57 @@
 	WORKSPACE
 **************/
 
-#sidebar_data, #sidebar_analysis {
-	width: 64px;
-	height: 64px;
-	
-	background-size: 64px 64px;
+.overall_summary_table td:hover {
+	background-color: #5bc0de;
+}
+.overall_summary_table td {
+	background-color: white;
+	border: 1px solid grey;
+	padding: 5px;
+}
+
+.overall_summary_subtable {
+	width: 100%;
+}
+.overall_summary_subtable td {
+	background-color: white;
+	border: 1px solid grey;
+}
+
+.sidebar_item:hover .sidebar_item_prompt {
+	display: block;
+}
+
+.sidebar_item_prompt {
+	margin-top: 100px; 
+	font-size: 1.25em; 
+	color: white;
+	-moz-text-shadow:    0 0 6px whitesmoke;
+  	-webkit-text-shadow: 0 0 6px whitesmoke;
+  	text-shadow:         0 0 6px whitesmoke;
+  	display: none;
+}
+
+#sidebar_data, #sidebar_analysis, 
+#sidebar_content .upload_area {
+	position: absolute;
+	width: 96px;
+	height: 96px;
+	left: 50%;
+	margin-left: -48px;
 }
 #sidebar_content .upload_area {
+	top: 48px;
+}
+#sidebar_data, #sidebar_analysis {
+	background-size: 96px 96px;
+}
+#sidebar_content .upload_area {
+	position: absolute;
 	/* want min to allow for expanding 
 	when showing file input */
-	width: 64px;
-	height: 64px;
 	background-image: url('/img/workspace/upload.png');
-	background-size: 48px 48px;
+	background-size: 72px 72px;
 	background-repeat:no-repeat;
 	/*background-attachment:fixed;*/
 	background-position:center; 
@@ -175,7 +213,7 @@
 
 #page-content-wrapper {
   width: 100%;
-  padding-top: 25px;
+  /*padding-top: 25px;*/
 }
 
 .sidebar-nav {
@@ -230,7 +268,7 @@ body {
   word-wrap: break-word;
 }
 #content, .container {
-	min-height: 100%;
+	min-height: 120%;
 }
 .container {
   padding-bottom: 150px;
@@ -266,7 +304,9 @@ a:hover {
 	text-decoration: none;
 }
 
-
+.grey_background {
+	background-color: lightgrey !important;
+}
 
 .italic {
 	font-style: italic;

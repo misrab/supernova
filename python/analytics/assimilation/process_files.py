@@ -1,19 +1,11 @@
 # external
-import os, binascii
-from boto.s3.connection import S3Connection
-from multiprocessing.pool import ThreadPool
-import threading
-import csv
 import xlrd
-import logging
-import json
-
-# for benchmarking
-import time
 
 # internal
-from analytics.helpers import check_list, split_filename, remove_local_file
-from utils import Processor, process_row
+from analytics.classes import RemoteAgent
+from analytics.classes import Processor
+from analytics.assimilation.process_row import process_row
+from analytics.utils import split_filename
 
 """
 	Constants
@@ -23,30 +15,14 @@ EXCEL_EXTENSIONS = ['.xls', '.xlsx']
 CSV_EXTENSION = '.csv'
 
 
-
 """
 	Helper Functions
 """
 
-
+# read file based on type and process rows
+# with given processor
 def read_excel_file(processor, filename):
-	"""
-	wb = xlrd.open_workbook(filename)
-	def read_sheet(i):
-		sht = wb.sheet_by_index(i)
-		# store sheet name to add to all cubes found
-		# TODO: what happens if no sheet name
-		processor.current_sheet_name = str(sht.name) # cast to string from unicode
-		for r in range(sht.nrows):
-			row = sht.row_values(r) # method, not array
-			process_row(processor, row, excel=True, sheet_info=(wb.datemode, sht, r))
-				
-	pool = ThreadPool(processes=32)
-	pool.map(read_sheet, range(wb.nsheets))
-	"""
-	with xlrd.open_workbook(filename) as excelbook:
-		
-		
+	with xlrd.open_workbook(filename) as excelbook:	
 		# cycle sheets
 		#for i in range(0, 1): #testing
 		for i in range(0, excelbook.nsheets):
@@ -58,18 +34,20 @@ def read_excel_file(processor, filename):
 			for r in range(sht.nrows):
 				row = sht.row_values(r) # method, not array
 				process_row(processor, row, excel=True, sheet_info=(excelbook.datemode, sht, r))
-				
-
 def read_csv_file(processor, filename):
 	with open(filename, 'rb') as csvfile:
 		reader = csv.reader(csvfile)
 		for row in reader:
+			print row
 			process_row(processor, row, excel=False)
-			
 
-def process_local_file(processor, localPath, file_extension):
-	t0 = time.time()
+# returns cubes from a localFile
+# reads file based on extension
+# one Processor object per file
+def read_local_file(localPath):
+	file_name_only, file_extension = split_filename(localPath)
 	
+	processor = Processor()
 	
 	if file_extension in EXCEL_EXTENSIONS:
 		read_excel_file(processor, localPath)
@@ -78,148 +56,79 @@ def process_local_file(processor, localPath, file_extension):
 	else:
 		raise ValueError('Unsupported file type. Currently supported are .csv, .xls, .xlsx')
 	
-	# remove local file
-	remove_local_file(localPath)
 	
-	t1 = time.time()
 	
-	print "======= processing a file took " + str(t1-t0)
-	
-	"""
-	for cube in processor.likely_cubes:
-		print '========================== LIKELY CUBE ========================='
-		print 'LABELS:  ====> ' + str(cube.labels)
-		print 'TIDBITS: ====> ' + str(cube.tidbits)
-		print 'ROWS:    ====> ' + str(cube.num_rows)
-	"""
-	
-		
+	return processor.likely_cubes
 
-# determine file type, read data and process
-# ! for remote files. If local use process_local_file
-def process_file(processor, url, fileKey):
-	file_name_only, file_extension = split_filename(url)
-	
-	#data = fileKey.get_contents_as_string()
-	# store it in tmp folder with random name + file extension
-	tempPath = './tmp/' + binascii.b2a_hex(os.urandom(15)) + file_extension
-	fileKey.get_contents_to_filename(tempPath)
 
-	process_local_file(processor, tempPath, file_extension)
-	
-
-# processes results into json and returns array of results
-def return_results(likely_cubes):
+# upload cube data to S3
+# convert results to JSON
+def process_cubes(cubes):
 	results = []
-	for cube in likely_cubes:
+	paths = [] # list of tuples (localPath, remotePath)
+	
+	for cube in cubes:
 		c = {}
 		# careful dict vs class with properties
 		c['labels'] = cube.labels
 		c['tidbits'] = cube.tidbits
 		c['types'] = cube.types
 		c['num_rows'] = cube.num_rows
-		c['data_path'] = cube.data_path
-		results.append(c)
-	
-	return results
-
-
-# write local cube.data_path file to S3 and deletes local version
-# ! do in parallel
-def process_cubes(cubes, bucket):	
-	def upload(cube):
+		
+		# set new path
 		localPath = cube.data_path
 		# ! could rehash new name, but just removing '.../tmp/'
 		AFTER = '/tmp/'
 		fileName = localPath[localPath.find(AFTER)+len(AFTER):]
 		remotePath = '/datafiles/' + fileName
-		try:
-			k = bucket.new_key(remotePath).set_contents_from_filename(localPath)
-		except:
-			logging.warning('Failed to upload new cube data to S3')
-			return
+		paths.append((cube.data_path, remotePath))
+		c['data_path'] = remotePath
 			
-		# remove old
-		remove_local_file(localPath)
-		# update path !URL not relative path!
-		cube.data_path = remotePath
-
-		
-		print '========================== PROCESSED CUBE ========================='
-		print 'LABELS:  ====> ' + str(cube.labels)
-		print 'TYPES: ====> ' + str(cube.types)
-		print 'TIDBITS: ====> ' + str(cube.tidbits)
-		print 'ROWS:    ====> ' + str(cube.num_rows)
+		# append cube to results
+		results.append(c)
 		
 	
-	#for cube in cubes:
-	#	upload(cube)
-	#	t = threading.Thread(target = upload, args=(cube,)).start()
-	pool = ThreadPool(processes=128)
-	pool.map(upload, cubes)
+	with RemoteAgent() as ra:
+		ra.upload_tuples(paths)
 	
+	return results
 
 """
-	Main Function
+	Main
 """
-# note urls are relative i.e. /files/...., NOT http://amazon.s3....
-# ! if remote False files are local
-def process_files(urls, remote=True):
-	t0 = time.time()
 
-	check_list(urls)
-	
-	try:
-		conn = S3Connection(os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY'))
-		bucket = conn.get_bucket(os.getenv('S3_BUCKET_NAME'))
-	except:
-		logging.error('Failed to fetch files from S3 for processing')
-		return []
-	
-	processor = Processor()
-	
-	# local vs remote case
-	# !!! filekey may not yet be available, keep checking
-	# (async upload on node side)
-	def start_remote(url):
-		fileKey = None
-		while fileKey is None:
-			try:
-				fileKey = bucket.get_key(url, validate=True)
-			except:
-				pass
-		
-		
-		process_file(processor, url, fileKey)
-		# delete the file from S3
-		# ! may want to do this after returning result
-		try:
-			bucket.delete_key(fileKey)
-		except:
-			logging.warning('Failed to delete S3 file after processing')
-			pass
-			
-	def start_local(localPath):
-		file_name_only, file_extension = split_filename(localPath)
-		process_local_file(processor, localPath, file_extension)
-	
-	# start the process
-	thread_fn = start_remote if remote else start_local
+def process_files(paths):
+	# list of all cubes
+	results = []
 
-	pool = ThreadPool(processes=64)
-	pool.map(thread_fn, urls)
+	# get files from S3
+	localPaths = []
+	with RemoteAgent() as ra:
+		localPaths = ra.download_files(paths)	
 	
-	#for path in urls:
-	#	thread_fn(path)
-		
-		#t = threading.Thread(target = thread_fn, args=(path,)).start()
+	
+	# process files
+	for path in localPaths:
+		cubes = read_local_file(path)
+		results.extend(cubes)
+	
 
-	t1 = time.time()
-	process_cubes(processor.likely_cubes, bucket)
-	t2 = time.time()
+	"""
+	for cube in results:
+		print '===== tidsbits: ' + str(cube.tidbits)
+		print '===== labels: ' + str(cube.labels)
+		print '===== types: ' + str(cube.types)
+		print '=== num rows: ' + str(cube.num_rows)
+	"""
 	
 	
-	print '------ Up to process_cubes: ' + str(t1-t0)
-	print '------ Time to process_cubes: ' + str(t2-t1)
-		
-	return return_results(processor.likely_cubes)
+	processedCubes = process_cubes(results)
+	
+	"""
+	f = open('./python/test.txt', 'w')
+	f.write(str(processedCubes))
+	f.close()
+	"""
+	
+	
+	return processedCubes

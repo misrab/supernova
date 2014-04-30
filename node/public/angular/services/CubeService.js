@@ -98,23 +98,6 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 		};
 		
 		successMessage();
-		
-		/*
-		$http.delete('/api/cube/'+cubeId)
-			.success(function(data) {
-				if (data.success) {
-					var success = cube.before(
-						'<div class="my_hide alert alert-success">Cube successfully removed</div>'
-					);
-					cube.remove();
-					//success.html('Cube successfully removed');
-					success.slideDown();
-					setTimeout(function() {
-						success.slideUp();
-						success.remove();
-					}, 3000);
-				}
-			});*/
 	};
 
 	this.getCubes = function(next) {
@@ -122,8 +105,35 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 			.success(next);
 	};
 
+
+	/*
+	this.addCubesToSidebar = function(cubes, $scope) {
+		// script
+		var spot = $('sidebar-helper').find('.sidebar_files');
+		for (var i=0; i < cubes.length; i++) {			
+			addSidebarCube(cubes[i], spot);
+		}
+		
+		// internal
+		function addSidebarCube(cube, spot) {
+			var title = cube.tidbits.length ? cube.tidbits[0] : 'Cube ' + String(cube.id);
+			
+			var newElement = $compile( 
+				'<sidebar-item title="'
+				+ title +'" '
+				+ 'cube-id="' + cube.id + '"'
+				+'></sidebar-item>' 
+			)( 
+				$scope
+			);
+			spot.append(newElement);
+		};
+	
+	};*/
+
 	// used in upload service as well
 	this.addCubesToView = function(cubes, $scope) {
+	
 		// internal functions
 		function addCube(cube) {
 			var spot = $('#cubes');
@@ -138,31 +148,10 @@ app.service('CubeService', function($http, $rootScope, $compile) {
 			spot.append(newElement);
 		};
 		
-		function addSidebarCube(cube, spot) {
-			var title = cube.tidbits.length ? cube.tidbits[0] : 'Cube ' + String(cube.id);
-			
-			
-			var newElement = $compile( 
-				'<sidebar-item title="'
-				+ title +'" '
-				+ 'cube-id="' + cube.id + '"'
-				+'></sidebar-item>' 
-			)( 
-				$scope
-			);
-			spot.append(newElement);
-		};
-		
-		// script
-		if (cubes && cubes.length) $scope.dataBool = true;
-
-		var spot = $('sidebar-helper').find('.sidebar_files');;		
+		// script	
 		for (var i=0; i < cubes.length; i++) {
-			addCube(cubes[i]);
-			addSidebarCube(cubes[i], spot);
-		}
-		
-		//console.log('Cubes are : ' + JSON.stringify($scope.cubes));
+			addCube(cubes[i]);			
+		}		
 	};
 
 });

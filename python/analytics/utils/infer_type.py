@@ -10,7 +10,7 @@ EMPTY_FIELDS = ('', '-', '/')
 
 def infer_type(x):
 	'''
-		Returns guessed type for an item and parses it
+		Returns guessed (original, type, parsed)
 		
 		!! does not check excel datetime
 	'''
@@ -19,6 +19,7 @@ def infer_type(x):
 	
 	
 	""" NOT YET POLISHED """
+	"""
 	def parse_number(x):
 		# returns parsed number if successful
 		def try_float(f):
@@ -42,25 +43,17 @@ def infer_type(x):
 		b = r2.sub('', a)
 	
 		return try_float(b)
+	"""
+	
+	
 	
 	
 	def is_number(x):
 		try:
-			#y = parse_number(x)
 			float(x)
-			return True
-		except ValueError:
-			return False
-	'''
-	def is_excel_date(x):
-		if excel==False:
-			return False
-		try:
-			xlrd.xldate_as_tuple(int(x), 0)
 			return True
 		except:
 			return False
-	'''
 	def is_datetime(x):
 		try:
 			parser.parse(x)
@@ -78,39 +71,27 @@ def infer_type(x):
 	
 	
 	# order matters
-	"""
-	if excel==True:
-		# return as a datetime object, not just a tuple
-		type = 'excel_datetime'
-		# !! do a try catch: excel is never safe!
-		try:
-			parsed = datetime(*xlrd.xldate_as_tuple(int(x), 0))
-		except:
-			parsed = None
-	"""
 	if is_empty(x):
 		type = 'empty'
-		parsed = ''
+		try:
+			parsed = ''
+		except:
+			pass
 	elif is_number(x):
 		type = 'number'
-		parsed = float(x)
+		try:
+			parsed = float(x)
+		except:
+			pass
 		#parsed = parse_number(x)
 	elif is_datetime(x):
 		type = 'datetime'
-		parsed = parser.parse(x)
+		try:
+			parsed = parser.parse(x)
+		except:
+			pass
 	else:
 		type = 'string'
 		parsed = x
-	
-	"""
-	elif is_excel_date(x):
-		# return as a datetime object, not just a tuple
-		type = 'excel_datetime'
-		# !! do a try catch: excel is never safe!
-		try:
-			parsed = datetime(*xlrd.xldate_as_tuple(int(x), 0))
-		except:
-			parsed = None
-	"""
 		
 	return (x, type, parsed)

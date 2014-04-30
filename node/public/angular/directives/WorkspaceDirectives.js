@@ -3,15 +3,35 @@ var app = angular.module('app');
 
 
 /**********************
+	data-summary
+***********************/
+app.directive('overallSummary', function() {
+	function link(scope, element, attrs) {
+		init();
+		
+		function init() {
+		};
+	};
+	
+	
+	return {
+		restrict: 		'E',
+		templateUrl:	'/angular/views/workspace/overallSummary.html',
+		link:			link
+	};
+});
+
+/**********************
 	sidebar menu item
 ***********************/
 
 
+/*
 app.directive('sidebarItem', function() {
 	function link(scope, element, attrs) {
-		/*
-		 *	Init and vars
-		 */
+		
+		// Init and vars
+		 
 		 
 		var cubeId = scope.cubeId;
 		init();
@@ -21,9 +41,9 @@ app.directive('sidebarItem', function() {
 		};
 		
 	
-		/*
-		 *	Internals
-		 */
+		
+		//	Internals
+		 
 		
 		// toggle view of cube when user clicks on icon
 		function bindToggleView() {
@@ -62,11 +82,13 @@ app.directive('sidebarItem', function() {
 						}
 	};
 });
+*/
 
 /*****************
 	sidebarHelper
 ******************/
 
+/*
 app.directive('sidebarHelper', function() {
 	function link(scope, element, attrs) {
 	};
@@ -80,56 +102,82 @@ app.directive('sidebarHelper', function() {
 		link:			link
 	};
 });
-
+*/
 
 /**************
 	uploadArea
 ***************/
 
-app.directive('uploadArea', function(UploadService) {
+app.directive('uploadArea', function($rootScope, UploadService) {
 	
 	function link(scope, element, attrs) {
-		var area = $('.upload_area', element);
-		var fileInput = $('input:file', element);
-		var SUCCESS_GREEN = '#62c462';
-	
-		// file select
-		fileInput.change(function() {
-			var files = element[0].files;
-			UploadService.onFileSelect(files, scope);
-		});
+		/*
+		 *	Init and vars
+		 */
 		
-		// toggle file input display by clicking
-		// on image
-		scope.clickImage = function(e) {
-			e.preventDefault();
-			var input = element.find('input:file');
-			input.toggle('slow');
+		init();
+		
+		function init() {
+			// toggle file input display by clicking
+			// on image
+			scope.clickImage = function(e) {
+				e.preventDefault();
+				var input = element.find('input:file');
+				input.toggle('slow');
+			};
+			
+			// drag and drop css
+			bindDragAndDrop();
+			// bindFileSelect
+			bindFileSelect();
 		};
 		
 		
-		// drag and drop of files
-		// disable window default
-		$(document).bind('drop dragover', function (e) {
-    		e.preventDefault();
-		});
-		//element.css('background-color', 'green');
-		//alert(area.attr('class'));
-		area.bind('dragover', function(e) {
-			e.preventDefault();
-			e.stopPropagation()
-			area.css('background-color', SUCCESS_GREEN);
-		});
-		area.bind('dragleave drop', function(e) {
-			e.preventDefault();
-			e.stopPropagation()
-			area.css('background-color', 'white');
-		});
-		area.bind('drop', function(e) {
-			e.preventDefault();
-			e.stopPropagation()
-			fileInput.prop("files", e.originalEvent.dataTransfer.files);
-		});
+		
+		/*
+		 *	Internals
+		 */
+		function bindFileSelect() {
+			var fileInput = $('input:file', element);
+			
+			
+			fileInput.change(function() {
+				UploadService.onFileSelect(element, scope);
+			});
+		};
+		
+		
+		function bindDragAndDrop() {
+			var area = $('.upload_area', element);
+			var fileInput = $('input:file', element);
+			var SUCCESS_GREEN = '#62c462';
+		
+			// drag and drop of files
+			// disable window default
+			$(document).bind('drop dragover', function (e) {
+				e.preventDefault();
+			});
+			//element.css('background-color', 'green');
+			//alert(area.attr('class'));
+			area.bind('dragover', function(e) {
+				e.preventDefault();
+				e.stopPropagation()
+				area.css('background-color', SUCCESS_GREEN);
+			});
+			area.bind('dragleave drop', function(e) {
+				e.preventDefault();
+				e.stopPropagation()
+				area.css('background-color', 'white');
+			});
+			area.bind('drop', function(e) {
+				e.preventDefault();
+				e.stopPropagation()
+				fileInput.prop("files", e.originalEvent.dataTransfer.files);
+			});
+		};
+		
+		
+		
 	};
 
 

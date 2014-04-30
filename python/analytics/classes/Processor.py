@@ -1,44 +1,33 @@
-from analytics.helpers import check_list
+"""
+	Class to handle processing for a file
+"""
 
-from analytics.datatypes import Cube
+
+# external
 
 
-""" Constants """
+# internal
+from analytics.utils import check_list
+from analytics.classes.Cube import Cube
+
+# constants
 JUMP_THRESHOLD = 0.4 		# leeway allowed before breaking cube
-#CUBE_ROW_THRESHOLD = 10 	# min rows to be counted as a likely cube
+
 
 class Processor(object):
-	"""
-		Persistent class across a bunch of files/sheets being processed to store
-		persistent variables for cube finding.
-		
-		! Mutable objects can be changed by reference, but reassignment won't work:
-		we are passing this object (instance) around and expect to alter the one copy
-	"""
-	
-	
-	""" Init """
-	
-	
+	""" init """
 	def __init__(self):
-		#self._row_counter = 0
-		self._current_sheet_name = None
+		#self._current_sheet_name = None
 		self._previous_length = None
 		
-		self._current_cube = Cube() # initialise with a Cube
+		self._current_cube =  Cube() # initialise with a Cube
 		self._label_candidates = []
 		self._tidbits = []
 		self._likely_cubes = []
 		
 	
-	""" Properties (not all have setters) """
-
-	### Row Counter ###
-	#@property
-	#def row_counter(self):
-	#	return self._row_counter
+	""" Properties """
 	
-		
 	### Sheet name ###
 	@property
 	def current_sheet_name(self):
@@ -60,6 +49,7 @@ class Processor(object):
 		self._previous_length = value
 		
 	### Current Cube ###
+	
 	@property
 	def current_cube(self):
 		return self._current_cube
@@ -101,21 +91,18 @@ class Processor(object):
 	@likely_cubes.setter
 	def likely_cubes(self, value):
 		self._likely_cubes = value
-		
-	
-	""" Methods that use/act on properties """
-	
-	#def increment_row_counter(self):
-	#	self._row_counter = self._row_counter + 1
-		
+
+
+	""" Methods """
 	def small_jump(self, new_length):	
 		assert isinstance(new_length, int)
+		
 		# if no other row, consider it a small jump
-		if self.previous_length is None:
+		if self._previous_length is None:
 			return True
 			
-		smaller_l = min(self.previous_length, new_length)
-		bigger_l = max(self.previous_length, new_length)
+		smaller_l = min(self._previous_length, new_length)
+		bigger_l = max(self._previous_length, new_length)
 	
 		# ! reasonable difference
 		# i.e. if only 2 columns dont want +/-0.4

@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.service('UploadService', function($http, JobService, CubeService) {
+app.service('UploadService', function($http, $route, JobService, CubeService) {
 	/*
 		Expect #upload_area, .progress > .progress-bar, .alert-danger html fields
 	
@@ -84,10 +84,13 @@ app.service('UploadService', function($http, JobService, CubeService) {
 								$('.processing', area).show();
 								
 								// start polling for job
-								JobService.pollForJob('processFiles', data.jobId, function(cubes) {
-									//console.log('## Uload service got cubes back: ' + JSON.stringify(cubes));
-									$('.processing', area).slideUp();
-									CubeService.addCubesToView(cubes, $scope);
+								JobService.pollForJob('processFiles', data.jobId, function() { // (cubes)
+									//area.hide();
+									//$('.processing', area).hide();
+									
+									// ! just reload page
+									$route.reload();
+									//CubeService.addCubesToView(cubes, $scope);
 								});
 								
 								//console.log('### Job id is: ' + data.jobId);

@@ -59,7 +59,11 @@ app.controller('WorkspaceController', function($scope, CubeService) {
 	
 	function refreshCubes() {
 		CubeService.getCubes(function(cubes) {
-			CubeService.addCubesToView(cubes, $scope);
+			if (cubes && cubes.length) {
+				$scope.dataBool = true;
+				$scope.cubes = cubes;
+			}
+			//CubeService.addCubesToSidebar(cubes, $scope);
 		});
 	};
 	

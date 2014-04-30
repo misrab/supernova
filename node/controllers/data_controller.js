@@ -87,16 +87,19 @@ function writeFilesToStore(userId, files, next) {
 		var newPath = '/files/' + userId + '/' + crypto.randomBytes(128).toString('hex') + '.' + fileExt;
 		
 		// ! moving on asap
-		urls.push(newPath);
+		//urls.push(newPath);
 		
 		client.putFile(filepath, newPath, function(err, res) {
 			if (err) console.log('Error pushing file to S3');
 			//urls.push(newPath);
 		 	 // Always either do something with `res` or at least call `res.resume()`.
 		  	res.resume();
+		  	
+		  	urls.push(newPath);
+		  	cb();
 		});
 		
-		cb();
+		//cb();
 	}, function(err) {
 		if (err) return next(err);
 		next(null, urls);

@@ -1,31 +1,43 @@
 <div id="wrapper">
-
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" >
     
     	<div id="top_left_mask"></div>
 		<div id="sidebar_background"></div>
     
     	<div id="sidebar_content">
     		<!-- upload -->
-			<div ng-show="dataBool==true" class="sidebar_item">
-				<upload-area></upload-area>
+    		    		
+    		<upload-area ng-show="dataBool==true" class="sidebar_item" data-bool="{{ dataBool }}">
+    		</upload-area>
+    		<!--
+			<div style="" ng-show="dataBool==true" class="sidebar_item">
+				<upload-area data-bool="{{ dataBool }}"></upload-area>
 			</div>
-			<!-- data -->
-			<div id="sidebar_data" ng-click="sidebarClick($event, 'sidebar_data')" class="active sidebar_item" style="cursor: pointer;"></div>
-			<!-- analysis -->
-			<div id="sidebar_analysis" ng-click="sidebarClick($event, 'sidebar_analysis')" class="sidebar_item" style="cursor: pointer;"></div>
+			-->
 			
-			<sidebar-helper></sidebar-helper>
+			<!-- data -->
+			<div id="sidebar_data" ng-click="sidebarClick($event, 'sidebar_data')" class="active sidebar_item" style="top: 33%; cursor: pointer;">
+				<div class="sidebar_item_prompt">Data</div>
+			</div>
+			<!-- analysis -->
+			<div id="sidebar_analysis" ng-click="sidebarClick($event, 'sidebar_analysis')" class="sidebar_item" style="top: 66%; cursor: pointer;">
+				<div class="sidebar_item_prompt">Charts</div>
+			</div>
+			
+			<!--<sidebar-helper></sidebar-helper>-->
 		</div>
     </div>
     
     <div id="page-content-wrapper">
         <div class="page-content">
             <div class="container">
+                        
             	<!-- data viewing -->
 				<div ng-show="dataView" ng-include="'/angular/views/workspace/pageContentData.html'"></div>
+				
 				<!-- analysis viewing -->
 				<div ng-show="!dataView" ng-include="'/angular/views/workspace/pageContentAnalysis.html'"></div>
+			
 			</div>
 		</div>
 	</div>

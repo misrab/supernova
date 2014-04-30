@@ -2,10 +2,6 @@ var app = angular.module('app');
 
 
 app.directive('cubeSummary', function($http, CubeService) {
-
-
-	
-		
 						
 	/*
 	 *	Link function

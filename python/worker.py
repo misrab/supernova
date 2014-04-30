@@ -6,8 +6,6 @@
 # external
 import os
 import redis
-#from pymongo import MongoClient
-#import gridfs
 import threading
 import json
 
@@ -16,16 +14,10 @@ import json
 from allocator import allocate_job
 
 
-# constants
-#PENDING_JOBS = 'supernovaJobsPending'
-#COMPLETED_JOBS = 'supernovaJobsCompleted'
-
-
 class Listener(threading.Thread):
     def __init__(self, r):
         threading.Thread.__init__(self)
         self.redis = r
-        #self.gridfs = fs
     
     def checkQueue(self):
     	r = self.redis    	
@@ -65,10 +57,5 @@ def createMongoClient():
  
 if __name__ == "__main__":
 	r = createRedisClient()
-	
-	#client = createMongoClient()
-	#fs = gridfs.GridFS(client.mydb, 'fs')
-	
-
-	client = Listener(r)
-	client.start()
+	listen = Listener(r)
+	listen.start()

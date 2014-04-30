@@ -1,20 +1,26 @@
-<div ng-if="dataBool==false">
+<div>
 	<div class="row">
 		<div class='col-md-12 text-center'>
-			<h1>
-				Upload data to get started
-			</h1>
-		</div>
-	</div>
-	<div class="row medium_space_top">
-		<div class='col-md-4 col-md-offset-4 text-center'>
-			<upload-area></upload-area>
+			<!-- no data case -->
+			<div ng-if="dataBool==false">
+				<h1 style="margin-bottom: 30px;">Upload data to get started</h1>
+				<upload-area></upload-area>
+			</div>
+			<!-- data summary case -->
+			<div ng-if="dataBool==true">
+				<h1 style="margin-bottom: 30px;">Data Summary</h1>
+				
+				<overall-summary></overall-summary>
+			</div>
 		</div>
 	</div>
 </div>
 
+
 <!-- cubes -->
+<!--
 <div class="row">
 	<div id="cubes" class='col-md-12 text-center'>
 	</div>
 </div>
+-->

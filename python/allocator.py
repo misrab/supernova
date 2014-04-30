@@ -1,11 +1,9 @@
 '''
-	
+	Allocated jobs based on mapping functionName --> JOBS_DICT[functionName]
+	Puts completed job to redis with (key, value): (jobId, stringified JSON result)
 '''
 
 # external
-#from pymongo import MongoClient
-#import gridfs
-
 import json
 
 # internal
@@ -15,8 +13,6 @@ from analytics.assimilation import process_files #extract_cubes
 
 
 # constants
-PENDING_JOBS = 'supernovaJobsPending'
-COMPLETED_JOBS = 'supernovaJobsCompleted'
 JOBS_DICT = {
 	'processFiles':	process_files # extract_cubes
 }
@@ -47,23 +43,20 @@ def allocate_job(job, r):
 		return
 		
 
+	
 	# check if job exists at all
 	if functionName in JOBS_DICT:
 		job_fn = JOBS_DICT[functionName]
 	else:
 		return
 	
+	
+	# blocking call to function
 	completedJob = {}
 	completedJob['results'] = job_fn(dataSources)
 	
+	#print completedJob
 	
 	# push completed job with results
-	r.set(jobId, json.dumps(completedJob))	
-	
-	#meow = r.get(jobId)
-	# test
-	#f = open('./python/test.txt', 'w')
-	#f.write(json.dumps(meow))
-	#f.close()
-	
+	r.set(jobId, json.dumps(completedJob))
 	

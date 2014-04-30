@@ -57,12 +57,15 @@ module.exports = function(app) {
 		worker_controller.checkJob(req.param('id'), function(err, result) {
 			if (err) return res.send(400);
 			
+			
 			if (result!=null && result.results!=undefined && req.param('type')=='processFiles') {
 				
 				var email = getEmail(req);
 				data_controller.associateCubes(email, result.results, function(err, cubes) {
 					if (err) console.log('## Error associating cubes: ' + JSON.stringify(err));
-					result.results = cubes;
+					//result.results = cubes;
+										
+					result.results = [];
 					res.json(200, result);
 				});
 			} else {
